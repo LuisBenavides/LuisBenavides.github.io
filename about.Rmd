@@ -1,7 +1,1159 @@
 ---
-title: "About me"
+title: "Curso de R"
 ---
+# {.tabset .tabset-fade .tabset-pills}
 
-## Header
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
-Say more about you here.
+## Introducción
+### Instalación de R
+Para utilizar R es necesario instalarlo en tu máquina. Para ello sigue
+las instrucciones en https://cran.r-project.org/.
+
+Para facilitar la programación en R, es necesario descargar otro software que
+asista como interfaz de usuario, creando un ambiente integrado de desarrollo
+(o IDE por sus siglas en inglés).
+
+Uno de los IDE más utilizados en R es el RStudio, y este se puede descargar
+libremente de https://www.rstudio.com.
+
+### Descripción de R
+
+R es un software de fuente libre para su uso en estadística. Se modeló a raíz de
+S y S-Plus. El lenguaje S fue desarrollado a finales de los 80's en los
+laboratorios de AT\&T. El proyecto R fue iniciado por Robert Gentleman y Ross
+Ihaka en el Departamento de Estadística de la Universidad de Auckland en 1995. [sitio web oficial](https://cran.r-project.org)
+
+### Uso de R en el curso
+Se pretende utilizar R en lugar de otras opciones comerciales como lo son `Minitab`,
+`Spss`, `Excel`, etc. Se espera que esto permita a los alumnos entender de mejor
+manera los problemas estadísticos y se beneficio de la utilización de un programa
+más sofisticado a pesar de la curva de aprendizaje menos pronunciada.
+
+### Beneficios esperados para los alumnos
+
+Se espera que los alumnos aprecien los siguientes beneficios:
+
+* R es gratis.
+* R es de código abierto, corre en sistemas \textsc{Unix} (y similares), \textsc{Windows} y \textsc{Macintosh}.
+* R tiene un sistema de ayuda muy amplio.
+* R permite diseñar y manipular gráficas.
+* Aprendiendo R, los alumnos pueden luego migrar a otras plataformar comerciales como S, o S-plus.
+* R tiene una sintaxis fácil de aprender y está lleno de funciones estadísticas listas para usarse.
+* R es un lenguaje computacional de alto nivel. 
+
+
+### R en comparación con otras soluciones de software}
+¿Qué le falta a R en comparación a otros?
+
+* La interfaz gráfica es limitada. Esto quiere decir es que un poco más difícil
+de crear y manipular gráficas que con otros paquetes, no que no las pueda hacer.
+* No hay soporte comercial. Sin embargo la abundante ayuda que existe en la red
+compensa en buena medida este hecho.
+* El lenguaje de comandos es un lenguaje de programación, por lo que los estudiantes deberán aprender a apreciar los beneficios y maleficios de la sintaxis.
+
+## Primeros Pasos
+
+### Iniciando R
+
+Iniciar R es algo directo, pero el método depende de tu plataforma.
+Lo podrás correr desde el menú del sistema al hacer doble clic en el íncono
+de R, o agregando el comando `R` en la línea de comandos.
+
+### Pantalla de bienvenida
+
+R version 3.2.1 (2015-06-18) -- "World-Famous Astronaut"
+Copyright (C) 2015 The R Foundation for Statistical Computing
+Platform: i386-w64-mingw32/i386 (32-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Workspace loaded from ~/.RData]
+
+>
+
+
+### Preguntas y respuestas
+R se utiliza de manera interactiva, el usuario hace una pregunta y R te da
+una repuesta.
+
+* Ingresas una línea con un comando y luego presionas `return`.
+* Cuando R está listo para recibir entradas, mostrará `>`.
+* Es posible utilizar R escribiendo línea por línea, o en forma de lotes,
+donde escribes muchas líneas y le pides a R que las ejecute todas con una sola
+orden.
+
+### Ejemplo 1
+```{r}
+plot(rnorm(500))
+```
+Este comando dibuja 500 números aleatorios de una distribución normal estándar en
+una gráfica que se genera.
+
+### Ejemplo 2
+R lo puedes usar como una calculadora. Prueba con los siguientes comandos:
+```{r}
+2 + 2
+```
+```{r}
+exp(-2)
+```
+
+* El `[1]` es la forma que tiene R de imprimir números y vectores.
+* No es muy útil en estos momentos, pero lo será cuando los resultados sean
+vectores de mayor tamaño.
+
+### Ejemplo 2
+Considera el comando:
+```{r}
+rnorm(15)
+```
+
+* El `[1]` indica la posición del primer resultado en el vector de 15 elementos.
+* El `[8]` indica que el valor `-0.18483426` está en la posición 6.
+* El `[15]` indica que el valor `-2.43976437` está en la posición 15.
+* Las posiciones de los demás valores se pueden obtener contando a partir del elemento de la izquierda. Por ejemplo, `0.96775782` tiene la posición 2, pues `-0.86100260` que está a su izquierda tiene la posición 1. Así, `0.44071900` tiene
+la posición 3, `0.73326055` la 4, etc.
+
+
+### Asignaciones
+R, como cualquier otro lenguaje computacional, tiene *variables simbólicas*.
+Estos son nombres que representan valores. Por ejemplo, para asignar el valor 2 a
+la variable `x`
+```{r}
+x <- 2
+```
+
+Ahora prueba utilizar la variable
+```{r}
+x
+```
+
+```{r}
+x + x
+```
+
+
+### Nombres de tus variables
+Los nombres de las variables pueden elegirse libremente, pero debes seguir estas
+reglas:
+* Los nombres se pueden construir de letras, dígitos y puntos.
+* Un nombre no puede iniciar con un dígito y un punto seguido de un dígito.
+* Nombres que inician con punto son especiales y deben evitarse.
+* Un ejemplo de nombre de variable: height.1yr puede representar la altura de
+un niño de un año de edad.
+* Los nombres son sensibles a las mayúsculas. WT no es lo mismo que wt.
+* Algunos nombres ya los usa el sistema y pueden causas confusiones si los usas
+para otros propósitos: c, q, t, C,D, F, I, y T, así como diff, df, y pt. ¡No úses
+estos nombres!
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Aritmética vectorizada}
+En estadística raras veces trabajas con un sólo dato, ocupas conjuntos de datos.
+Estos conjunto se pueden agrupar a través de vectores.
+\begin{verbatim}
+> weight <- c(60, 72, 57, 90, 95, 72)
+> weight
+[1] 60 72 57 90 95 72
+\end{verbatim}
+La función \verb|c(...)| se usa para definir vectores.
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Aritmética vectorizada}
+Ahora puedes hacer cálculos aritméticos utilizando vectores.
+\begin{scriptsize}
+\begin{verbatim}
+> height <- c(1.75, 1.80, 1.65, 1.90, 1.74, 1.91)
+> bmi <- weight / height^2
+> bmi
+[1] 19.59184 22.22222 20.93664 24.93075 31.37799 19.73630
+\end{verbatim}
+\end{scriptsize}
+Nota que las operaciones se hacen elemento por elemento de cada vector.
+\begin{alertblock}{Reciclaje}
+Si un vector es menor que otro, el vector de menor longitud se recicla.
+Esto es mayormente usado en vectores de tamaño 1 (escalares), pero también cuando
+se desean lograr un patrón. Si el vector de mayor tamaño no es múltiplo del de
+menor tamaño, R ejecuta el cálculo pero arroja una advertencia.
+\end{alertblock}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Ejemplo}
+Calculemos la media y la desviación estándar de la variable \verb|weight|.
+\begin{scriptsize}
+\begin{verbatim}
+> sum(weight)
+[1] 446
+> sum(weight) / length(weight)
+[1] 74.33333
+\end{verbatim}
+\end{scriptsize}
+
+Para salvar la media y usarla en el cálculo de la desviación estándar:
+\begin{scriptsize}
+\begin{verbatim}
+> xbar <- sum(weight) / length(weight)
+> weight - xbar
+[1] -14.333333  -2.333333 -17.333333  15.666667  20.666667  -2.333333
+> (weight - xbar)^2
+[1] 205.444444   5.444444 300.444444 245.444444 427.111111   5.444444
+> sum((weight - xbar)^2)
+[1] 1189.333
+> sqrt(sum((weight - xbar)^2))
+[1] 34.48671
+\end{verbatim}
+\end{scriptsize}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Ejemplo}
+Otra forma de lograr el mismo resultado es mediante las funciones \verb|mean(...)| y
+\verb|sd(...)|
+\begin{verbatim}
+> mean(weight)
+[1] 74.33333
+> sd(weight)
+[1] 15.42293
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Ejemplo de Prueba de Hipótesis}
+\begin{block}{Prueba $t$}
+Usando lo datos calculados del BMI, prueba si la media de los 6 BMI's calculados
+anteriormente es 22.5 o no lo es. Usa la prueba $t$ para averiguarlo.
+\end{block}
+\begin{scriptsize}
+\begin{verbatim}
+> t.test(bmi,mu=22.5)
+
+	One Sample t-test
+
+data:  bmi
+t = 0.34488, df = 5, p-value = 0.7442
+alternative hypothesis: true mean is not equal to 22.5
+95 percent confidence interval:
+ 18.41734 27.84791
+sample estimates:
+mean of x 
+ 23.13262 
+\end{verbatim}
+\end{scriptsize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Gráficas}
+R puede ayudarnos a visualizar los datos mediante el uso de gráficas.
+\begin{verbatim}
+> plot(height,weight)
+\end{verbatim}
+\begin{figure}
+\includegraphics[scale=0.5]{IE02_Iniciemos/plotHW1.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Gráficas}
+Debido a que un BMI normal debe ser alrededor de 22.5, se espera que
+$weight \approx 22.5 \times height^2$. Esta línea la podemos incluir en la figura.
+\begin{scriptsize}
+\begin{verbatim}
+> hh <- c(1.65, 1.70, 1.75, 1.80, 1.85, 1.90)
+> lines(hh, 22.5 * hh^2)
+\end{verbatim}
+\end{scriptsize}
+\begin{figure}
+\includegraphics[scale=0.5]{IE02_Iniciemos/plotHW2.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Gráficas}
+La función \verb|lines(...)| agrega valores $(x,y)$ conectados por líneas.
+\begin{block}{Nota}
+En el ejemplo se utilizó como entrada de la función la variable \verb|hh| para
+aproximar la línea curva por medio de líneas equidistantes ordenadas. Prueba utilizar
+otros valores de entrada para averiguar que sucede si estos no están ordenados o
+no so equidistantes.
+\end{block}
+\end{frame}
+
+\section{Elmentos Esenciales del Lenguaje R}
+
+\subsection{Expresiones, objetos, funciones y argumentos}
+
+\begin{frame}[fragile]{Expresiones y Objetos}
+La forma de interactuar con R es a través de expresiones.
+\begin{itemize}
+* El usuario ingresa una expresión, R la evalúa e imprime el resultado.
+* Algunas expresiones se evalúan no por su resultado, sino por su efecto
+secundario, como una imagen o escribir en un archivo.
+* Todas las expresiones regresan un resultado, que puede ser \verb|NULL|, y
+a veces puede ser invisible.
+* Las expresiones involucran variables de referencia, operadores como $+$,
+llamadas de funciones, y otras que todavía no se mencionan.
+* Las expresiones trabajan en \emph{objetos}. Este es un término abstracto
+para referirse a cualquier cosa que se puede asignar a una variable. Un vector
+es un ejemplo de un objeto.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Funciones y Argumentos}
+Muchas cosas en R se hacen llamando funciones. Estas son análogas a lo que en
+matemáticas se le conoce como función de una o más variables. Por ejemplo:
+\begin{verbatim}
+> log(x)
+> plot(height,weight)
+\end{verbatim}
+En el último caso, la función se llama \verb|plot| y los argumentos son
+\verb|height| y \verb|weight|.
+\end{frame}
+
+\begin{frame}[fragile]{Funciones y Argumentos}
+Una función puede tener muchos argumentos. Para ver los argumentos se una
+función en específico se puede utilizar la función \verb|arg|.
+\begin{scriptsize}
+\begin{verbatim}
+> args(plot.default)
+function (x, y = NULL, type = "p", xlim = NULL, ylim = NULL, 
+    log = "", main = NULL, sub = NULL, xlab = NULL, ylab = NULL, 
+    ann = par("ann"), axes = TRUE, frame.plot = axes, panel.first = NULL, 
+    panel.last = NULL, asp = NA, ...) 
+NULL
+\end{verbatim}
+\end{scriptsize}
+Los argumentos que no están seguido por un igual son argumentos obligatorios.
+Mientras que los que están seguidor por un igual son opcionales. Los opcionales, de
+no establecerse, quedan definidos por un valor por defecto.
+\end{frame}
+
+\begin{frame}[fragile]{Funciones y Argumentos}
+Prueba incluir un argumento opcional a la función \verb|plot|:
+\begin{verbatim}
+> plot(height,weight)
+> plot(height,weight,pch = 2)
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Funciones y Argumentos}
+Algunas funciones no requieren argumentos. Por ejemplo, para mostrar el contenido
+del espacio de trabajo puedes usar la función \verb|ls()|.
+\begin{block}{Funciones sin argumentos}
+Todas las funciones están seguidas por paréntesis (), aún si estas no requieren
+de argumentos para ejecutarse.
+\end{block}
+\end{frame}
+
+\subsection{Vectores}
+
+\begin{frame}[fragile]{Vectores}
+Existen tres tipo de vectores:
+\begin{itemize}
+* Vectores numéricos.
+\begin{verbatim}
+> c(1, 2, 3,4, 6)
+[1] 1 2 3 4 6
+\end{verbatim}
+* Vectores de caracteres.
+\begin{verbatim}
+> c("Huey", "Dewey", "Louie")
+[1] "Huey"  "Dewey" "Louie"
+> c('Huey', 'Dewey', 'Louie')
+[1] "Huey"  "Dewey" "Louie"
+\end{verbatim}
+* Vectores lógicos.
+\begin{verbatim}
+> c(TRUE,TRUE,FALSE,TRUE)
+[1]  TRUE  TRUE FALSE  TRUE
+> c(T,T,F,T)
+[1]  TRUE  TRUE FALSE  TRUE
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Vectores}
+Un vector lógico puede ser de resultado de evaluar un operador lógico o una expresión
+de relación:
+\begin{verbatim}
+> bmi > 25
+[1] FALSE FALSE FALSE FALSE  TRUE FALSE
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Valores faltantes}
+Es frecuente encontrar bases de datos con valores faltantes. R permite identificar
+un valor faltante como \verb|NA| para su posterior manipulación.
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Funciones que crean vectores}
+En ocasiones es útil crear vectores. He aquí algunas funciones:
+\begin{itemize}
+* \verb|c|: permite crear un vector especificando los valores de los elementos.
+\begin{verbatim}
+> c(42,57,12,19,1,3,4)
+[1] 42 57 12 19  1  3  4
+\end{verbatim}
+* \verb|seq|: Crea un secuencia de puntos equidistantes.
+\begin{verbatim}
+> seq(4,9)
+[1] 4 5 6 7 8 9
+> seq(4,10,2)
+[1]  4  6  8 10
+> seq(1.65,1.90,0.05)
+[1] 1.65 1.70 1.75 1.80 1.85 1.90
+\end{verbatim}
+* \verb|4:9|: Una sitaxis especial para crear vectores tipo \verb|seq(4,9)|.
+El 4 y el 9 son números usados como ejemplo.
+\begin{verbatim}
+> 4:9
+[1] 4 5 6 7 8 9
+\end{verbatim}
+* \verb|rep|: Replica los valores y tiene dos variantes, dependiendo
+si el segundo argumento es un vector o un escalar.
+\begin{verbatim}
+> oops <- c(7,9,13)
+> rep(oops,3)
+[1]  7  9 13  7  9 13  7  9 13
+> rep(oops,1:3)
+[1]  7  9  9 13 13 13
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Ejercicio}
+Crea un vector de codificaciones. Los primeros 5 elementos corresponden a alumnos
+de prepatec, los siguientes 5 de licenciatura y los siguiente 8 de posgrado.
+Utiliza la función \verb|rep|.
+\end{frame}
+
+\begin{frame}[fragile]{Respuesta}
+\begin{verbatim}
+> rep(c(1,2,3),c(5,5,8))
+ [1] 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3 3 3 3
+\end{verbatim}
+\end{frame}
+
+\subsection{Matrices y arreglos}
+
+\begin{frame}{Matrices}
+\begin{block}{Matriz}
+En matemáticas, una matriz es un arreglo \emph{numérico} de dos dimensiones. En R, este arreglo
+no se limita a números. Pueden ser incluso \emph{cadenas de caracteres}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Convierte un vector a una matriz}
+Usa el comando \verb|dim|:
+\begin{verbatim}
+> x <- 1:12
+> dim(x) <- c(3,4)
+> x
+     [,1] [,2] [,3] [,4]
+[1,]    1    4    7   10
+[2,]    2    5    8   11
+[3,]    3    6    9   12
+\end{verbatim}
+La función \verb|dim| cambia el atributo de dimensiones de x, haciendo que R trate
+al vector de 12 números como una matriz $3 \times 4$. Nota la secuencia en que los
+elementos del vector se acomodan en la matriz, iniciando por el primer elemento
+de la primer columna de la izquierda.
+\end{frame}
+
+\begin{frame}[fragile]{Crea una matriz en menos pasos}
+Lo anterior se puede simplificar utilizando la función \verb|matrix| de R:
+\begin{verbatim}
+> matrix(1:12,nrow = 3,byrow = T)
+     [,1] [,2] [,3] [,4]
+[1,]    1    2    3    4
+[2,]    5    6    7    8
+[3,]    9   10   11   12
+\end{verbatim}
+\begin{block}{Observa el llenado}
+Nota que ahora al usar \verb|byrow = T| la matriz se llena siguiendo las filas en
+lugar de las columnas.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Agrega nombres a tus filas y columnas}
+Una característica de R es que te permite personalizar los nombres de
+las columnas y las filas. Esto es especialmente útil cuando la matrices son muy grandes.
+\begin{verbatim}
+> x <- matrix(1:12,nrow = 3,byrow = T)
+> rownames(x) <- LETTERS[1:3]
+> x
+  [,1] [,2] [,3] [,4]
+A    1    2    3    4
+B    5    6    7    8
+C    9   10   11   12
+\end{verbatim}
+Además de la función \verb|LETTERS| están \verb|letters| y \verb|month.name| que pueden
+ser de utilidad.
+\end{frame}
+
+\begin{frame}[fragile]{Trasponer matrices}
+Para transponer matrices hay que utilizar la función \verb|t|:
+\begin{verbatim}
+> t(x)
+     A B  C
+[1,] 1 5  9
+[2,] 2 6 10
+[3,] 3 7 11
+[4,] 4 8 12
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Pegar reglones y columnas}
+Puedes construir matrices pegando reglones y columnas:
+\begin{small}
+\begin{verbatim}
+> cbind(A = 1:4, B= 5:8, C = 9:12)
+     A B  C
+[1,] 1 5  9
+[2,] 2 6 10
+[3,] 3 7 11
+[4,] 4 8 12
+> rbind(A = 1:4, B= 5:8, C = 9:12)
+  [,1] [,2] [,3] [,4]
+A    1    2    3    4
+B    5    6    7    8
+C    9   10   11   12
+\end{verbatim}
+\end{small}
+\end{frame}
+
+\subsection{Factores}
+
+\begin{frame}[fragile]{Factores}
+Es común en estadística tener variables categóricas. En ocaciones estas variables
+tienen nombres o códigos numéricos. En R estas variables se especifican como
+\emph{factores}.
+\begin{verbatim}
+> pain <- c(0,3,2,2,1)
+> fpain <- factor(pain,levels = 0:3)
+> fpain
+[1] 0 3 2 2 1
+Levels: 0 1 2 3
+> levels(fpain) <- c("none", "mild", "medium", "severe")
+> fpain
+[1] none   severe medium medium mild  
+Levels: none mild medium severe
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Factores}
+Puedes extraer la codificación numérica de los niveles de los factores
+\begin{verbatim}
+> as.numeric(fpain)
+[1] 1 4 3 3 2
+> levels(fpain)
+[1] "none"   "mild"   "medium" "severe"
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Si no defines los niveles}
+Si no defines los niveles, R lo hará por ti siguiendo el orden alfabético. Sin embargo,
+hacer esto puede llevar consigo problemas.
+\begin{scriptsize}
+\begin{verbatim}
+> text.pain <- c("none", "severe", "medium", "medium", "mild")
+> ftext.pain <- factor(text.pain)
+> ftext.pain
+[1] none   severe medium medium mild  
+Levels: medium mild none severe
+> as.numeric(ftext.pain)
+[1] 3 4 1 1 2
+\end{verbatim}
+\end{scriptsize}
+\end{frame}
+
+\subsection{Listas}
+
+\begin{frame}[fragile]{Listas}
+Las listas son colecciones de objetos en un objeto compuesto más grande. Para
+crearlas se utiliza la función \verb|list|. Por ejemplo:
+\begin{scriptsize}
+\begin{verbatim}
+> intake.pre <- c(5260, 5470, 5640, 6180, 6390,
++ 6515, 6805, 7515, 7515, 8230, 8770)
+> intake.post <- c(3910, 4220, 3885, 5160, 5645,
++ 4680, 5265, 5975, 6790, 6900, 7335)
+> mylist <-list(before = intake.pre, after = intake.post)
+> mylist
+$before
+ [1] 5260 5470 5640 6180 6390 6515 6805 7515 7515 8230 8770
+
+$after
+ [1] 3910 4220 3885 5160 5645 4680 5265 5975 6790 6900 7335
+\end{verbatim}
+\end{scriptsize}
+\end{frame}
+
+\begin{frame}[fragile]{Llamando elementos de una lista}
+Los componentes de una lista se nombran según los nombres de los argumentos utilizados
+en la función \verb|list|. Se pueden extraer usando el operador \verb|$|:
+\begin{scriptsize}
+\begin{verbatim}
+> mylist$before
+ [1] 5260 5470 5640 6180 6390 6515 6805 7515 7515 8230 8770
+\end{verbatim}
+\end{scriptsize}
+\end{frame}
+
+\subsection{Data Frame}
+
+\begin{frame}{Data Frame}
+Un \emph{data frame} corresponde lo que en estadística se le conoce como una
+\emph{matriz de datos} o un \emph{conjunto de datos}.
+\begin{block}{Data frame}
+Es una lista de vectores y/o factores que tiene el mismo largo, y se relacionan
+transversalmente los unos a los otros.
+\end{block}
+Además, puedes nombrar cada columna de forma única.
+\end{frame}
+
+\begin{frame}[fragile]{Data Frame}
+Puede crear data frames de variables existentes:
+\begin{small}
+\begin{verbatim}
+> d <- data.frame(intake.pre, intake.post)
+> d
+   intake.pre intake.post
+1        5260        3910
+2        5470        4220
+3        5640        3885
+4        6180        5160
+5        6390        5645
+6        6515        4680
+7        6805        5265
+8        7515        5975
+9        7515        6790
+10       8230        6900
+11       8770        7335
+\end{verbatim}
+\end{small}
+\end{frame}
+
+\begin{frame}[fragile]{Data Frame}
+Al igual que las listas, la información se puede extraer usando el operador \verb|$|.
+\begin{small}
+\begin{verbatim}
+> d$intake.pre
+ [1] 5260 5470 5640 6180 6390 6515 6805 7515 7515 8230 8770
+\end{verbatim}
+\end{small}
+\end{frame}
+
+\subsection{Indexación}
+
+\begin{frame}[fragile]{Indexado}
+Si se requiere de un elemento en particular de un vector se usan corchetes \verb|[...]|.
+\begin{verbatim}
+> d$intake.pre[5]
+[1] 6390
+\end{verbatim}
+Si se requieren varios elementos:
+\begin{verbatim}
+> intake.pre[c(3,5,7)]
+[1] 5640 6390 6805
+\end{verbatim}
+Nota que \verb|intake.pre[c(3,5,7)]| es distinto a \verb|intake.pre[3,5,7]|. El segundo
+indica un indexado en tres dimensiones, y no es el caso que buscamos.
+\end{frame}
+
+\begin{frame}[fragile]{Indexado}
+Otra opción es mediante la definición previa del vector:
+\begin{verbatim}
+> v <- c(3,5,7)
+> intake.pre[v]
+[1] 5640 6390 6805
+> intake.pre[1:5]
+[1] 5260 5470 5640 6180 6390
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Indices negativos}
+Con R puedes definir qué índice no deseas, y te devolverá el resto:
+\begin{verbatim}
+> intake.pre[-c(3,5,7)]
+[1] 5260 5470 6180 6515 7515 7515 8230 8770
+\end{verbatim}
+\begin{block}{No se mezclan}
+No es posible mezclar índices positivos y negativos en una misma orden.
+\end{block}
+\end{frame}
+
+\subsection{Selección condicional}
+
+\begin{frame}[fragile]{Selección condicional}
+Anteriormente vimos como extraer información a través del uso de índices. Pero en ocasiones
+nos interesa únicamente la información que cumpla con cierta regla. Por ejemplo:
+\begin{scriptsize}
+\begin{verbatim}
+> intake.post
+ [1] 3910 4220 3885 5160 5645 4680 5265 5975 6790 6900 7335
+> intake.pre > 7000
+ [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
+> intake.post[intake.pre > 7000]
+[1] 5975 6790 6900 7335
+\end{verbatim}
+\end{scriptsize}
+El comando \verb|intake.pre > 7000| genera un vector lógico que es verdadero en los
+últimos cuatro elementos, y al incluir el vector lógico dentro de otro vector, R regresará
+los valores donde el vector lógico sea verdadero. Observa que las posiciones obtenidas para este caso
+son los valores del arreglo \verb|intake.post| donde \verb|intake.pre| posee
+valores mayores a 7000.
+\end{frame}
+
+\begin{frame}[fragile]{Operadores de comparación}
+Los operadores de comparación son:
+\begin{itemize}
+* \verb|<|: menor que.
+* \verb|>|: mayor que.
+* \verb|==|: igual a. Se usan dos iguales para diferenciar del operador \verb|=|
+que es usado para asignar valores.
+* \verb|<=|: menor o igual que.
+* \verb|>=|: mayor o igual que.
+* \verb|!=|: diferente de.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Operadores lógicos}
+\begin{itemize}
+* \verb|&|: lógico ``y''.
+* \verb|||: lógico ``0''.
+* \verb|!|: lógico ``No''.
+* \verb|&&|: lógico ``y también''.
+* \texttt{||}: lógico ``0 de otra manera''.
+\end{itemize}
+El operador \verb|&| es vectorizado y el operador \verb|&&| no lo es.
+\begin{verbatim}
+> ((-2:2) >= 0) & ((-2:2) <= 0)
+[1] FALSE FALSE  TRUE FALSE FALSE
+> ((-2:2) >= 0) && ((-2:2) <= 0)
+[1] FALSE
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Ejemplo}
+Puedes utilizar operadores lógicos para mejorar tus índices lógicos.
+\begin{verbatim}
+> intake.post[intake.pre > 7000 & intake.pre <= 8000]
+[1] 5975 6790
+\end{verbatim}
+R regresará aquellos elementos donde el valor lógico sea verdadero (\verb|TRUE|).
+\end{frame}
+
+\begin{frame}[fragile]{Valores faltantes}
+\begin{alertblock}{Cuidado con los valores faltantes}
+En caso de que existan valores faltantes, R evaluará la operación lógica, pero en lugar
+de general un valor de \verb|TRUE| o \verb|FALSE| colocará un \verb|NA|, indicando que
+existe un valor faltante.
+\end{alertblock}
+Para saber si R ha asignado valores faltantes se puede utilizar la función \verb|is.na()|.\\
+La comparación \verb|x == NA| no es posible, por lo que R la marca como \verb|NA|. Es decir,
+la comparación de x con un elemento desconocido es un elemento desconocido.
+\end{frame}
+
+\begin{frame}[fragile]{Indexar data frames}
+La indexación también funciona en los data frames. Se pueden llamar valores
+como si se tratara de coordenadas en una matriz.
+\begin{verbatim}
+> d <- data.frame(intake.pre, intake.post)
+> d[5,1]
+[1] 6390
+\end{verbatim}
+Si deseas obtener todos los valores de un reglón
+\begin{verbatim}
+> d[5,]
+  intake.pre intake.post
+5       6390        5645
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Indexar data frames}
+No es lo mismo \verb|d[2]| a \verb|d[,2]|
+\begin{scriptsize}
+\begin{verbatim}
+> d[2]
+   intake.post
+1         3910
+2         4220
+3         3885
+4         5160
+5         5645
+6         4680
+7         5265
+8         5975
+9         6790
+10        6900
+11        7335
+> d[,2]
+ [1] 3910 4220 3885 5160 5645 4680 5265 5975 6790 6900 7335
+\end{verbatim}
+\end{scriptsize}
+En el primer caso tienes un data frame de una columna, en el segundo un vector.
+\end{frame}
+
+\begin{frame}[fragile]{Indexar data frames}
+También puedes usar vectores lógicos para indexar
+\begin{verbatim}
+> d[d$intake.pre > 7000,]
+   intake.pre intake.post
+8        7515        5975
+9        7515        6790
+10       8230        6900
+11       8770        7335
+\end{verbatim}
+Recuerda usar la coma para indicar que los valores lógicos se evalúan en la primer
+columna.
+\end{frame}
+
+\begin{frame}[fragile]{Indexar data frames}
+Si sólo deseas ver los primeros elementos del data frame
+\begin{verbatim}
+> d[1:2,]
+  intake.pre intake.post
+1       5260        3910
+2       5470        4220
+\end{verbatim}
+Recuerda usar la coma para indicar que los valores lógicos se evalúan en la primer
+columna.
+\end{frame}
+
+\begin{frame}[fragile]{Indexar data frames}
+También puedes ver los primeros y los últimos elementos del data frame usando
+las funciones \verb|head()| y \verb|tail()|
+\begin{verbatim}
+> head(d)
+  intake.pre intake.post
+1       5260        3910
+2       5470        4220
+3       5640        3885
+4       6180        5160
+5       6390        5645
+6       6515        4680
+\end{verbatim}
+Prueba usar \verb|tail()| para observar el resultado.
+\end{frame}
+
+\begin{frame}[fragile]{Pausa: instala paquete}
+Los siguiente ejercicios los haremos siguiendo bases de datos provistas
+en el paquete \verb|ISwR|. Sólo sigue las siguientes instrucciones:
+\begin{verbatim}
+> install.packages("ISwR")
+> library(ISwR)
+\end{verbatim}
+Ya puedes continuar.
+\end{frame}
+
+\begin{frame}[fragile]{Datos agrupados y data frames}
+Observa los siguientes datos:
+\begin{tiny}
+\begin{verbatim}
+> energy
+   expend stature
+1    9.21   obese
+2    7.53    lean
+3    7.48    lean
+4    8.08    lean
+5    8.09    lean
+6   10.15    lean
+7    8.40    lean
+8   10.88    lean
+9    6.13    lean
+10   7.90    lean
+11  11.51   obese
+12  12.79   obese
+13   7.05    lean
+14  11.85   obese
+15   9.97   obese
+16   7.48    lean
+17   8.79   obese
+18   9.69   obese
+19   9.68   obese
+20   7.58    lean
+21   9.19   obese
+22   8.11    lean
+\end{verbatim}
+\end{tiny}
+\end{frame}
+
+\begin{frame}[fragile]{Datos agrupados y data frames}
+Puedes separar en dos vectores los valores de \verb|expend| según el factor \verb|stature|.
+\begin{verbatim}
+> exp.lean <- energy$expend[energy$stature == "lean"]
+> exp.obese <- energy$expend[energy$stature == "obese"]
+\end{verbatim}
+O lo puedes hacer en un solo paso con la función \verb|split()|
+\begin{tiny}
+\begin{verbatim}
+> split(energy$expend, energy$stature)
+$lean
+ [1]  7.53  7.48  8.08  8.09 10.15  8.40 10.88  6.13  7.90  7.05  7.48  7.58  8.11
+
+$obese
+[1]  9.21 11.51 12.79 11.85  9.97  8.79  9.69  9.68  9.19
+\end{verbatim}
+\end{tiny}
+\end{frame}
+
+\subsection{Ciclos implícitos}
+
+\begin{frame}[fragile]{Ciclos implícitos}
+Se conoce como ciclo a un acción que se repite hasta un número determinado de veces o
+hasta que se cumple una condición.\\
+Cuando uno programa funciones personalizadas, es común utilizar ciclos explícitos
+mediante otras funciones como \verb|for| y \verb|while|. Sin embargo, su uso requiere
+control de flujo de datos, lo que incrementa la dificultad y el riesgo de error.\\
+Para facilitar estas operaciones y reducir el grado de error, R proporciona algunas
+funciones que permiten generar ciclos \emph{sencillos}. Estas funciones son:
+\begin{itemize}
+* \verb|lapply|.
+* \verb|sapply|.
+* \verb|tapply|.
+* \verb|replicate|.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{lapply}
+Como ejemplo, para calcular la media.
+\begin{verbatim}
+> lapply(thuesen, mean, na.rm = T)
+$blood.glucose
+[1] 10.3
+
+$short.velocity
+[1] 1.325652
+\end{verbatim}
+El primer argumento introducido es data frame, el segundo es la función que se aplicará
+a cada columna del data frame, el tercer argumento \verb|na.rm = T| indica a R que
+ignore los valores faltantes.
+\end{frame}
+
+\begin{frame}[fragile]{sapply}
+\verb|lapply| generó los resultados en una lista. Si deseamos los resultados en un
+vector o matriz, podemos utilizar la función \verb|sapply|. La ``s'' es por simple.
+\begin{verbatim}
+> sapply(thuesen, mean, na.rm = T)
+ blood.glucose short.velocity 
+     10.300000       1.325652 
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{replicate}
+Si deseamos realizar una operación un número predeterminado de veces, podemos utilizar
+la función \verb|replicate|.
+\begin{verbatim}
+> replicate(10,mean(rexp(20)))
+ [1] 1.1879751 0.7896432 0.8530818 1.2532436 0.5704128
+ [6] 1.0008456 1.1049465 0.6551930 1.1522924 1.1465836
+\end{verbatim}
+Aquí, el primer argumento indica el número de replicas que deseamos, el segundo argumento
+es la función que deseamos que se ejecute esa cantidad de veces.
+\end{frame}
+
+\begin{frame}[fragile]{apply}
+Si deseamos trabajar con una matriz, y deseamos realizar una operación por cada
+columna o reglón, podemos utilizar la función \verb|apply|.
+\begin{scriptsize}
+\begin{verbatim}
+> m <- matrix(rnorm(12),4)
+> m
+           [,1]       [,2]       [,3]
+[1,] -1.2579939 -1.4615055 -0.1273765
+[2,]  0.2856864  1.2293273  1.1210700
+[3,]  1.5710954  0.6571184  0.1768200
+[4,] -0.5209838  0.1575533  1.5351948
+> apply(m,2,min)
+[1] -1.2579939 -1.4615055 -0.1273765
+> apply(m,1,min)
+[1] -1.4615055  0.2856864  0.1768200 -0.5209838
+\end{verbatim}
+\end{scriptsize}
+Aquí, en el primer caso obtenemos el mínimo por columna. En el segundo caso lo obtenemos
+por reglón.
+\end{frame}
+
+\begin{frame}[fragile]{tapply}
+\verb|tapply| se utiliza para aplicar una función a los datos clasificados según un factor.
+\begin{verbatim}
+> tapply(energy$expend,energy$stature,median)
+ lean obese 
+ 7.90  9.69 
+\end{verbatim}
+\end{frame}
+
+\subsection{Ordenamientos}
+
+\begin{frame}[fragile]{Ordenamientos}
+Ordenar los datos es una tarea trivial con la función \verb|sort|.
+\begin{verbatim}
+> intake$post
+ [1] 3910 4220 3885 5160 5645 4680 5265 5975 6790
+[10] 6900 7335
+> sort(intake.post)
+ [1] 3885 3910 4220 4680 5160 5265 5645 5975 6790
+[10] 6900 7335
+\end{verbatim}
+Para ordenar de manera decreciente
+\begin{verbatim}
+> sort(intake.post,decreasing = T)
+ [1] 7335 6900 6790 5975 5645 5265 5160 4680 4220
+[10] 3910 3885
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Obtener jerarquías}
+Las jerarquías son las posiciones relativas en orden ascendente de un conjunto
+de números. Se pueden obtener con la función \verb|order|.
+\begin{verbatim}
+> intake$post
+ [1] 3910 4220 3885 5160 5645 4680 5265 5975 6790
+[10] 6900 7335
+> order(intake.post)
+ [1]  3  1  2  6  4  7  5  8  9 10 11
+\end{verbatim}
+En este caso, el 3 aparece al principio indicando que el elemento más pequeño
+se encuentra en la tercer posición. Sigue el 1, indicando que el segundo más pequeño
+está en la primer posición, y así sucesivamente.
+\end{frame}
+
+\begin{frame}[fragile]{Extender el orden de una arreglo hacia otros}
+En ocasiones se requiere ordenar un vector, pero manteniendo la posición relativa
+de los otros que están relacionados y que son de igual longitud. Para ello ocupamos
+la extraña forma en que nos indica R las jerarquías con función \verb|order|.
+\begin{verbatim}
+> o <- order(intake$post)
+> o
+ [1]  3  1  2  6  4  7  5  8  9 10 11
+> intake$post[o]
+ [1] 3885 3910 4220 4680 5160 5265 5645 5975 6790
+[10] 6900 7335
+> intake$pre[o]
+ [1] 5640 5260 5470 6515 6180 6805 6390 7515 7515
+[10] 8230 8770
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Extender el orden de una arreglo hacia otros}
+Lo anterior se puede hacer directamente en un data frame.
+\begin{scriptsize}
+\begin{verbatim}
+> intake[o,]
+    pre post
+3  5640 3885
+1  5260 3910
+2  5470 4220
+6  6515 4680
+4  6180 5160
+7  6805 5265
+5  6390 5645
+8  7515 5975
+9  7515 6790
+10 8230 6900
+11 8770 7335
+\end{verbatim}
+\end{scriptsize}
+\end{frame}
+
+\subsection{Ejercicios}
+
+\begin{frame}[fragile]{Ejercicios}
+\begin{enumerate}
+* ¿Cómo podrías revisar si dos vectores son iguales cuando pueden contener valore
+faltantes (\verb|NA|)? Usar la función \verb|identical| se considera trampa. Puedes usar
+la función \verb|all|, investígala.
+
+* Si \verb|x| es un factor de $n$ niveles y \verb|y| es un vector de $n$ elementos,
+qué pasa si calculas \verb|y[x]|.
+
+* Escribe expresiones lógicas para extraer la información de las niñas de entre 7
+y 14 años de edad del conjunto de datos \verb|juul|
+
+* ¿Qué pasa si cambias los niveles de un factor con la función \verb|levels| y le das
+el mismo valor a dos o más niveles?
+
+* Anteriormente se utilizó la función \verb|replicate| para obtener la media de 20 números
+aleatorios generados de una distribución exponencial, y esto se repitió 10 veces. ¿Cómo
+harías lo mismo utilizando la función \verb|apply| y \verb|sapply|?
+
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Respuestas}
+\begin{enumerate}
+* Respuesta
+\begin{scriptsize}
+\begin{verbatim}
+> (all(A[!is.na(A)] == B[!is.na(B)]) & all(is.na(A)
+  + == is.na(B))) & (length(A) = length(B))
+\end{verbatim}
+\end{scriptsize}
+
+* Respuesta: Los niveles se representan como números que sirven de entrada
+como índices.
+\begin{scriptsize}
+\begin{verbatim}
+> x = c("f2", "f1", "f3", "f4", "f5")
+> xfactor <- factor(x,c(c("f1", "f2", "f3", "f4", "f5")))
+> y[xfactor]
+[1]  4  2  6  8 10
+\end{verbatim}
+\end{scriptsize}
+
+* Respuesta
+\begin{scriptsize}
+\begin{verbatim}
+> v <- (juul$age >= 7 & juul$age <= 14) & !is.na(juul$age)
+> juul[v,]
+\end{verbatim}
+\end{scriptsize}
+
+* Respuesta: Los valores nombre de todos los factores cambian.
+\begin{scriptsize}
+\begin{verbatim}
+> xfactor
+[1] f2 f1 f3 f4 f5
+Levels: f1 f2 f3 f4 f5
+> levels(xfactor) <- c("f1", "f1", "f3", "f4", "f5")
+> xfactor
+[1] f1 f1 f3 f4 f5
+Levels: f1 f3 f4 f5
+\end{verbatim}
+\end{scriptsize}
+* Respuesta
+Usando \verb|apply|
+\begin{scriptsize}
+\begin{verbatim}
+> sim.matrix <- matrix(rexp(10 * 20),20)
+> apply(sim.matrix,2,mean)
+ [1] 1.1040028 1.0455625 1.2375904 1.1180466
+ [5] 0.8741030 1.0673961 0.8426350 0.7323206
+ [9] 1.0038521 0.9744703
+\end{verbatim}
+\end{scriptsize}
+y usando \verb|sapply|
+\begin{scriptsize}
+\begin{verbatim}
+> sim.matrix <- matrix(rexp(10 * 20),20)
+> simframe <- data.frame(sim.matrix)
+> sapply(simframe,mean)
+       X1        X2        X3        X4        X5 
+1.1040028 1.0455625 1.2375904 1.1180466 0.8741030 
+       X6        X7        X8        X9       X10 
+1.0673961 0.8426350 0.7323206 1.0038521 0.9744703
+
+
+
+
+

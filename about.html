@@ -12,7 +12,7 @@
 
 
 
-<title>About me</title>
+<title>Curso de R</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -269,7 +269,7 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">YOURNAME</a>
+      <a class="navbar-brand" href="index.html">Semana i</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -284,34 +284,27 @@ $(document).ready(function () {
   <a href="about.html">
     <span class="fa fa-user"></span>
      
-    About
+    Curso
   </a>
 </li>
 <li>
-  <a href="cv.html">
-    <span class="fa fa-file-pdf-o"></span>
+  <a href="material.html">
+    <span class="fa fa-user"></span>
      
-    CV
-  </a>
-</li>
-<li>
-  <a href="https://YOURGITHUB.github.io/blog/">
-    <span class="fa fa-rss"></span>
-     
-    Blog
+    Material
   </a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="mailto:YOUREMAIL">
+  <a href="mailto:luisbv@tec.mx">
     <span class="fa fa-envelope-o"></span>
      
-    Contact me
+    Contáctame
   </a>
 </li>
 <li>
-  <a href="https://github.com/YOURGITHUB">
+  <a href="https://github.com/LuisBenavides">
     <span class="fa fa-github"></span>
      
     GitHub
@@ -326,14 +319,205 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">About me</h1>
+<h1 class="title toc-ignore">Curso de R</h1>
 
 </div>
 
 
-<div id="header" class="section level2">
-<h2>Header</h2>
-<p>Say more about you here.</p>
+<div id="section" class="section level1 tabset tabset-fade tabset-pills">
+<h1></h1>
+<div id="introducción" class="section level2">
+<h2>Introducción</h2>
+<div id="instalación-de-r" class="section level3">
+<h3>Instalación de R</h3>
+<p>Para utilizar R es necesario instalarlo en tu máquina. Para ello sigue las instrucciones en <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a>.</p>
+<p>Para facilitar la programación en R, es necesario descargar otro software que asista como interfaz de usuario, creando un ambiente integrado de desarrollo (o IDE por sus siglas en inglés).</p>
+<p>Uno de los IDE más utilizados en R es el RStudio, y este se puede descargar libremente de <a href="https://www.rstudio.com" class="uri">https://www.rstudio.com</a>.</p>
+</div>
+<div id="descripción-de-r" class="section level3">
+<h3>Descripción de R</h3>
+<p>R es un software de fuente libre para su uso en estadística. Se modeló a raíz de S y S-Plus. El lenguaje S fue desarrollado a finales de los 80’s en los laboratorios de AT&amp;T. El proyecto R fue iniciado por Robert Gentleman y Ross Ihaka en el Departamento de Estadística de la Universidad de Auckland en 1995. <a href="https://cran.r-project.org">sitio web oficial</a></p>
+</div>
+<div id="uso-de-r-en-el-curso" class="section level3">
+<h3>Uso de R en el curso</h3>
+<p>Se pretende utilizar R en lugar de otras opciones comerciales como lo son <code>Minitab</code>, <code>Spss</code>, <code>Excel</code>, etc. Se espera que esto permita a los alumnos entender de mejor manera los problemas estadísticos y se beneficio de la utilización de un programa más sofisticado a pesar de la curva de aprendizaje menos pronunciada.</p>
+</div>
+<div id="beneficios-esperados-para-los-alumnos" class="section level3">
+<h3>Beneficios esperados para los alumnos</h3>
+<p>Se espera que los alumnos aprecien los siguientes beneficios:</p>
+<ul>
+<li>R es gratis.</li>
+<li>R es de código abierto, corre en sistemas  (y similares),  y .</li>
+<li>R tiene un sistema de ayuda muy amplio.</li>
+<li>R permite diseñar y manipular gráficas.</li>
+<li>Aprendiendo R, los alumnos pueden luego migrar a otras plataformar comerciales como S, o S-plus.</li>
+<li>R tiene una sintaxis fácil de aprender y está lleno de funciones estadísticas listas para usarse.</li>
+<li>R es un lenguaje computacional de alto nivel.</li>
+</ul>
+</div>
+<div id="r-en-comparación-con-otras-soluciones-de-software" class="section level3">
+<h3>R en comparación con otras soluciones de software}</h3>
+<p>¿Qué le falta a R en comparación a otros?</p>
+<ul>
+<li>La interfaz gráfica es limitada. Esto quiere decir es que un poco más difícil de crear y manipular gráficas que con otros paquetes, no que no las pueda hacer.</li>
+<li>No hay soporte comercial. Sin embargo la abundante ayuda que existe en la red compensa en buena medida este hecho.</li>
+<li>El lenguaje de comandos es un lenguaje de programación, por lo que los estudiantes deberán aprender a apreciar los beneficios y maleficios de la sintaxis.</li>
+</ul>
+</div>
+</div>
+<div id="primeros-pasos" class="section level2">
+<h2>Primeros Pasos</h2>
+<div id="iniciando-r" class="section level3">
+<h3>Iniciando R</h3>
+<p>Iniciar R es algo directo, pero el método depende de tu plataforma. Lo podrás correr desde el menú del sistema al hacer doble clic en el íncono de R, o agregando el comando <code>R</code> en la línea de comandos.</p>
+</div>
+<div id="pantalla-de-bienvenida" class="section level3">
+<h3>Pantalla de bienvenida</h3>
+<p>R version 3.2.1 (2015-06-18) – “World-Famous Astronaut” Copyright (C) 2015 The R Foundation for Statistical Computing Platform: i386-w64-mingw32/i386 (32-bit)</p>
+<p>R is free software and comes with ABSOLUTELY NO WARRANTY. You are welcome to redistribute it under certain conditions. Type ‘license()’ or ‘licence()’ for distribution details.</p>
+<p>R is a collaborative project with many contributors. Type ‘contributors()’ for more information and ‘citation()’ on how to cite R or R packages in publications.</p>
+<p>Type ‘demo()’ for some demos, ‘help()’ for on-line help, or ‘help.start()’ for an HTML browser interface to help. Type ‘q()’ to quit R.</p>
+<p>[Workspace loaded from ~/.RData]</p>
+<blockquote>
+
+</blockquote>
+</div>
+<div id="preguntas-y-respuestas" class="section level3">
+<h3>Preguntas y respuestas</h3>
+<p>R se utiliza de manera interactiva, el usuario hace una pregunta y R te da una repuesta.</p>
+<ul>
+<li>Ingresas una línea con un comando y luego presionas <code>return</code>.</li>
+<li>Cuando R está listo para recibir entradas, mostrará <code>&gt;</code>.</li>
+<li>Es posible utilizar R escribiendo línea por línea, o en forma de lotes, donde escribes muchas líneas y le pides a R que las ejecute todas con una sola orden.</li>
+</ul>
+</div>
+<div id="ejemplo-1" class="section level3">
+<h3>Ejemplo 1</h3>
+<pre class="r"><code>plot(rnorm(500))</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-1-1.png" width="672" /> Este comando dibuja 500 números aleatorios de una distribución normal estándar en una gráfica que se genera.</p>
+</div>
+<div id="ejemplo-2" class="section level3">
+<h3>Ejemplo 2</h3>
+<p>R lo puedes usar como una calculadora. Prueba con los siguientes comandos:</p>
+<pre class="r"><code>2 + 2</code></pre>
+<pre><code>## [1] 4</code></pre>
+<pre class="r"><code>exp(-2)</code></pre>
+<pre><code>## [1] 0.1353353</code></pre>
+<ul>
+<li>El <code>[1]</code> es la forma que tiene R de imprimir números y vectores.</li>
+<li>No es muy útil en estos momentos, pero lo será cuando los resultados sean vectores de mayor tamaño.</li>
+</ul>
+</div>
+<div id="ejemplo-2-1" class="section level3">
+<h3>Ejemplo 2</h3>
+<p>Considera el comando:</p>
+<pre class="r"><code>rnorm(15)</code></pre>
+<pre><code>##  [1]  1.0375439 -0.8587435  1.5822737  0.3835847  0.8982869  0.2952662
+##  [7]  0.4272174 -2.0188763 -1.2481490 -0.0872729  0.3389435 -0.4272519
+## [13] -0.9368759 -2.4468013 -0.4568273</code></pre>
+<ul>
+<li>El <code>[1]</code> indica la posición del primer resultado en el vector de 15 elementos.</li>
+<li>El <code>[8]</code> indica que el valor <code>-0.18483426</code> está en la posición 6.</li>
+<li>El <code>[15]</code> indica que el valor <code>-2.43976437</code> está en la posición 15.</li>
+<li>Las posiciones de los demás valores se pueden obtener contando a partir del elemento de la izquierda. Por ejemplo, <code>0.96775782</code> tiene la posición 2, pues <code>-0.86100260</code> que está a su izquierda tiene la posición 1. Así, <code>0.44071900</code> tiene la posición 3, <code>0.73326055</code> la 4, etc.</li>
+</ul>
+</div>
+<div id="asignaciones" class="section level3">
+<h3>Asignaciones</h3>
+<p>R, como cualquier otro lenguaje computacional, tiene <em>variables simbólicas</em>. Estos son nombres que representan valores. Por ejemplo, para asignar el valor 2 a la variable <code>x</code></p>
+<pre class="r"><code>x &lt;- 2</code></pre>
+<p>Ahora prueba utilizar la variable</p>
+<pre class="r"><code>x</code></pre>
+<pre><code>## [1] 2</code></pre>
+<pre class="r"><code>x + x</code></pre>
+<pre><code>## [1] 4</code></pre>
+</div>
+<div id="nombres-de-tus-variables" class="section level3">
+<h3>Nombres de tus variables</h3>
+<p>Los nombres de las variables pueden elegirse libremente, pero debes seguir estas reglas: * Los nombres se pueden construir de letras, dígitos y puntos. * Un nombre no puede iniciar con un dígito y un punto seguido de un dígito. * Nombres que inician con punto son especiales y deben evitarse. * Un ejemplo de nombre de variable: height.1yr puede representar la altura de un niño de un año de edad. * Los nombres son sensibles a las mayúsculas. WT no es lo mismo que wt. * Algunos nombres ya los usa el sistema y pueden causas confusiones si los usas para otros propósitos: c, q, t, C,D, F, I, y T, así como diff, df, y pt. ¡No úses estos nombres! \end{itemize} \end{frame}</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{frame}[fragile,allowframebreaks]{Respuestas} \begin{enumerate} * Respuesta
+
+<ul>
+<li>Respuesta: Los niveles se representan como números que sirven de entrada como índices.</li>
+<li>Respuesta</li>
+<li>Respuesta: Los valores nombre de todos los factores cambian.</li>
+<li>Respuesta Usando 
+y usando  \begin{scriptsize} \begin{verbatim} &gt; sim.matrix &lt;- matrix(rexp(10 * 20),20) &gt; simframe &lt;- data.frame(sim.matrix) &gt; sapply(simframe,mean) X1 X2 X3 X4 X5 1.1040028 1.0455625 1.2375904 1.1180466 0.8741030 X6 X7 X8 X9 X10 1.0673961 0.8426350 0.7323206 1.0038521 0.9744703</li>
+</ul>
+</div>
+</div>
 </div>
 
 
