@@ -2,4 +2,9 @@
 title: "Semana i 2019 - Data Challenge Viakable"
 ---
 
-You're up and running!
+Bienvenidos a la Semana i 2019.
+
+En está página se ecnuentran toda la información
+del curso de R y de los documentos que requiere cada Proyecto.
+
+La duración de la actividad será la semana del 28 de octubre al 1 de noviembre.

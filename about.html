@@ -1561,16 +1561,16 @@ Mifuncion.v1(x = 1, yyy = 2)</code></pre>
 </div>
 <div id="lee-una-base-de-datos" class="section level4">
 <h4>Lee una base de datos</h4>
-<pre class="r"><code>thuesenBD &lt;- read.table(&quot;/home/victor/Desktop/Curso de R/IE06_Entrada de Datos/thuesenBD.txt&quot;, header = T)</code></pre>
-<pre class="r"><code>head(thuesenBD)
-  blood.glucose short.velocity
-1          15.3           1.76
-2          10.8           1.34
-3           8.1           1.27
-4          19.5           1.47
-5           7.2           1.27
-6           5.3           1.49</code></pre>
-<p>Recuerda ajustar la ruta del archivo en tu computadora.</p>
+<pre class="r"><code>thuesenBD &lt;- read.table(&quot;/home//Desktop/thuesenBD.txt&quot;, header = T)</code></pre>
+<pre class="r"><code>head(thuesenBD)</code></pre>
+<pre><code>##   blood.glucose short.velocity
+## 1          15.3           1.76
+## 2          10.8           1.34
+## 3           8.1           1.27
+## 4          19.5           1.47
+## 5           7.2           1.27
+## 6           5.3           1.49</code></pre>
+<p>Recuerda ajustar la ruta del archivo en tu computadora. Descarga el achivo <a href="archivos/thuesenBD.txt">thuesenBD.txt</a>.</p>
 </div>
 <div id="nota-sobre-windows" class="section level4">
 <h4>Nota sobre Windows</h4>
@@ -1581,20 +1581,21 @@ N:/documentos/thuesenBD.txt</code></pre>
 <div id="textos-y-números" class="section level4">
 <h4>Textos y números</h4>
 <p><code>read.table</code> detecta automáticamente si un vector es numérico y texto, y lo convierte a factor en caso de ser texto. <code>R</code> no intenta reconocer códigos numéricos como factores.</p>
-<pre class="r"><code>head(secretinBD)
-  gluc person time repl time20plus time.comb
-1   92      A  pre    a        pre       pre
-2   93      A  pre    b        pre       pre
-3   84      A   20    a        20+        20
-4   88      A   20    b        20+        20
-5   88      A   30    a        20+       30+
-6   90      A   30    b        20+       30+</code></pre>
+<pre class="r"><code>head(secretinBD)</code></pre>
+<pre><code>##   gluc person time repl time20plus time.comb
+## 1   92      A  pre    a        pre       pre
+## 2   93      A  pre    b        pre       pre
+## 3   84      A   20    a        20+        20
+## 4   88      A   20    b        20+        20
+## 5   88      A   30    a        20+       30+
+## 6   90      A   30    b        20+       30+</code></pre>
+<p>Descarga el achivo <a href="archivos/secretinBD.txt">secretinBD.txt</a>.</p>
 </div>
 <div id="textos-y-números-1" class="section level4">
 <h4>Textos y números</h4>
 <p>Leer factores de esta manera es conveniente, pero hay un punto en contra. Los niveles se leen alfabéticamente.</p>
-<pre class="r"><code>levels(secretinBD$time)
-[1] &quot;20&quot;  &quot;30&quot;  &quot;60&quot;  &quot;90&quot;  &quot;pre&quot;</code></pre>
+<pre class="r"><code>levels(secretinBD$time)</code></pre>
+<pre><code>## [1] &quot;20&quot;  &quot;30&quot;  &quot;60&quot;  &quot;90&quot;  &quot;pre&quot;</code></pre>
 <p>Si esto no es lo que se desea, tendrás que manipular los niveles de los factores.</p>
 </div>
 <div id="archivos-delimitados" class="section level4">
@@ -1660,7 +1661,7 @@ fix(dd)</code></pre>
 <div id="tareas" class="section level3">
 <h3>Tareas</h3>
 <div id="ejercicios-1" class="section level4">
-<h4>Ejercicios}</h4>
+<h4>Ejercicios</h4>
 <ul>
 <li><p>Describe como insertar un valor entre dos elementos de un vector en una posición dada usando la función <code>append</code>. Usa la ayuda del sistema para averiguarlo. ¿Sin <code>append</code> cómo lo harías?</p></li>
 <li><p>Escribe la base de datos <code>thuesen</code> en un archivo de texto separado por tabulaciones usando <code>write.table</code>. Revisa la base de datos usando un editor de texto. Cambia los valores <code>NA</code> a <code>.</code> (punto), y lee el archivo modificado de regreso en <code>R</code> con un comando apropiado. También intenta importar los datos de otras aplicaciones de tu elección y expórtalas a un nuevo archivo luego de editarlas. Es posible que tengas que remover los nombres de las columnas para que esto funcione.</p></li>
@@ -1827,9 +1828,9 @@ summary(juul)</code></pre>
 <p>Puedes crear histogramas con la función <code>hist()</code></p>
 <pre class="r"><code>x = rnorm(1000)
 hist(x)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-173-1.png" width="672" /> Controla el número de clases con <code>breaks = n</code>.</p>
+<p><img src="about_files/figure-html/unnamed-chunk-175-1.png" width="672" /> Controla el número de clases con <code>breaks = n</code>.</p>
 <pre class="r"><code>hist(x, breaks = 5)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-174-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
 </div>
 <div id="histogramas-1" class="section level4">
 <h4>Histogramas</h4>
@@ -1840,7 +1841,7 @@ acc.count &lt;- c(28,46,58,20,31,64,149,316,103)
 age.acc &lt;- rep(mid.age,acc.count)
 brk &lt;- c(0,5,10,16,17,18,20,25,60,80)
 hist(age.acc,breaks = brk)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
 <p>Nota que automáticamente el histograma corrige el área de la columna para hacerla proporcional a la cantidad de elementos en ella.</p>
 </div>
 <div id="distribución-acumulada-empírica" class="section level4">
@@ -1849,7 +1850,7 @@ hist(age.acc,breaks = brk)</code></pre>
 <pre class="r"><code>n &lt;- length(x)
 plot(sort(x), (1:n)/n, xlab=&quot;x&quot;,
      ylab=&quot;Proporción&quot;, type = &quot;s&quot;, ylim = c(0,1))</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
 <p>Usar <code>type = &quot;s&quot;</code> crea una función escalonada.</p>
 </div>
 <div id="graficas-cuantil-cuantil" class="section level4">
@@ -1865,7 +1866,7 @@ plot(sort(x), (1:n)/n, xlab=&quot;x&quot;,
 <pre class="r"><code>par(mfrow=c(1,2))
 boxplot(IgM)
 boxplot(log(IgM))</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
 <pre class="r"><code>par(mfrow=c(1,1))</code></pre>
 <p>La función <code>par()</code> permite controlar los parámetros globales del ambiente gráfico. Uno de estos parámetros globales es <code>mfrow</code>, que se lee <code>multiframe, rowwise</code>. <code>c(1,2)</code> define una fila con dos columnas para acomodar figuras.</p>
 <blockquote>
@@ -1992,14 +1993,14 @@ hist(expend.lean, breaks = 10, xlim = c(5,13),
       ylim = c(0,4), col = &quot;white&quot;)
  hist(expend.obese, breaks = 10, xlim = c(5,13),
       ylim = c(0,4), col = &quot;grey&quot;)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-191-1.png" width="672" /></p>
 <pre class="r"><code> par(mfrow =c(1,1))</code></pre>
 </div>
 <div id="gráficas-de-caja-paralelas" class="section level4">
 <h4>Gráficas de caja paralelas</h4>
 <p>Usa el comando</p>
 <pre class="r"><code>boxplot(expend ~ stature, col = c(&quot;red&quot;, &quot;blue&quot;))</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-192-1.png" width="672" /></p>
 <p>También pudimos haber creado el diagrama con el comando <code>boxplot(expend.lean, expend.obese)</code>.</p>
 </div>
 <div id="diagrama-de-puntos" class="section level4">
@@ -2015,7 +2016,7 @@ stripchart(expend ~ stature)
 stripchart(expend ~ stature, method = &quot;stack&quot;)
 stripchart(expend ~ stature, method = &quot;jitter&quot;)
 stripchart(expend ~ stature, method = &quot;jitter&quot;, jitter=0.03)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-191-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
 <pre class="r"><code>par(opar)</code></pre>
 <blockquote>
 <p>Algunas observaciones sobre la función <code>par</code> * La configuración original de par se guarda en una variable (opar). * La configuración original se reestablece con <code>par(opar)</code> * El argumento <code>mex</code> reduce la distancia entre líneas. * <code>mar</code> reduce el número de líneas que rodean la región de la gráfica.</p>
@@ -2259,25 +2260,25 @@ total.caff</code></pre>
 <pre><code>##       0   1-150 151-300    &gt;300 
 ##     906    1910     742     330</code></pre>
 <pre class="r"><code>barplot(total.caff, col = &quot;green&quot;)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-213-1.png" width="672" /> Al momento de hacer presentaciones, puede ser preferible utilizar una gráfica a presentar un grupo de totales y proporciones.</p>
+<p><img src="about_files/figure-html/unnamed-chunk-215-1.png" width="672" /> Al momento de hacer presentaciones, puede ser preferible utilizar una gráfica a presentar un grupo de totales y proporciones.</p>
 <pre class="r"><code>total.caff &lt;- margin.table(table.caff.marital, 2)
 total.caff</code></pre>
 <pre><code>##       0   1-150 151-300    &gt;300 
 ##     906    1910     742     330</code></pre>
 <pre class="r"><code>barplot(total.caff, col = &quot;green&quot;, ylim = c(0,2000))</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-215-1.png" width="672" /> Aquí, <code>ylim = c(0,2000)</code> es el rango a utilizar en el eje de las ordenadas.</p>
+<p><img src="about_files/figure-html/unnamed-chunk-217-1.png" width="672" /> Aquí, <code>ylim = c(0,2000)</code> es el rango a utilizar en el eje de las ordenadas.</p>
 <p>La función <code>barplot</code> también te acepta la tabla completa.</p>
 <pre class="r"><code>barplot(table.caff.marital,
          col = c(&quot;red&quot;,&quot;green&quot;,&quot;blue&quot;),
          legend.text = c(&quot;casados&quot;, &quot;divorciados&quot;, &quot;solteros&quot;))</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-216-1.png" width="672" /> Si deseas graficar las dos dimensiones de una tabla pero no deseas que estén agrupadas dentre de una sóla barra, puedes utilizar el argumento <code>beside = T</code> para este fin.</p>
+<p><img src="about_files/figure-html/unnamed-chunk-218-1.png" width="672" /> Si deseas graficar las dos dimensiones de una tabla pero no deseas que estén agrupadas dentre de una sóla barra, puedes utilizar el argumento <code>beside = T</code> para este fin.</p>
 <p>Mira las distintas opciones que puedes utilizar para crear tu gráfica de barras.</p>
 <pre class="r"><code>par(mfrow = c(2,2))
 barplot(caff.marital, col=&quot;white&quot;)
 barplot(t(caff.marital), col = &quot;white&quot;)
 barplot(t(caff.marital), col = &quot;white&quot;, beside = T)
 barplot(prop.table(t(caff.marital),2), col=&quot;white&quot;, beside = T)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-217-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-219-1.png" width="672" /></p>
 <pre class="r"><code>par(mfrow = c(1,1))</code></pre>
 </div>
 <div id="gráfica-de-barras" class="section level4">
@@ -2286,7 +2287,7 @@ barplot(prop.table(t(caff.marital),2), col=&quot;white&quot;, beside = T)</code>
 <pre class="r"><code>barplot(prop.table(t(table.caff.marital),2),beside = T,
          legend.text = colnames(table.caff.marital),
          col = c(&quot;white&quot;, &quot;grey80&quot;, &quot;grey50&quot;, &quot;black&quot;))</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-218-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-220-1.png" width="672" /></p>
 <p><code>R</code> no tiene una forma de encontrar la mejor posición para la leyenda y en ocasiones esta se sobrepondrá sobre tu gráfica.</p>
 <p>Para tener un mayor control puedes usar la función <code>legend</code>.</p>
 <p>Con el ratón puedes hacer cick en la gráfica generada y obtener coordenadas para la leyenda usando la función <code>locator</code>.</p>
@@ -2296,18 +2297,18 @@ barplot(prop.table(t(caff.marital),2), col=&quot;white&quot;, beside = T)</code>
 <h4>Diagrama de puntos de Cleveland</h4>
 <p>El diagrama de puntos de Cleveland es nombrado a partir de William S. Cleveland (1994) está formulado con la misma información de una gráfica de barras pero ofrece una impresión visual muy diferente. Para ejecutarlo usar</p>
 <pre class="r"><code>dotchart(t(table.caff.marital), lcolor = &quot;black&quot;)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-219-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-221-1.png" width="672" /></p>
 </div>
 <div id="diagramas-de-pastel" class="section level4">
 <h4>Diagramas de pastel</h4>
 <p>Veamos como se ven los datos de consumo de cafeína contra el estatus marital</p>
 <pre class="r"><code>slices &lt;- c(&quot;white&quot;, &quot;grey80&quot;, &quot;grey50&quot;, &quot;black&quot;)
 pie(table.caff.marital[&quot;Casados&quot;,], main=&quot;Casados&quot;, col=slices)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-220-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-222-1.png" width="672" /></p>
 <pre class="r"><code>pie(table.caff.marital[&quot;Divorciados&quot;,], main=&quot;Divorciados&quot;, col=slices)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-220-2.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-222-2.png" width="672" /></p>
 <pre class="r"><code>pie(table.caff.marital[&quot;Solteros&quot;,], main=&quot;Solteros&quot;, col=slices)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-220-3.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-222-3.png" width="672" /></p>
 <pre class="r"><code>par(opar)</code></pre>
 </div>
 </div>
@@ -2325,17 +2326,17 @@ pie(table.caff.marital[&quot;Casados&quot;,], main=&quot;Casados&quot;, col=slic
 <li>Este es un ejemplo.</li>
 </ul>
 <pre class="r"><code>plot(rnorm(10), type = &quot;b&quot;, col=&quot;blue&quot;, pch=1, lwd=2)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-221-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-223-1.png" width="672" /></p>
 <ul>
 <li>Podemos cambiar el símbolo dibujado por uno sólido.</li>
 </ul>
 <pre class="r"><code>plot(rnorm(10), type = &quot;o&quot;, col=&quot;black&quot;, pch=19)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-222-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-224-1.png" width="672" /></p>
 <ul>
 <li></li>
 </ul>
 <pre class="r"><code>hist(react)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-223-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
 <pre class="r"><code>library(MASS)</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;MASS&#39;</code></pre>
@@ -2343,7 +2344,7 @@ pie(table.caff.marital[&quot;Casados&quot;,], main=&quot;Casados&quot;, col=slic
 ## 
 ##     menarche</code></pre>
 <pre class="r"><code>truehist(react)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-223-2.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-225-2.png" width="672" /></p>
 </div>
 </div>
 <div id="otros-tópicos" class="section level2">
@@ -2487,7 +2488,7 @@ View(mtcars)  #para ver los datos.</code></pre>
 <h4>Analizamos la relación de los datos</h4>
 <p>Estudiaremos la relación entre la fuerza medidas en caballos (hp) y el consumo de combustible en millas por galón (mpg). Hacemos un diagrama de dispersión.</p>
 <pre class="r"><code>plot(mtcars$hp, mtcars$mpg, xlab = &quot;HP&quot;, ylab = &quot;MPG&quot;)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-235-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-237-1.png" width="672" /></p>
 </div>
 <div id="correlación" class="section level4">
 <h4>Correlación</h4>
@@ -2538,7 +2539,7 @@ y = mtcars$mpg
 yhat = fitted(lm.mpg)
 plot(x = x,y = y, pch = 19, xlab = &quot;HP&quot;, ylab = &quot;MPG&quot;)
 points(sort(x), yhat[order(x)], type=&quot;l&quot;, col=&quot;red&quot;, lwd=2)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-239-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-241-1.png" width="672" /></p>
 <p>Nota que el ajuste parece no ser muy bueno.</p>
 </div>
 <div id="mejoramos-el-ajuste" class="section level4">
@@ -2551,7 +2552,7 @@ lm.mpg&lt;-lm(y~trans.x)
 plot(x,y, pch = 19, xlab = &quot;HP&quot;, ylab = &quot;MPG&quot;)
 yhat = fitted(lm.mpg)
 points(sort(x), yhat[order(x)], type=&quot;l&quot;, col=&quot;red&quot;, lwd=2)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-240-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-242-1.png" width="672" /></p>
 <p>El ajuste se observa mucho mejor. Ahora podemos utilizar la ecuación para hacer predicciones con más confianza.</p>
 </div>
 </div>
@@ -2581,7 +2582,7 @@ x &lt;- rnorm(100)</code></pre>
 qqnorm(x)
 #graficar la recta con mejor ajuste
 qqline(x)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-242-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-244-1.png" width="672" /></p>
 <p>Comparar la distribución de dos conjuntos de datos</p>
 <pre class="r"><code>#primer conjunto de datos
 x &lt;- rnorm(100)
@@ -2591,7 +2592,7 @@ qqplot(x,y)
 qqline(x,y)</code></pre>
 <pre><code>## Warning in if (datax) {: the condition has length &gt; 1 and only the first
 ## element will be used</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-243-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-245-1.png" width="672" /></p>
 </div>
 <div id="prueba-de-shaphiro-wilks" class="section level4">
 <h4>Prueba de Shaphiro-Wilks</h4>
@@ -2751,7 +2752,7 @@ prop.test(estudiantes.mujeres,estudiantes)</code></pre>
 ## sample estimates:
 ## prop 1 prop 2 prop 3 prop 4 
 ##    0.6    0.6    0.2    0.4</code></pre>
-<p>La conclusion es que no. Las mujeres, en este ejemplo, se matriculan de las carreras en distinta proporcion.</p>
+<p>La conclusión es que no. Las mujeres, en este ejemplo, se matriculan de las carreras en distinta proporcion.</p>
 </div>
 </div>
 </div>

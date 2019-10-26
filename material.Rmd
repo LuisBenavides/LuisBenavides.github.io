@@ -1,28 +1,31 @@
 ---
 title: "Material"
 ---
+# {.tabset .tabset-fade .tabset-pills}
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+## Proyecto 1
+* Objetivo del proyecto: Análisis de tiempos en Planta # 3 Magnekon
+* Responsable: Raúl Hernández
+* Empresa: Magnekon.
+* Técnicas: Diagnóstico y Control de tiempo
 
-## R Markdown
+[Archivos del Proyecto 1](archivos/Proyecto1.csv)
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+## Proyecto 2
+* Objetivo del proyecto: Control de herramentales (Inventario, vida útil, pronóstico de compras)
+* Responsable: Joel Mejorado.
+* Empresa:  Multipak.
+* Técnicas: Diagnóstico, Control, predicción vida útil y pronóstico de compras.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+[Archivos del Proyecto 2](archivos/Proyecto2.zip)
 
-```{r cars}
-.First.sys()
-#summary(cars)
-```
 
-## Including Plots
+## Proyecto 3
+* Objetivo del proyecto: Control de proceso en Colada.
+* Responsable: Claudia Eugenia Canales
+* Empresa Vialutek.
+* Técnicas: Diagnóstico, Control, predicción de falla en proceso de colada.
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+[Archivos del Proyecto 3](archivos/Proyecto3.csv)
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

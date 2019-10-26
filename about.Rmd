@@ -1351,22 +1351,17 @@ El resultado de usar `read.table` es un data frame, por lo que la función esper
 La primera línea del archivo contiene el encabezado dando los nombre a las variables, una práctica muy recomendada.
 
 #### Lee una base de datos
-
-```{r eval=FALSE}
-thuesenBD <- read.table("/home/victor/Desktop/Curso de R/IE06_Entrada de Datos/thuesenBD.txt", header = T)
+```{r echo=FALSE}
+thuesenBD <- read.table("archivos/thuesenBD.txt", header = T)
 ```
 ```{r eval=FALSE}
+thuesenBD <- read.table("/home//Desktop/thuesenBD.txt", header = T)
+```
+```{r}
 head(thuesenBD)
-  blood.glucose short.velocity
-1          15.3           1.76
-2          10.8           1.34
-3           8.1           1.27
-4          19.5           1.47
-5           7.2           1.27
-6           5.3           1.49
 ```
 
-Recuerda ajustar la ruta del archivo en tu computadora.
+Recuerda ajustar la ruta del archivo en tu computadora. Descarga el achivo [thuesenBD.txt](archivos/thuesenBD.txt).
 
 
 #### Nota sobre Windows
@@ -1379,24 +1374,19 @@ N:/documentos/thuesenBD.txt
 #### Textos y números
 `read.table` detecta automáticamente si un vector es numérico y texto, y lo convierte a factor en caso de ser texto.
 `R` no intenta reconocer códigos numéricos como factores.
-
-```{r eval=FALSE}
-head(secretinBD)
-  gluc person time repl time20plus time.comb
-1   92      A  pre    a        pre       pre
-2   93      A  pre    b        pre       pre
-3   84      A   20    a        20+        20
-4   88      A   20    b        20+        20
-5   88      A   30    a        20+       30+
-6   90      A   30    b        20+       30+
+```{r echo=FALSE}
+secretinBD <- read.table("archivos/secretinBD.txt", header = T)
 ```
+```{r}
+head(secretinBD)
+```
+Descarga el achivo [secretinBD.txt](archivos/secretinBD.txt).
 
 #### Textos y números
 Leer factores de esta manera es conveniente, pero hay un punto en contra. Los niveles se leen alfabéticamente.
 
-```{r eval=FALSE}
+```{r}
 levels(secretinBD$time)
-[1] "20"  "30"  "60"  "90"  "pre"
 ```
 Si esto no es lo que se desea, tendrás que manipular los niveles de los factores.
 
@@ -1408,8 +1398,7 @@ por coma (`,`) y punto y coma (`;`) respectivamente. Ambos asumen `header=T` por
 `read.delim` y `read.delim2` ayudan a leer archivos delimitados
 por tabulaciones.
 > Recomendación
-> Usa estas variantes cuando observes que `read.table` no te da los
-resultados esperados.
+> Usa estas variantes cuando observes que `read.table` no te da los resultados esperados.
 
 
 #### Conversión de datos entrantes
@@ -1489,15 +1478,14 @@ Esto requiere cierta atención, pues se puede perder la precisión ya que sólo 
 #### Una nota para usuarios avanzados
 Para información guardada en bases de datos existe un número de paquetes en el CRAN.
 
-En particular el paquete RODBC te permite configurar una conección ODBC
-(*Open Database Connectivity*) para aplicaciones comunes como **Excel** y **Access**.
+En particular el paquete RODBC te permite configurar una conección ODBC (*Open Database Connectivity*) para aplicaciones comunes como **Excel** y **Access**.
 
 Para información más actualizada y amplia visita el manual *R Data Import/Export* en el CRAN.
 
 
 ### Tareas
 
-#### Ejercicios}
+#### Ejercicios
 * Describe como insertar un valor entre dos elementos de un vector en una
 posición dada usando la función `append`. Usa la ayuda del sistema para
 averiguarlo. ¿Sin `append` cómo lo harías?
@@ -2559,8 +2547,6 @@ estudiantes.mujeres<-c(60,120,10,200)
 prop.test(estudiantes.mujeres,estudiantes)
 ```
 La conclusión es que no. Las mujeres, en este ejemplo, se matriculan de las carreras en distinta proporcion.
-
-
 
 
 
