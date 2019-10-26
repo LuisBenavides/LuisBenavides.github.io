@@ -415,9 +415,9 @@ $(document).ready(function () {
 <h3>Ejemplo 2</h3>
 <p>Considera el comando:</p>
 <pre class="r"><code>rnorm(15)</code></pre>
-<pre><code>##  [1]  0.4984740 -0.8625822  0.1688786 -1.0704040 -2.8444195 -1.4246788
-##  [7] -0.5446088 -1.3099354  1.7904151  0.5631391 -0.5255222 -2.1361957
-## [13]  0.7621138  2.4949040 -1.7152898</code></pre>
+<pre><code>##  [1]  0.31342680  0.40655186  0.05258168  0.30180683 -1.04327904
+##  [6] -0.16470212  0.82312466  0.42157168 -0.04129637 -0.86384875
+## [11]  1.08415766 -0.01954057  0.31578122  0.11827090  0.22429167</code></pre>
 <ul>
 <li>El <code>[1]</code> indica la posición del primer resultado en el vector de 15 elementos.</li>
 <li>El <code>[8]</code> indica que el valor <code>-0.18483426</code> está en la posición 6.</li>
@@ -897,6 +897,11 @@ library(ISwR)</code></pre>
 <h4>Datos agrupados y data frames</h4>
 <p>Observa los siguientes datos:</p>
 <pre class="r"><code>energy</code></pre>
+<pre><code>## 
+## Attaching package: &#39;ISwR&#39;</code></pre>
+<pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
+## 
+##     juul</code></pre>
 <pre><code>##    expend stature
 ## 1    9.21   obese
 ## 2    7.53    lean
@@ -966,8 +971,8 @@ exp.obese &lt;- energy$expend[energy$stature == &quot;obese&quot;]</code></pre>
 <h4><code>replicate</code></h4>
 <p>Si deseamos realizar una operación un número predeterminado de veces, podemos utilizar la función <code>replicate</code>.</p>
 <pre class="r"><code>replicate(10,mean(rexp(20)))</code></pre>
-<pre><code>##  [1] 0.9903229 1.3508635 0.6653978 0.9787817 0.9915367 0.8830595 1.3138516
-##  [8] 0.8494784 1.2256016 0.9598967</code></pre>
+<pre><code>##  [1] 1.4643972 0.8285229 1.0124117 1.0898475 1.4030928 1.0556711 1.0990365
+##  [8] 0.9678923 1.3289922 0.8307057</code></pre>
 <p>Aquí, el primer argumento indica el número de replicas que deseamos, el segundo argumento es la función que deseamos que se ejecute esa cantidad de veces.</p>
 </div>
 <div id="apply" class="section level4">
@@ -975,15 +980,15 @@ exp.obese &lt;- energy$expend[energy$stature == &quot;obese&quot;]</code></pre>
 <p>Si deseamos trabajar con una matriz, y deseamos realizar una operación por cada columna o reglón, podemos utilizar la función <code>apply</code>.</p>
 <pre class="r"><code>m &lt;- matrix(rnorm(12),4)
 m</code></pre>
-<pre><code>##            [,1]       [,2]       [,3]
-## [1,] -1.2872293  1.1172304  0.1190757
-## [2,]  1.1328679 -0.4927407 -0.4217447
-## [3,]  0.9526151 -1.5019047 -1.0521341
-## [4,] -1.6575612 -1.6015232  0.8533876</code></pre>
+<pre><code>##           [,1]         [,2]        [,3]
+## [1,] -1.993103 -0.660960029  0.40525553
+## [2,]  2.543663  1.261425048 -0.05505006
+## [3,]  1.714223  0.007999661 -0.99445637
+## [4,]  1.174451 -0.519791558 -0.92504620</code></pre>
 <pre class="r"><code>apply(m,2,min)</code></pre>
-<pre><code>## [1] -1.657561 -1.601523 -1.052134</code></pre>
+<pre><code>## [1] -1.9931031 -0.6609600 -0.9944564</code></pre>
 <pre class="r"><code>apply(m,1,min)</code></pre>
-<pre><code>## [1] -1.2872293 -0.4927407 -1.5019047 -1.6575612</code></pre>
+<pre><code>## [1] -1.99310306 -0.05505006 -0.99445637 -0.92504620</code></pre>
 <p>Aquí, en el primer caso obtenemos el mínimo por columna. En el segundo caso lo obtenemos por reglón.</p>
 </div>
 <div id="tapply" class="section level4">
@@ -1068,8 +1073,8 @@ xfactor</code></pre>
 </ul>
 <pre class="r"><code>  sim.matrix &lt;- matrix(rexp(10 * 20),20)
   apply(sim.matrix,2,mean)</code></pre>
-<pre><code>##  [1] 1.0556711 1.0990365 0.9678923 1.3289922 0.8307057 1.0316245 0.8753048
-##  [8] 1.1401651 1.1313805 1.2476210</code></pre>
+<pre><code>##  [1] 1.1334238 1.3607730 1.1264043 1.1797420 0.7229840 1.0018791 1.0973296
+##  [8] 1.3188379 1.1663351 0.8306874</code></pre>
 <ul>
 <li>usando <code>sapply</code></li>
 </ul>
@@ -1077,9 +1082,9 @@ xfactor</code></pre>
 simframe &lt;- data.frame(sim.matrix)
 sapply(simframe,mean)</code></pre>
 <pre><code>##        X1        X2        X3        X4        X5        X6        X7 
-## 0.6780751 1.0852188 1.2696407 1.1923630 1.1270295 0.8424292 0.8664822 
+## 0.8915811 0.7490413 1.2057810 1.1757358 0.7234463 1.2074814 1.1559311 
 ##        X8        X9       X10 
-## 0.6753674 1.3260842 1.0911497</code></pre>
+## 0.6747153 0.8077102 1.4222754</code></pre>
 </div>
 </div>
 <div id="ambiente-r" class="section level2">
@@ -1097,21 +1102,24 @@ sapply(simframe,mean)</code></pre>
 <h4>Espacio de trabajo}</h4>
 <p>Todas las variables creadas en <code>R</code> se guardan en un espacio de trabajo común.</p>
 <pre class="r"><code>ls()</code></pre>
-<pre><code>##  [1] &quot;bmi&quot;         &quot;d&quot;           &quot;exp.lean&quot;    &quot;exp.obese&quot;   &quot;fpain&quot;      
-##  [6] &quot;ftext.pain&quot;  &quot;height&quot;      &quot;hh&quot;          &quot;intake.post&quot; &quot;intake.pre&quot; 
-## [11] &quot;m&quot;           &quot;mylist&quot;      &quot;o&quot;           &quot;oops&quot;        &quot;pain&quot;       
-## [16] &quot;sim.matrix&quot;  &quot;simframe&quot;    &quot;text.pain&quot;   &quot;v&quot;           &quot;weight&quot;     
-## [21] &quot;x&quot;           &quot;xbar&quot;</code></pre>
+<pre><code>##  [1] &quot;aa&quot;          &quot;bmi&quot;         &quot;d&quot;           &quot;exp.lean&quot;    &quot;exp.obese&quot;  
+##  [6] &quot;fpain&quot;       &quot;ftext.pain&quot;  &quot;height&quot;      &quot;hh&quot;          &quot;i&quot;          
+## [11] &quot;intake.post&quot; &quot;intake.pre&quot;  &quot;juul&quot;        &quot;m&quot;           &quot;mylist&quot;     
+## [16] &quot;o&quot;           &quot;oops&quot;        &quot;pain&quot;        &quot;pvec&quot;        &quot;sim.matrix&quot; 
+## [21] &quot;simframe&quot;    &quot;text.pain&quot;   &quot;v&quot;           &quot;weight&quot;      &quot;x&quot;          
+## [26] &quot;xbar&quot;        &quot;xfactor&quot;     &quot;y&quot;</code></pre>
 </div>
 <div id="remover-variables" class="section level4">
 <h4>Remover variables</h4>
 <p>Si el espacio de trabajo se ve desordenado, puedes borrar algunos objetos usando <code>rm</code>.</p>
 <pre class="r"><code>rm(height,weight)
 ls()</code></pre>
-<pre><code>##  [1] &quot;bmi&quot;         &quot;d&quot;           &quot;exp.lean&quot;    &quot;exp.obese&quot;   &quot;fpain&quot;      
-##  [6] &quot;ftext.pain&quot;  &quot;hh&quot;          &quot;intake.post&quot; &quot;intake.pre&quot;  &quot;m&quot;          
-## [11] &quot;mylist&quot;      &quot;o&quot;           &quot;oops&quot;        &quot;pain&quot;        &quot;sim.matrix&quot; 
-## [16] &quot;simframe&quot;    &quot;text.pain&quot;   &quot;v&quot;           &quot;x&quot;           &quot;xbar&quot;</code></pre>
+<pre><code>##  [1] &quot;aa&quot;          &quot;bmi&quot;         &quot;d&quot;           &quot;exp.lean&quot;    &quot;exp.obese&quot;  
+##  [6] &quot;fpain&quot;       &quot;ftext.pain&quot;  &quot;hh&quot;          &quot;i&quot;           &quot;intake.post&quot;
+## [11] &quot;intake.pre&quot;  &quot;juul&quot;        &quot;m&quot;           &quot;mylist&quot;      &quot;o&quot;          
+## [16] &quot;oops&quot;        &quot;pain&quot;        &quot;pvec&quot;        &quot;sim.matrix&quot;  &quot;simframe&quot;   
+## [21] &quot;text.pain&quot;   &quot;v&quot;           &quot;x&quot;           &quot;xbar&quot;        &quot;xfactor&quot;    
+## [26] &quot;y&quot;</code></pre>
 </div>
 <div id="remover-todas-las-variables" class="section level4">
 <h4>Remover todas las variables</h4>
@@ -1707,29 +1715,29 @@ mydata &lt;- read.xlsx(&quot;c:/miexcel.xlsx&quot;, sheetName = &quot;mihoja&quo
 <p>Para calcular la media, desviación estándar, varianza y mediana:</p>
 <pre class="r"><code>x &lt;- rnorm(50)
 mean(x)</code></pre>
-<pre><code>## [1] -0.116448</code></pre>
+<pre><code>## [1] 0.04926255</code></pre>
 <pre class="r"><code>sd(x)</code></pre>
-<pre><code>## [1] 1.047074</code></pre>
+<pre><code>## [1] 0.9147515</code></pre>
 <pre class="r"><code>var(x)</code></pre>
-<pre><code>## [1] 1.096363</code></pre>
+<pre><code>## [1] 0.8367703</code></pre>
 <pre class="r"><code>median(x)</code></pre>
-<pre><code>## [1] -0.10314</code></pre>
+<pre><code>## [1] 0.1015815</code></pre>
 </div>
 <div id="más-cuantiles" class="section level4">
 <h4>Más Cuantiles</h4>
 <p>Cuantiles empíricos se pueden calcular también</p>
 <pre class="r"><code>quantile(x)</code></pre>
 <pre><code>##         0%        25%        50%        75%       100% 
-## -2.3435404 -0.8245821 -0.1031400  0.7206288  2.1599132</code></pre>
+## -1.8297747 -0.4095386  0.1015815  0.5480581  2.4663589</code></pre>
 <p>Cuantiles empíricos se pueden calcular también</p>
 <pre class="r"><code>pvec &lt;- seq(0,1,0.1)
 pvec</code></pre>
 <pre><code>##  [1] 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0</code></pre>
 <pre class="r"><code>quantile(x,pvec)</code></pre>
 <pre><code>##          0%         10%         20%         30%         40%         50% 
-## -2.34354042 -1.27912182 -0.98309251 -0.69626314 -0.32790828 -0.10313996 
+## -1.82977473 -1.21945610 -0.87679613 -0.27171083 -0.08774597  0.10158147 
 ##         60%         70%         80%         90%        100% 
-## -0.01655324  0.55655645  0.74515408  1.23981254  2.15991316</code></pre>
+##  0.31920545  0.41827382  0.64179156  0.98690208  2.46635891</code></pre>
 <p>Por defecto <code>R</code> usa interpolación. Existen 7 métodos para calcular cuantiles que se pueden acceder mediante el argumento <code>type</code></p>
 </div>
 <div id="datos-faltantes" class="section level4">
@@ -1760,22 +1768,22 @@ mean(igf1,na.rm = T)</code></pre>
 <h4>Resumen de estadísticos</h4>
 <p>También puedes obtener una descripción de todo el data frame.</p>
 <pre class="r"><code>summary(juul)</code></pre>
-<pre><code>##       age            menarche          sex             igf1      
-##  Min.   : 0.170   Min.   :1.000   Min.   :1.000   Min.   : 25.0  
-##  1st Qu.: 9.053   1st Qu.:1.000   1st Qu.:1.000   1st Qu.:202.2  
-##  Median :12.560   Median :1.000   Median :2.000   Median :313.5  
-##  Mean   :15.095   Mean   :1.476   Mean   :1.534   Mean   :340.2  
-##  3rd Qu.:16.855   3rd Qu.:2.000   3rd Qu.:2.000   3rd Qu.:462.8  
-##  Max.   :83.000   Max.   :2.000   Max.   :2.000   Max.   :915.0  
-##  NA&#39;s   :5        NA&#39;s   :635     NA&#39;s   :5       NA&#39;s   :321    
-##      tanner        testvol      
-##  Min.   :1.00   Min.   : 1.000  
-##  1st Qu.:1.00   1st Qu.: 1.000  
-##  Median :2.00   Median : 3.000  
-##  Mean   :2.64   Mean   : 7.896  
-##  3rd Qu.:5.00   3rd Qu.:15.000  
-##  Max.   :5.00   Max.   :30.000  
-##  NA&#39;s   :240    NA&#39;s   :859</code></pre>
+<pre><code>##       age         menarche     sex           igf1        tanner   
+##  Min.   : 0.170   No  :369   M   :621   Min.   : 25.0   I   :515  
+##  1st Qu.: 9.053   Yes :335   F   :713   1st Qu.:202.2   II  :103  
+##  Median :12.560   NA&#39;s:635   NA&#39;s:  5   Median :313.5   III : 72  
+##  Mean   :15.095                         Mean   :340.2   IV  : 81  
+##  3rd Qu.:16.855                         3rd Qu.:462.8   V   :328  
+##  Max.   :83.000                         Max.   :915.0   NA&#39;s:240  
+##  NA&#39;s   :5                              NA&#39;s   :321               
+##     testvol      
+##  Min.   : 1.000  
+##  1st Qu.: 1.000  
+##  Median : 3.000  
+##  Mean   : 7.896  
+##  3rd Qu.:15.000  
+##  Max.   :30.000  
+##  NA&#39;s   :859</code></pre>
 <p>Aquí <code>menarche</code>, <code>sex</code> y <code>tanner</code> están codificadas como numéricas cuando en realidad son categóricas. Podemos corregir esto:</p>
 <pre class="r"><code>detach(juul)
 juul$sex &lt;- factor(juul$sex, labels = c(&quot;M&quot;,&quot;F&quot;))
@@ -2278,7 +2286,7 @@ barplot(prop.table(t(caff.marital),2), col=&quot;white&quot;, beside = T)</code>
 <pre class="r"><code>barplot(prop.table(t(table.caff.marital),2),beside = T,
          legend.text = colnames(table.caff.marital),
          col = c(&quot;white&quot;, &quot;grey80&quot;, &quot;grey50&quot;, &quot;black&quot;))</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-218-1.png" width="672" /> \begin{center}</p>
+<p><img src="about_files/figure-html/unnamed-chunk-218-1.png" width="672" /></p>
 <p><code>R</code> no tiene una forma de encontrar la mejor posición para la leyenda y en ocasiones esta se sobrepondrá sobre tu gráfica.</p>
 <p>Para tener un mayor control puedes usar la función <code>legend</code>.</p>
 <p>Con el ratón puedes hacer cick en la gráfica generada y obtener coordenadas para la leyenda usando la función <code>locator</code>.</p>
@@ -2336,6 +2344,415 @@ pie(table.caff.marital[&quot;Casados&quot;,], main=&quot;Casados&quot;, col=slic
 ##     menarche</code></pre>
 <pre class="r"><code>truehist(react)</code></pre>
 <p><img src="about_files/figure-html/unnamed-chunk-223-2.png" width="672" /></p>
+</div>
+</div>
+<div id="otros-tópicos" class="section level2">
+<h2>Otros Tópicos</h2>
+<div id="descripción-del-módulo-6" class="section level3">
+<h3>Descripción del módulo</h3>
+<div id="objetivos-6" class="section level4">
+<h4>Objetivos</h4>
+<p>A continuación se presentan algunos tópicos que pueden ser de interés para usuarios avanzados en <code>R</code>. El detalle del conocimiento de estos tópicos va más allá de la funcionalidad base de <code>R</code> o requiere de estudios previos en estadística.</p>
+<p>Los tópicos mostrados a continuación son:</p>
+<ul>
+<li><code>data.table</code></li>
+<li><code>dplyr</code></li>
+<li>Pronósticos</li>
+</ul>
+<p>La presentación de cada tópico es introductoria, y su fin es el de ofrecer una guía a usuario avanzados que deseen profundizar en el uso de <code>R</code>.</p>
+</div>
+</div>
+<div id="data-tables" class="section level3">
+<h3>Data Tables</h3>
+<p>Cuando se manipulan datos es común querer obtener subconjuntos, agrupar, actualizar, o incluso unir distintos conjuntos en un solo.</p>
+<p><code>data.tables</code> ofrece una estructura que permite mantener estos comandos de forma concisa y consistente.</p>
+<p>Reduces la necesidad de utilizar funciones externas que te ayuden a hacer el análisis.*</p>
+<p>Reducir los tiempos de procesamiento al utilizar comandos optimizados.</p>
+<div id="lee-archivos-de-datos" class="section level4">
+<h4>Lee archivos de datos</h4>
+<p>Puedes usar la función fast file reader <code>fread</code> de <code>data.table</code></p>
+<pre class="r"><code>secretinBD &lt;- fread(&quot;secretinBD.txt&quot;)</code></pre>
+<p>El archivo <code>secretinBD.txt</code> se encuentra entre tus archivos de la clase. Descárgalo y léelo usando la función anterior.</p>
+<p>La función <code>fread</code> acepta <code>http</code> y <code>https</code> de forma directa.</p>
+</div>
+<div id="lee-archivos-de-datos-1" class="section level4">
+<h4>Lee archivos de datos</h4>
+<p>Para saber cuantos reglones y columnas tiene tu archivo usa</p>
+<pre class="r"><code>dim(secretinBD)</code></pre>
+</div>
+<div id="crea-un-data-table" class="section level4">
+<h4>Crea un data table}</h4>
+<p>Puedes crear tu propio data table usando la función <code>data.table</code></p>
+<pre class="r"><code>library(data.table)
+DT = data.table(ID = c(&quot;b&quot;,&quot;b&quot;,&quot;b&quot;,&quot;a&quot;,&quot;a&quot;,&quot;c&quot;),
+                 a = 1:6,
+                 b = 7:12,
+                 c = 13:18)
+DT</code></pre>
+<pre><code>##    ID a  b  c
+## 1:  b 1  7 13
+## 2:  b 2  8 14
+## 3:  b 3  9 15
+## 4:  a 4 10 16
+## 5:  a 5 11 17
+## 6:  c 6 12 18</code></pre>
+<p>También puedes utilizar el comando <code>as.data.table</code> para convertir un objeto existente.</p>
+</div>
+<div id="características" class="section level4">
+<h4>Características</h4>
+<p>A diferencia de <code>data.frames</code>, <code>data.table</code> nunca convierte una columna de caracteres en factores por defecto.</p>
+<p>Los número de las filas se imprimen con <code>:</code> para mejorar la visualización.</p>
+<p>Cuando la cantidad de filas a imprimir excede el parámetro global (por defectos es 100) sólo se imprimen los primeros cinco y los últimos cinco reglones.</p>
+<p>El parámetro global se accede por medio de <code>datatable.print.nrows</code>:</p>
+<pre class="r"><code>getOption(&quot;datatable.print.nrows&quot;)</code></pre>
+<pre><code>## [1] 100</code></pre>
+</div>
+<div id="nuevas-características" class="section level4">
+<h4>Nuevas características</h4>
+<p>A diferencia de un <code>data.frame</code>, por medio de <code>data.table</code> puedes filtrar, seleccionar y agrupar de forma nativa y eficiente.</p>
+<p>Para este fin se sigue la sintaxis <code>DT[i,j,by]</code>, que en voz alta se lee algo así: <em>Toma DT, filtra las filas usando <code>i</code>, luego selecciona <code>j</code>, agrupando por by</em>.</p>
+</div>
+<div id="filtrando-filas" class="section level4">
+<h4>Filtrando filas</h4>
+<p>Siguendo la sintaxis de <code>data.table</code>.</p>
+<pre class="r"><code>secretinBD[gluc &gt; 85 &amp; person == &quot;A&quot;]</code></pre>
+</div>
+<div id="ordenamientos-1" class="section level4">
+<h4>Ordenamientos</h4>
+<p>Podemos ordenar los datos más rápidamente que en un data frame usando la función <code>order</code>. A continuación ordenamos los datos de secretinBD por <code>person</code> en forma ascendente y por <code>gluc</code> en forma descendente y presentamos los primeros resultados.</p>
+<pre class="r"><code>head(secretinBD[order(person, -gluc)])</code></pre>
+</div>
+<div id="seleccionando-columnas" class="section level4">
+<h4>Seleccionando columnas</h4>
+<p>Sólo tienes que indicar el nombre sin comillas.</p>
+<pre class="r"><code>head(secretinBD[,gluc]) #salida es un arreglo</code></pre>
+<pre class="r"><code>head(secretinBD[,list(gluc)]) #salida es un data table</code></pre>
+</div>
+<div id="aplica-una-función-a-las-filas-según-clasificación" class="section level4">
+<h4>Aplica una función a las filas según clasificación</h4>
+<p>A continuación se muestra como obtener el promedio de <code>gluc</code> según la persona.</p>
+<pre class="r"><code>secretinBD[,list(Promedio = mean(gluc)), list(person)]</code></pre>
+</div>
+<div id="contar-filas-según-clasificación" class="section level4">
+<h4>Contar filas según clasificación</h4>
+<p>A continuación se muestra como obtener el total de filas según la persona.</p>
+<pre class="r"><code>secretinBD[,list(.N), list(person)]</code></pre>
+<p><code>R</code> reconoce el símbolo especial <code>.N</code> que indica el número de observaciones en el grupo actual.</p>
+</div>
+<div id="para-más-información" class="section level4">
+<h4>Para más información</h4>
+<p>Para más información visita el documento <em>Introduction to data.table</em> en el CRAN de R.</p>
+<p>Encontrarás <code>data.table</code> especialmente útil en su manejo de grandes volúmenes de datos.</p>
+</div>
+<div id="introducción-a-dplyr" class="section level4">
+<h4>Introducción a <code>dplyr</code></h4>
+<p>El paquete <code>dplyr</code> provee de una sintaxis simplificada para tareas comunes que de entre lo que ya puedes hacer con un <code>data.frame</code>.</p>
+<p>El paquete no ofrece ninguna funcionalidad nueva, simplemente una sintaxis conveniente.</p>
+<p>El conveniente para ser usado en bases de datos pequeñas o medianas.</p>
+</div>
+<div id="ejemplo-5" class="section level4">
+<h4>Ejemplo</h4>
+<p>Aquí están algunos ejemplos de la sintaxis de <code>dplyr</code>:</p>
+<ul>
+<li><code>filter()</code> para seleccionar casos según sus valores.</li>
+<li><code>arrange()</code> para reordenar los reglones.</li>
+<li><code>select()</code> y rename() seleccionar las variables según su nombre.</li>
+<li><code>mutate()</code> y <code>transmute()</code> para agregar nuevas variables que son función de las existentes.</li>
+<li><code>summarise()</code> para condensar múltiples valores en uno solo.</li>
+<li><code>sample_n()</code> y <code>sample_frac()</code> sirven para tomar muestras aleatorias.</li>
+</ul>
+</div>
+<div id="para-más-información-1" class="section level4">
+<h4>Para más información</h4>
+<p>Para más información sobre el paquete <code>dplyr</code> te recomandamos leer el manual <em>Introduction to dplyr</em> en el CRAN de R.</p>
+</div>
+</div>
+<div id="regresión-y-correlación" class="section level3">
+<h3>Regresión y correlación</h3>
+<div id="introducción-a-regresión-y-correlación" class="section level4">
+<h4>Introducción a regresión y correlación</h4>
+<p>Cuando se analizan datos que vienen pareja, surgen inquietudes sobre la relación que pueda existir entre los mismos y sí es posible utilizar una parte de ellos para predecir la restante.</p>
+<p>En estadística, el análisis de regresión y correlación trata de responder estas dudas al ajustar modelos lineales a los datos que posteriormente pueden ser utilizados para hacer pronósticos.</p>
+<p>A modo de ejemplo veremos una de estas metodologías.</p>
+</div>
+<div id="visualización-de-los-datos" class="section level4">
+<h4>Visualización de los datos</h4>
+<p>A continuación haremos un ejemplo utilizando el <code>data.frame</code> con nombre <code>mtcars</code></p>
+<p>Puedes acceder a la documentación de <code>mtcars</code> ingresando a</p>
+<pre class="r"><code>?mtcars       #para ver descripci?n de los datos. 
+View(mtcars)  #para ver los datos.</code></pre>
+<p>La función <code>View</code> despliega los datos en forma de hoja de cálculo, lo que facilita su visualización.</p>
+</div>
+<div id="analizamos-la-relación-de-los-datos" class="section level4">
+<h4>Analizamos la relación de los datos</h4>
+<p>Estudiaremos la relación entre la fuerza medidas en caballos (hp) y el consumo de combustible en millas por galón (mpg). Hacemos un diagrama de dispersión.</p>
+<pre class="r"><code>plot(mtcars$hp, mtcars$mpg, xlab = &quot;HP&quot;, ylab = &quot;MPG&quot;)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-235-1.png" width="672" /></p>
+</div>
+<div id="correlación" class="section level4">
+<h4>Correlación</h4>
+<p>La función <code>cor</code> nos ayuda a medir la correlación lineal que puede existir entre dos variables.</p>
+<pre class="r"><code>?cor
+cor(x = mtcars$hp, y = mtcars$mpg, method = &quot;pearson&quot;)</code></pre>
+<pre><code>## [1] -0.7761684</code></pre>
+<p>El argumento <code>method = &quot;pearson&quot;</code> indica que estamos utilizando el coeficiente de correlación de Pearson, por mucho el más usado en la práctica.</p>
+<p>Algunas reglas a considerar:</p>
+<ul>
+<li>Un valor cercano a 1 indica una correlación positiva fuerte.</li>
+<li>Un valor cercano a -1 indica una correlación negativa fuerte.</li>
+<li>Valores cercanos a 0 indican baja correlación.</li>
+</ul>
+<blockquote>
+<p>Cuidado El coeficiente de correlación de Pearson sólo mide la relación lineal entre variables. Un valor cercano a cero del coeficiente de correlación no necesariamente indica baja correlación, pues la correlación de los datos puede ser no lineal. Para evitar malas conclusiones, siempre grafica tus datos.</p>
+</blockquote>
+<p>La función <code>cor</code> puede analizar todas las variables que desees en un data frame al mismo tiempo</p>
+<pre class="r"><code>cor(mtcars[,c(1,2,3,4)], method = &quot;pearson&quot;)</code></pre>
+<pre><code>##             mpg        cyl       disp         hp
+## mpg   1.0000000 -0.8521620 -0.8475514 -0.7761684
+## cyl  -0.8521620  1.0000000  0.9020329  0.8324475
+## disp -0.8475514  0.9020329  1.0000000  0.7909486
+## hp   -0.7761684  0.8324475  0.7909486  1.0000000</code></pre>
+<p>Esta es una matriz de correlaciones.</p>
+</div>
+<div id="regresión" class="section level4">
+<h4>Regresión</h4>
+<p>La función <code>lm</code> nos permite hacer un análisis de regresión y ajustar modelos lineales que no ayuden a predecir una variable de interés.</p>
+<pre class="r"><code>?lm
+lm.mpg&lt;-lm(mpg~hp, data = mtcars)
+lm.mpg</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = mpg ~ hp, data = mtcars)
+## 
+## Coefficients:
+## (Intercept)           hp  
+##    30.09886     -0.06823</code></pre>
+<p>La recta que ajustamos es <span class="math inline">\(mpg = 30.09886 - 0.06823 hp\)</span>.</p>
+<p>Podemos usar esta recta para hacer predicciones. Pero primero, hay que verificar que el ajuste sea bueno.</p>
+</div>
+<div id="verificamos-el-ajuste-de-la-regresión" class="section level4">
+<h4>Verificamos el ajuste de la regresión</h4>
+<p>Cuando trabajamos con una regresión lineal simple. Una forma intuitiva (existen otras más avanzadas) de evaluar el ajuste de la línea es graficándola junto a los datos.</p>
+<pre class="r"><code>x = mtcars$hp
+y = mtcars$mpg
+yhat = fitted(lm.mpg)
+plot(x = x,y = y, pch = 19, xlab = &quot;HP&quot;, ylab = &quot;MPG&quot;)
+points(sort(x), yhat[order(x)], type=&quot;l&quot;, col=&quot;red&quot;, lwd=2)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-239-1.png" width="672" /></p>
+<p>Nota que el ajuste parece no ser muy bueno.</p>
+</div>
+<div id="mejoramos-el-ajuste" class="section level4">
+<h4>Mejoramos el ajuste</h4>
+<p>Transformamos la variable independiente <code>x</code> para mejorar el ajuste.</p>
+<pre class="r"><code>y = mtcars$mpg
+x = mtcars$hp
+trans.x &lt;- log(x)
+lm.mpg&lt;-lm(y~trans.x)
+plot(x,y, pch = 19, xlab = &quot;HP&quot;, ylab = &quot;MPG&quot;)
+yhat = fitted(lm.mpg)
+points(sort(x), yhat[order(x)], type=&quot;l&quot;, col=&quot;red&quot;, lwd=2)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-240-1.png" width="672" /></p>
+<p>El ajuste se observa mucho mejor. Ahora podemos utilizar la ecuación para hacer predicciones con más confianza.</p>
+</div>
+</div>
+</div>
+<div id="pruebas-de-hipótesis" class="section level2">
+<h2>Pruebas de Hipótesis</h2>
+<div id="objetivos-7" class="section level3">
+<h3>Objetivos</h3>
+<p>A continuación se presentan algunas pruebas estadísticas usadas para analizar datos en <code>R</code>. El detalle del conocimiento de estos tópicos va más allá de la funcionalidad base de <code>R</code> o requiere de estudios previos en estadística.</p>
+<p>Las pruebas a considerar se muestran a continuación:</p>
+<ul>
+<li>Prueba de Normalidad</li>
+<li>Prueba de Medias</li>
+<li>Prueba de varianza</li>
+<li>Prueba de proporciones</li>
+</ul>
+</div>
+<div id="prueba-de-normalidad" class="section level3">
+<h3>Prueba de Normalidad</h3>
+<div id="gráfico-cuantil-cuantil" class="section level4">
+<h4>Gráfico Cuantil-Cuantil</h4>
+<p>Un gráfico Cuantil-Cuantil permite observar cuan cerca está la distribución de un conjunto de datos a alguna distribución ideal ó comparar la distribución de dos conjuntos de datos.</p>
+<p><em>Ejemplo</em>: comparación con distribución normal</p>
+<pre class="r"><code>#generar 100 datos normales
+x &lt;- rnorm(100)</code></pre>
+<pre class="r"><code>#graficar sus cuantiles
+qqnorm(x)
+#graficar la recta con mejor ajuste
+qqline(x)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-242-1.png" width="672" /></p>
+<p>Comparar la distribución de dos conjuntos de datos</p>
+<pre class="r"><code>#primer conjunto de datos
+x &lt;- rnorm(100)
+#segundo conjunto de datos
+y &lt;- rnorm(100)
+qqplot(x,y)
+qqline(x,y)</code></pre>
+<pre><code>## Warning in if (datax) {: the condition has length &gt; 1 and only the first
+## element will be used</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-243-1.png" width="672" /></p>
+</div>
+<div id="prueba-de-shaphiro-wilks" class="section level4">
+<h4>Prueba de Shaphiro-Wilks</h4>
+<p>Se utiliza para contrastar la normalidad de un conjunto de datos. Es una de las más utilizadas y eficientes para comprobar la normalidad de una variable.</p>
+<p><em>Interpretación</em>: Siendo la hipótesis nula que la población está distribuida normalmente, si el p-valor es menor a alfa (nivel de significancia) entonces la hipótesis nula es rechazada (se concluye que los datos no vienen de una distribución normal). Si el p-valor es mayor a alfa, se concluye que no se puede rechazar dicha hipótesis.</p>
+<p>Ejemplo</p>
+<pre class="r"><code># Creamos una variable normal con 100 valores
+x &lt;- rnorm(100) 
+x.test &lt;- shapiro.test(x)
+print(x.test)</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  x
+## W = 0.99205, p-value = 0.8251</code></pre>
+<p>Como el valor de <span class="math inline">\(p &gt; 0.05\)</span>, entonces podemos inferir que la distribución de los datos es una distribución normal.</p>
+</div>
+</div>
+<div id="prueba-de-medias" class="section level3">
+<h3>Prueba de Medias</h3>
+<div id="prueba-t-de-student" class="section level4">
+<h4>Prueba t de Student</h4>
+<p>Se utiliza para comprobar la igualdad de las medias de dos muestras o una muestra. También para comprobar si la media de una muestra es igual a una media teórica determinada. Los datos tienen que tener distribución normal (véase la prueba de Shapiro-Wilk).</p>
+<p><em>Interpretación</em>: Siendo la hipótesis nula que las medias de las muestras son iguales, si el <span class="math inline">\(p\)</span>-valor es menor a alfa (nivel de significancia) entonces la hipótesis nula es rechazada (se concluye que los datos tienen diferentes medias). Si el <span class="math inline">\(p\)</span>-valor es mayor a alfa, se concluye que no se puede rechazar dicha hipótesis.</p>
+<p><em>Ejemplo</em>: Comparación de dos muestras</p>
+<pre class="r"><code>x1 &lt;- rnorm(100,10) # Variable aleatoria de media 10
+x2 &lt;- rnorm(100,10.5) # Variable aleatoria de media 10.5
+test &lt;- t.test(x1,x2) # Prueba t de Student
+print(test)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  x1 and x2
+## t = -2.4015, df = 197.23, p-value = 0.01725
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.6200573 -0.0608875
+## sample estimates:
+## mean of x mean of y 
+##  10.02429  10.36476</code></pre>
+<p>Como el <span class="math inline">\(p\)</span>-value es <span class="math inline">\(&lt;0.05\)</span> podemos afirmar que las muestras difieren en su media, es decir, los dos variables son diferentes.</p>
+</div>
+<div id="anova" class="section level4">
+<h4>ANOVA</h4>
+<p>Se usa para comparar las medias de dos o más grupos. Esta técnica puede generalizarse también para estudiar los posibles efectos de los factores sobre la varianza de una variable.</p>
+<p>La hipótesis nula de la que parten los diferentes tipos de ANOVA es que la media de la variable estudiada es la misma en los diferentes grupos, en contraposición a la hipótesis alternativa de que al menos dos medias difieren de forma significativa. ANOVA permite comparar múltiples medias, pero lo hace mediante el estudio de las varianzas.</p>
+<p>Ejemplo en formato <code>.csv</code> para realizar un análisis:</p>
+<pre class="r"><code>Subtype,Gender,Expression
+A,m,-0.54
+A,m,-0.8
+A,m,-1.03
+A,m,-0.41
+B,f,-0.67
+B,m,-0.77
+B,f,-0.03
+B,m,-0.12
+C,m,1.67
+C,m,0.81
+C,f,-1.81
+C,f,-1.18</code></pre>
+<p>Análisis ANOVA de una cola:</p>
+<pre class="r"><code>a = aov(Expression~Subtype, data=x)
+summary(a)</code></pre>
+<pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)
+## Subtype      2  0.645  0.3223   0.333  0.725
+## Residuals    9  8.702  0.9669</code></pre>
+<p>Poner atencion en la formula, la variable dependiente <code>Expression</code> se encuentra antes de la variable independiente <code>Subtype</code>.</p>
+<p>Análisis ANOVA de dos colas:</p>
+<pre class="r"><code>a = aov(Expression~Subtype*Gender, data=x)
+summary(a)</code></pre>
+<pre><code>##                Df Sum Sq Mean Sq F value  Pr(&gt;F)   
+## Subtype         2  0.645   0.322    1.86 0.22495   
+## Gender          1  3.485   3.485   20.11 0.00285 **
+## Subtype:Gender  1  4.004   4.004   23.11 0.00195 **
+## Residuals       7  1.213   0.173                   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Aquí, la variable dependiente es <code>Expression</code>. Las variables <code>Subtype</code> and <code>Age</code> son independientes.</p>
+</div>
+</div>
+<div id="prueba-de-varianza" class="section level3">
+<h3>Prueba de Varianza</h3>
+<div id="prueba-f" class="section level4">
+<h4>Prueba F</h4>
+<p>Se usa para comprobar la igualdad de varianzas entre dos grupos de datos. Nos puede ser útil en multitud de situaciones, por ejemplo, cuando tenemos dos máquinas que fabrian lo mismo (por ejemplo, rodamientos), y queremos saber si lo hacen con la misma variabilidad. Para poner un ejemplo, generemos datos de dos distribuciones normales con distinta varianza y veamos si el test detecta esta situación:</p>
+<pre class="r"><code>x &lt;- rnorm(50, mean = 0, sd = 2)
+y &lt;- rnorm(30, mean = 1, sd = 1)
+var.test(x, y)</code></pre>
+<pre><code>## 
+##  F test to compare two variances
+## 
+## data:  x and y
+## F = 3.9071, num df = 49, denom df = 29, p-value = 0.0001957
+## alternative hypothesis: true ratio of variances is not equal to 1
+## 95 percent confidence interval:
+##  1.963003 7.350829
+## sample estimates:
+## ratio of variances 
+##           3.907072</code></pre>
+<p>Como vemos, el <span class="math inline">\(p\)</span>-valor sale prácticamente cero: rechazaremos la hipótesis de que los conjuntos de datos <code>x</code> e <code>y</code> provienen de distribuciones con la misma varianza.</p>
+</div>
+<div id="homogéneidad-de-varianzas" class="section level4">
+<h4>Homogéneidad de Varianzas</h4>
+<p>Permite contrastar la igualdad de varianza en 2 o más poblaciones sin necesidad de que el tamaño de los grupos sea el mismo. Es sensible a la falta de normalidad, pero si se está seguro de que los datos provienen de una distribución normal, es la mejor opción.</p>
+<p><em>Ejemplo:</em></p>
+<pre class="r"><code>data(&quot;iris&quot;)
+a &lt;- iris[iris$Species == &quot;versicolor&quot;, &quot;Petal.Length&quot;]
+b &lt;- iris[iris$Species == &quot;virginica&quot;, &quot;Petal.Length&quot;]
+bartlett.test(list(a,b))</code></pre>
+<pre><code>## 
+##  Bartlett test of homogeneity of variances
+## 
+## data:  list(a, b)
+## Bartlett&#39;s K-squared = 1.249, df = 1, p-value = 0.2637</code></pre>
+<p>Como el valor de <span class="math inline">\(p\)</span> es mayor a 0.05, el test no encuentra diferencias significativas entre las varianzas de los dos grupos.</p>
+</div>
+</div>
+<div id="prueba-de-proporciones" class="section level3">
+<h3>Prueba de Proporciones</h3>
+<div id="igualdad-de-proporciones" class="section level4">
+<h4>Igualdad de Proporciones</h4>
+<p>Se usa para determinar si las proporciones en varios grupos son las mismas, o bien que dichas proporciones equivalen a unas determinadas.</p>
+<p><em>Ejemplo:</em> Para empezar, tiraremos una moneda al aire 100 veces, y nos preguntaremos si la proporción de caras puede ser considerada el 50%:</p>
+<pre class="r"><code>caras &lt;- rbinom(1, size=100, pr = .5)
+caras</code></pre>
+<pre><code>## [1] 59</code></pre>
+<pre class="r"><code>prop.test(caras,100)</code></pre>
+<pre><code>## 
+##  1-sample proportions test with continuity correction
+## 
+## data:  caras out of 100, null probability 0.5
+## X-squared = 2.89, df = 1, p-value = 0.08913
+## alternative hypothesis: true p is not equal to 0.5
+## 95 percent confidence interval:
+##  0.4870348 0.6859677
+## sample estimates:
+##    p 
+## 0.59</code></pre>
+<p>Como el <span class="math inline">\(p\)</span>-valor es muy alto, 0.92, no rechazaremos la hipótesis nula de que <span class="math inline">\(p=0.5\)</span>.</p>
+<p>Supongamos ahora que queremos saber si dos muestras han salido de la misma población.</p>
+<p><em>Ejemplo:</em> se quiere saber si las mujeres estudian un grupo de carreras diferentes en la misma proporcion. Para ello miramos la lista de matriculados en cuatro carreras y comprobamos si las proporciones de mujeres en las mismas coinciden:</p>
+<pre class="r"><code>estudiantes&lt;-c(100,200,50,500)
+names(estudiantes)&lt;-c(&quot;quimica&quot;,&quot;derecho&quot;,
+                      &quot;matematicas&quot;,&quot;economia&quot;)
+estudiantes</code></pre>
+<pre><code>##     quimica     derecho matematicas    economia 
+##         100         200          50         500</code></pre>
+<pre class="r"><code>estudiantes.mujeres&lt;-c(60,120,10,200)
+prop.test(estudiantes.mujeres,estudiantes)</code></pre>
+<pre><code>## 
+##  4-sample test for equality of proportions without continuity
+##  correction
+## 
+## data:  estudiantes.mujeres out of estudiantes
+## X-squared = 44.537, df = 3, p-value = 1.16e-09
+## alternative hypothesis: two.sided
+## sample estimates:
+## prop 1 prop 2 prop 3 prop 4 
+##    0.6    0.6    0.2    0.4</code></pre>
+<p>La conclusion es que no. Las mujeres, en este ejemplo, se matriculan de las carreras en distinta proporcion.</p>
+</div>
 </div>
 </div>
 </div>

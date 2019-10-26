@@ -1,0 +1,146 @@
+knitr::opts_chunk$set(echo = TRUE)
+summary(cars)
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE)
+.First.sys()
+summary(cars)
+.First.sys()
+#summary(cars)
+.First.sys()
+.First.sys()
+.First.sys()
+print(.First.sys())
+cat(.First.sys())
+cat(.First.sys())
+cat(.First.sys())
+cat(.First.sys())
+cat(.First.sys())
+cat(.First.sys())
+cat(.First.sys())
+.Rprofile
+?Startup
+cat("Default Packages:",getOption("defaultPackages"))
+R version 3.2.1 (2015-06-18) -- "World-Famous Astronaut"
+plot(rnorm(500))
+2 + 2
+rnorm(15)
+weight <- c(60, 72, 57, 90, 95, 72)
+weight
+height <- c(1.75, 1.80, 1.65, 1.90, 1.74, 1.91)
+bmi <- weight / height^2
+bmi
+sum(weight)
+sum(weight) / length(weight)
+t.test(bmi,mu=22.5)
+plot(height,weight)
+hh <- c(1.65, 1.70, 1.75, 1.80, 1.85, 1.90)
+lines(hh, 22.5 * hh^2)
+hh <- c(1.65, 1.70, 1.75, 1.80, 1.85, 1.90)
+plot(height,weight)
+lines(hh, 22.5 * hh^2)
+hh <- c(1.65, 1.70, 1.75, 1.80, 1.85, 1.90)
+plot(height,weight)
+lines(hh, 22.5 * hh^2)
+hh <- c(1.65, 1.70, 1.75, 1.80, 1.85, 1.90)
+plot(height,weight)
+lines(hh, 22.5 * hh^2)
+hh <- c(1.65, 1.70, 1.75, 1.80, 1.85, 1.90)
+plot(height,weight)
+lines(hh, 22.5 * hh^2)
+log(x)
+log(x)
+args(plot.default)
+d <- data.frame(intake.pre, intake.post)
+d <- data.frame(intake.pre, intake.post)
+pain <- c(0,3,2,2,1)
+fpain <- factor(pain,levels = 0:3)
+fpain
+levels(fpain) <- c("none", "mild", "medium", "severe")
+fpain
+knitr::opts_chunk$set(echo = TRUE)
+install.packages("ISwR")
+library(ISwR)
+energy
+x = c("f2", "f1", "f3", "f4", "f5")
+xfactor <- factor(x,c(c("f1", "f2", "f3", "f4", "f5")))
+y[xfactor]
+ls()
+plot(x, y, type = "n", xlab = "", ylab = "", axes = F) #prerapa el área de gráfico.
+x <- runif(50,0,2)
+y <- runif(50,0,2)
+plot(x, y, main = "Título principal", sub = "Subtítulo",
+xlab = "Título eje x", ylab = "Título eje y" )
+plot(x, y, type = "n", xlab = "", ylab = "", axes = F) #prerapa el área de gráfico.
+points(x,y) #agrega los puntos de forma individual
+axis(1)
+axis(2, at =seq(0.2,1.8,0.2))
+box()
+title(main = "Título principal", sub = "Subtítulo", xlab = "Eje x", ylab = "Eje y")
+aa <- 15
+if(aa > 14)
++ print("FELICIDADES")
+aa <- 15
+if(aa > 14)
+print("FELICIDADES")
+if(aa > 14){
+print("PRIMER REGLÓN")
+print("SEGUNDO REGLÓN")
+}
+if(10 > aa){
+print("RANGO MENOR")
+} else if(10 <= aa && aa <= 20){
+print("RANGO MEDIO")
+} else{
+print("RANGO ALTO")
+}
+i <- 1
+repeat {
+print(letras[i])
+i <- i + 1
+if (i > 5)
+break
+}
+x <- rnorm(50)
+mean(x)
+quantile(x)
+pvec <- seq(0,1,0.1)
+pvec
+quantile(x,pvec)
+summary(igf1)
+attach(juul)
+mean(igf1)
+attach(juul)
+mean(igf1)
+jul
+juul
+attach(juul)
+mean(juul$igf1)
+attach(juul)
+mean(igf1)
+#Le pedimos a la función ignorar los datos faltantes
+mean(igf1,na.rm = T)
+sum(!is.na(igf1))
+summary(igf1)
+detach(juul)
+juul$sex <- factor(juul$sex, labels = c("M","F"))
+juul$menarche <- factor(juul$menarche, labels = c("No","Yes"))
+juul$tanner <- factor(juul$tanner, labels = c("I", "II", "III", "IV", "V"))
+attach(juul)
+summary(juul)
+hist(x)
+qqplot(x)
+qqplot(x)
+qqplot(x,x)
+qqplot(x)
+qqnorm(x)
+par(mfrow=c(1,2))
+boxplot(IgM)
+boxplot(log(IgM))
+par(mfrow=c(1,1))
+tapply(folate,ventilation,mean)
+library("ISwR")
+tapply(folate,ventilation,mean)
+folate
+library("ISwR")
+tapply(folate,ventilation,mean)
+dotchart(t(table.caff.marital), lcolor = "black")

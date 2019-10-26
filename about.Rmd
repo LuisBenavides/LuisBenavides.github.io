@@ -2085,7 +2085,6 @@ barplot(prop.table(t(table.caff.marital),2),beside = T,
          legend.text = colnames(table.caff.marital),
          col = c("white", "grey80", "grey50", "black"))
 ```
-\begin{center}
 
 `R` no tiene una forma de encontrar la mejor posición para la leyenda y en ocasiones esta se sobrepondrá sobre tu gráfica.
 
@@ -2113,7 +2112,6 @@ pie(table.caff.marital["Solteros",], main="Solteros", col=slices)
 par(opar)
 ```
 
-
 ### Ejercicios
 
 * Explore distintas formas de gráficas de lineas y puntos. Cambie el tipo de línea, el grosor de la línea y el color.
@@ -2121,8 +2119,6 @@ par(opar)
 * Al graficar `plot(rnorm(10), type = "o")` las líneas son visibles dentro de los símbolos dibujados. ¿Cómo puedes evitar esto?
 
 * Crea un histograma de los datos `react`. Debido al alto grado de discretización de los datos, el histograma estará sesgado. ¿Por qué? Puedes utilizar la función `truehist()` del paquete `MASS` como reemplazo.
-
-
 
 ### Soluciones
 
@@ -2142,6 +2138,429 @@ hist(react)
 library(MASS)
 truehist(react)
 ```
+
+
+## Otros Tópicos
+
+### Descripción del módulo
+
+#### Objetivos
+A continuación se presentan algunos tópicos que pueden ser de interés para usuarios avanzados en `R`. El detalle del conocimiento de estos tópicos va más allá de la funcionalidad base de `R` o requiere de estudios
+previos en estadística.
+
+Los tópicos mostrados a continuación son:
+
+* `data.table`
+* `dplyr`
+* Pronósticos
+
+La presentación de cada tópico es introductoria, y su fin es el de ofrecer una guía a usuario avanzados que deseen profundizar en el uso de `R`.
+
+
+### Data Tables
+
+Cuando se manipulan datos es común querer obtener subconjuntos, agrupar, actualizar, o incluso unir distintos conjuntos en un solo.
+
+`data.tables` ofrece una estructura que permite mantener estos comandos de forma concisa y consistente.
+
+Reduces la necesidad de utilizar funciones externas que te ayuden a hacer el análisis.*
+
+Reducir los tiempos de procesamiento al utilizar comandos optimizados.
+
+
+#### Lee archivos de datos
+Puedes usar la función fast file reader `fread` de `data.table`
+```{r eval=FALSE}
+secretinBD <- fread("secretinBD.txt")
+```
+El archivo `secretinBD.txt` se encuentra entre tus archivos de la clase.
+Descárgalo y léelo usando la función anterior.
+
+La función `fread` acepta `http` y `https` de forma directa.
+
+
+#### Lee archivos de datos
+Para saber cuantos reglones y columnas tiene tu archivo usa
+```{r eval=FALSE}
+dim(secretinBD)
+```
+
+
+#### Crea un data table}
+Puedes crear tu propio data table usando la función `data.table`
+```{r}
+library(data.table)
+DT = data.table(ID = c("b","b","b","a","a","c"),
+                 a = 1:6,
+                 b = 7:12,
+                 c = 13:18)
+DT
+```
+También puedes utilizar el comando `as.data.table` para convertir un objeto existente.
+
+
+#### Características
+A diferencia de `data.frames`, `data.table` nunca convierte una
+columna de caracteres en factores por defecto.
+
+Los número de las filas se imprimen con `:` para mejorar la visualización.
+
+Cuando la cantidad de filas a imprimir excede el parámetro global
+(por defectos es 100) sólo se imprimen los primeros cinco y los últimos cinco reglones.
+
+El parámetro global se accede por medio de `datatable.print.nrows`:
+```{r}
+getOption("datatable.print.nrows")
+```
+
+
+#### Nuevas características
+A diferencia de un `data.frame`, por medio de `data.table` puedes
+filtrar, seleccionar y agrupar de forma nativa y eficiente.
+
+Para este fin se sigue la sintaxis `DT[i,j,by]`, que en voz alta se lee algo así: *Toma DT, filtra las filas usando `i`, luego selecciona `j`, agrupando por by*.
+
+
+#### Filtrando filas
+Siguendo la sintaxis de `data.table`.
+```{r eval=FALSE}
+secretinBD[gluc > 85 & person == "A"]
+```
+
+#### Ordenamientos
+Podemos ordenar los datos más rápidamente que en un data frame usando la función `order`. A continuación ordenamos los datos de secretinBD por `person` en forma ascendente y por `gluc` en forma descendente y presentamos los primeros resultados.
+```{r eval=FALSE}
+head(secretinBD[order(person, -gluc)])
+```
+
+#### Seleccionando columnas
+Sólo tienes que indicar el nombre sin comillas.
+```{r eval=FALSE}
+head(secretinBD[,gluc]) #salida es un arreglo
+```
+```{r eval=FALSE}
+head(secretinBD[,list(gluc)]) #salida es un data table
+```
+
+#### Aplica una función a las filas según clasificación
+A continuación se muestra como obtener el promedio de `gluc` según la persona.
+```{r eval=FALSE}
+secretinBD[,list(Promedio = mean(gluc)), list(person)]
+```
+
+#### Contar filas según clasificación
+A continuación se muestra como obtener el total de filas según la persona.
+```{r eval=FALSE}
+secretinBD[,list(.N), list(person)]
+```
+`R` reconoce el símbolo especial `.N` que indica el número de
+observaciones en el grupo actual.
+
+
+#### Para más información
+Para más información visita el documento *Introduction to data.table* en el CRAN de R.
+
+Encontrarás `data.table` especialmente útil en su manejo de grandes volúmenes de datos.
+
+#### Introducción a `dplyr`
+El paquete `dplyr` provee de una sintaxis simplificada para tareas comunes que de entre lo que ya puedes hacer con un `data.frame`.
+
+El paquete no ofrece ninguna funcionalidad nueva, simplemente una sintaxis conveniente.
+
+El conveniente para ser usado en bases de datos pequeñas o medianas.
+
+#### Ejemplo
+Aquí están algunos ejemplos de la sintaxis de `dplyr`:
+
+* `filter()` para seleccionar casos según sus valores.
+* `arrange()` para reordenar los reglones.
+* `select()` y rename() seleccionar las variables según su nombre.
+* `mutate()` y `transmute()` para agregar nuevas variables
+que son función de las existentes.
+* `summarise()` para condensar múltiples valores en uno solo.
+* `sample_n()` y `sample_frac()` sirven para tomar muestras aleatorias.
+
+
+
+#### Para más información
+Para más información sobre el paquete `dplyr` te recomandamos leer
+el manual *Introduction to dplyr* en el CRAN de R.
+
+
+### Regresión y correlación
+
+#### Introducción a regresión y correlación
+Cuando se analizan datos que vienen pareja, surgen inquietudes sobre la relación que pueda existir entre los mismos y sí es posible utilizar una parte de ellos para predecir la restante.
+
+En estadística, el análisis de regresión y correlación trata
+de responder estas dudas al ajustar modelos lineales a los datos que posteriormente pueden ser utilizados para hacer
+pronósticos.
+
+A modo de ejemplo veremos una de estas metodologías.
+
+#### Visualización de los datos
+A continuación haremos un ejemplo utilizando el `data.frame` con nombre `mtcars`
+
+Puedes acceder a la documentación de `mtcars` ingresando a
+```{r eval=FALSE}
+?mtcars       #para ver descripci?n de los datos. 
+View(mtcars)  #para ver los datos.
+```
+La función `View` despliega los datos en forma de hoja de cálculo, lo que facilita su visualización.
+
+
+#### Analizamos la relación de los datos
+Estudiaremos la relación entre la fuerza medidas en caballos (hp)
+y el consumo de combustible en millas por galón (mpg). Hacemos un diagrama de dispersión.
+```{r}
+plot(mtcars$hp, mtcars$mpg, xlab = "HP", ylab = "MPG")
+```
+
+#### Correlación
+La función `cor` nos ayuda a medir la correlación lineal que puede existir entre dos variables.
+```{r}
+?cor
+cor(x = mtcars$hp, y = mtcars$mpg, method = "pearson")
+```
+El argumento `method = "pearson"` indica que estamos utilizando el coeficiente de correlación de Pearson, por mucho el más usado en la práctica.
+
+Algunas reglas a considerar:
+
+* Un valor cercano a 1 indica una correlación positiva fuerte.
+* Un valor cercano a -1 indica una correlación negativa fuerte.
+* Valores cercanos a 0 indican baja correlación.
+
+> Cuidado
+> El coeficiente de correlación de Pearson sólo mide la relación lineal entre variables.
+Un valor cercano a cero del coeficiente de correlación no necesariamente indica baja
+correlación, pues la correlación de los datos puede ser no lineal. Para evitar
+malas conclusiones, siempre grafica tus datos.
+
+La función `cor` puede analizar todas las variables que desees en un
+data frame al mismo tiempo
+```{r}
+cor(mtcars[,c(1,2,3,4)], method = "pearson")
+```
+Esta es una matriz de correlaciones.
+
+
+#### Regresión
+La función `lm` nos permite hacer un análisis de regresión y ajustar
+modelos lineales que no ayuden a predecir una variable de interés.
+
+```{r}
+?lm
+lm.mpg<-lm(mpg~hp, data = mtcars)
+lm.mpg
+```
+
+La recta que ajustamos es $mpg = 30.09886 - 0.06823 hp$.
+
+Podemos usar esta recta para hacer predicciones. Pero primero, hay que verificar que el ajuste sea bueno.
+
+#### Verificamos el ajuste de la regresión
+Cuando trabajamos con una regresión lineal simple. Una forma intuitiva (existen otras más avanzadas) de evaluar el ajuste de la línea es graficándola junto a los datos.
+
+```{r}
+x = mtcars$hp
+y = mtcars$mpg
+yhat = fitted(lm.mpg)
+plot(x = x,y = y, pch = 19, xlab = "HP", ylab = "MPG")
+points(sort(x), yhat[order(x)], type="l", col="red", lwd=2)
+```
+
+Nota que el ajuste parece no ser muy bueno.
+
+
+#### Mejoramos el ajuste
+Transformamos la variable independiente `x` para mejorar el ajuste.
+
+```{r}
+y = mtcars$mpg
+x = mtcars$hp
+trans.x <- log(x)
+lm.mpg<-lm(y~trans.x)
+plot(x,y, pch = 19, xlab = "HP", ylab = "MPG")
+yhat = fitted(lm.mpg)
+points(sort(x), yhat[order(x)], type="l", col="red", lwd=2)
+```
+
+El ajuste se observa mucho mejor. Ahora podemos utilizar la ecuación para hacer
+predicciones con más confianza.
+
+
+## Pruebas de Hipótesis
+
+### Objetivos
+A continuación se presentan algunas pruebas estadísticas usadas para analizar datos en `R`. El detalle del conocimiento de estos tópicos va más allá de la funcionalidad base de `R` o requiere de estudios previos en estadística.
+
+Las pruebas a considerar se muestran a continuación:
+
+* Prueba de Normalidad
+* Prueba de Medias
+* Prueba de varianza
+* Prueba de proporciones
+
+### Prueba de Normalidad
+
+#### Gráfico Cuantil-Cuantil
+Un gráfico Cuantil-Cuantil permite observar cuan cerca está la
+distribución de un conjunto de datos a alguna distribución ideal
+ó comparar la distribución de dos conjuntos de datos.
+
+*Ejemplo*: comparación con distribución normal
+```{r}
+#generar 100 datos normales
+x <- rnorm(100)
+```
+```{r}
+#graficar sus cuantiles
+qqnorm(x)
+#graficar la recta con mejor ajuste
+qqline(x)
+```
+
+Comparar la distribución de dos conjuntos de datos
+```{r}
+#primer conjunto de datos
+x <- rnorm(100)
+#segundo conjunto de datos
+y <- rnorm(100)
+qqplot(x,y)
+qqline(x,y)
+```
+
+#### Prueba de Shaphiro-Wilks
+ Se utiliza para contrastar la normalidad de un conjunto de datos. Es una de las más utilizadas y eficientes para comprobar la normalidad de una variable.
+ 
+*Interpretación*: Siendo la hipótesis nula que la población está distribuida normalmente, si el p-valor es menor a alfa (nivel de significancia) entonces la hipótesis nula es rechazada (se concluye que los datos no vienen de una distribución normal). Si el p-valor es mayor a alfa, se concluye que no se puede rechazar dicha hipótesis.
+
+Ejemplo
+```{r}
+# Creamos una variable normal con 100 valores
+x <- rnorm(100) 
+x.test <- shapiro.test(x)
+print(x.test)
+```
+Como el valor de $p > 0.05$, entonces podemos inferir que la distribución de los datos es una distribución normal.
+
+### Prueba de Medias
+#### Prueba t de Student
+Se utiliza para comprobar la igualdad de las medias de dos muestras o una muestra. También para comprobar si la media de una muestra es igual a una media teórica determinada. Los datos tienen que tener distribución normal (véase la prueba de Shapiro-Wilk).
+
+*Interpretación*: Siendo la hipótesis nula que las medias de las muestras son iguales, si el $p$-valor es menor a alfa (nivel de significancia) entonces la hipótesis nula es rechazada (se concluye que los datos tienen diferentes medias). Si el $p$-valor es mayor a alfa, se concluye que no se puede rechazar dicha hipótesis.
+
+
+*Ejemplo*: Comparación de dos muestras
+
+```{r}
+x1 <- rnorm(100,10) # Variable aleatoria de media 10
+x2 <- rnorm(100,10.5) # Variable aleatoria de media 10.5
+test <- t.test(x1,x2) # Prueba t de Student
+print(test)
+```
+Como el $p$-value es $<0.05$ podemos afirmar que las muestras difieren en su media, es decir, los dos variables son diferentes.
+
+
+#### ANOVA
+Se usa para comparar las medias de dos o más grupos. Esta técnica puede generalizarse también para estudiar los posibles efectos de los factores sobre la varianza de una variable.
+
+La hipótesis nula de la que parten los diferentes tipos de ANOVA es que la media de la variable estudiada es la misma en los diferentes grupos, en contraposición a la hipótesis alternativa de que al menos dos medias difieren de forma significativa. ANOVA permite comparar múltiples medias, pero lo hace mediante el estudio de las varianzas.
+
+Ejemplo en formato `.csv` para realizar un análisis:
+```{r echo=FALSE, eval=TRUE}
+x = data.frame(Subtype = c("A","A","A","A","B", "B","B", "B", "C", "C","C","C"),
+               Gender = c("m", "m", "m", "m", "f","m","f","m","m","m","f","f"),
+               Expression = c(-0.54, -0.8,-1.03,-0.41,-0.67, -0.77,-0.03,-0.12,1.67,0.81,-1.81,-1.18))
+```
+```{r eval=FALSE}
+Subtype,Gender,Expression
+A,m,-0.54
+A,m,-0.8
+A,m,-1.03
+A,m,-0.41
+B,f,-0.67
+B,m,-0.77
+B,f,-0.03
+B,m,-0.12
+C,m,1.67
+C,m,0.81
+C,f,-1.81
+C,f,-1.18
+```
+
+Análisis ANOVA de una cola:
+
+```{r}
+a = aov(Expression~Subtype, data=x)
+summary(a)
+```
+Poner atencion en la formula, la variable dependiente `Expression` se encuentra antes de la variable independiente `Subtype`.
+
+Análisis ANOVA de dos colas:
+```{r}
+a = aov(Expression~Subtype*Gender, data=x)
+summary(a)
+```
+Aquí, la variable dependiente es `Expression`. Las variables `Subtype` and `Age` son independientes.
+
+### Prueba de Varianza
+#### Prueba F
+Se usa para comprobar la igualdad de varianzas entre dos grupos de datos. Nos puede ser útil en multitud de situaciones, por ejemplo, cuando tenemos dos máquinas que fabrian lo mismo (por ejemplo, rodamientos), y queremos saber si lo hacen con la misma variabilidad. Para poner un ejemplo, generemos datos de dos distribuciones normales con distinta varianza y veamos si el test detecta esta situación:
+
+```{r}
+x <- rnorm(50, mean = 0, sd = 2)
+y <- rnorm(30, mean = 1, sd = 1)
+var.test(x, y)
+```
+Como vemos, el $p$-valor sale prácticamente cero: rechazaremos la hipótesis de que los conjuntos de datos `x` e `y` provienen de distribuciones con la misma varianza.
+
+#### Homogéneidad de Varianzas
+Permite contrastar la igualdad de varianza en 2 o más poblaciones sin necesidad de que el tamaño de los grupos sea el mismo. Es sensible a la falta de normalidad, pero si se está seguro de que los datos provienen de una distribución normal, es la mejor opción.
+
+*Ejemplo:*
+```{r}
+data("iris")
+a <- iris[iris$Species == "versicolor", "Petal.Length"]
+b <- iris[iris$Species == "virginica", "Petal.Length"]
+bartlett.test(list(a,b))
+```
+Como el valor de $p$ es mayor a 0.05, el test no encuentra diferencias significativas entre las varianzas de los dos grupos.
+
+### Prueba de Proporciones
+
+#### Igualdad de Proporciones
+Se usa para determinar si las proporciones en varios grupos son las mismas, o bien que dichas proporciones equivalen a unas determinadas.
+
+*Ejemplo:*
+Para empezar, tiraremos una moneda al aire 100 veces, y nos preguntaremos si la proporción de caras puede ser considerada el 50%:
+
+```{r}
+caras <- rbinom(1, size=100, pr = .5)
+caras
+```
+```{r}
+prop.test(caras,100)
+```
+
+Como el $p$-valor es muy alto, 0.92, no rechazaremos la hipótesis nula de que $p=0.5$.
+
+Supongamos ahora que queremos saber si dos muestras han salido de la misma población.
+
+*Ejemplo:* se quiere saber si las mujeres estudian un grupo de carreras diferentes en la misma proporcion. Para ello miramos la lista de matriculados en cuatro carreras y comprobamos si las proporciones de mujeres en las mismas coinciden:
+```{r}
+estudiantes<-c(100,200,50,500)
+names(estudiantes)<-c("quimica","derecho",
+                      "matematicas","economia")
+estudiantes
+```
+```{r}
+estudiantes.mujeres<-c(60,120,10,200)
+prop.test(estudiantes.mujeres,estudiantes)
+```
+La conclusión es que no. Las mujeres, en este ejemplo, se matriculan de las carreras en distinta proporcion.
+
+
 
 
 
