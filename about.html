@@ -373,6 +373,7 @@ $(document).ready(function () {
 </div>
 <div id="pantalla-de-bienvenida" class="section level3">
 <h3>Pantalla de bienvenida</h3>
+<blockquote>
 <p>R version 3.2.1 (2015-06-18) – “World-Famous Astronaut” Copyright (C) 2015 The R Foundation for Statistical Computing Platform: i386-w64-mingw32/i386 (32-bit)</p>
 <p>R is free software and comes with ABSOLUTELY NO WARRANTY. You are welcome to redistribute it under certain conditions. Type ‘license()’ or ‘licence()’ for distribution details.</p>
 <p>R is a collaborative project with many contributors. Type ‘contributors()’ for more information and ‘citation()’ on how to cite R or R packages in publications.</p>
@@ -380,6 +381,7 @@ $(document).ready(function () {
 <p>[Workspace loaded from ~/.RData]</p>
 <blockquote>
 
+</blockquote>
 </blockquote>
 </div>
 <div id="preguntas-y-respuestas" class="section level3">
@@ -394,7 +396,8 @@ $(document).ready(function () {
 <div id="ejemplo-1" class="section level3">
 <h3>Ejemplo 1</h3>
 <pre class="r"><code>plot(rnorm(500))</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-1-1.png" width="672" /> Este comando dibuja 500 números aleatorios de una distribución normal estándar en una gráfica que se genera.</p>
+<p><img src="about_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Este comando dibuja 500 números aleatorios de una distribución normal estándar en una gráfica que se genera.</p>
 </div>
 <div id="ejemplo-2" class="section level3">
 <h3>Ejemplo 2</h3>
@@ -412,9 +415,9 @@ $(document).ready(function () {
 <h3>Ejemplo 2</h3>
 <p>Considera el comando:</p>
 <pre class="r"><code>rnorm(15)</code></pre>
-<pre><code>##  [1]  1.0375439 -0.8587435  1.5822737  0.3835847  0.8982869  0.2952662
-##  [7]  0.4272174 -2.0188763 -1.2481490 -0.0872729  0.3389435 -0.4272519
-## [13] -0.9368759 -2.4468013 -0.4568273</code></pre>
+<pre><code>##  [1]  0.4984740 -0.8625822  0.1688786 -1.0704040 -2.8444195 -1.4246788
+##  [7] -0.5446088 -1.3099354  1.7904151  0.5631391 -0.5255222 -2.1361957
+## [13]  0.7621138  2.4949040 -1.7152898</code></pre>
 <ul>
 <li>El <code>[1]</code> indica la posición del primer resultado en el vector de 15 elementos.</li>
 <li>El <code>[8]</code> indica que el valor <code>-0.18483426</code> está en la posición 6.</li>
@@ -434,88 +437,649 @@ $(document).ready(function () {
 </div>
 <div id="nombres-de-tus-variables" class="section level3">
 <h3>Nombres de tus variables</h3>
-<p>Los nombres de las variables pueden elegirse libremente, pero debes seguir estas reglas: * Los nombres se pueden construir de letras, dígitos y puntos. * Un nombre no puede iniciar con un dígito y un punto seguido de un dígito. * Nombres que inician con punto son especiales y deben evitarse. * Un ejemplo de nombre de variable: height.1yr puede representar la altura de un niño de un año de edad. * Los nombres son sensibles a las mayúsculas. WT no es lo mismo que wt. * Algunos nombres ya los usa el sistema y pueden causas confusiones si los usas para otros propósitos: c, q, t, C,D, F, I, y T, así como diff, df, y pt. ¡No úses estos nombres! \end{itemize} \end{frame}</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\begin{frame}[fragile,allowframebreaks]{Respuestas} \begin{enumerate} * Respuesta
-
+<p>Los nombres de las variables pueden elegirse libremente, pero debes seguir estas reglas:</p>
 <ul>
-<li>Respuesta: Los niveles se representan como números que sirven de entrada como índices.</li>
-<li>Respuesta</li>
-<li>Respuesta: Los valores nombre de todos los factores cambian.</li>
-<li>Respuesta Usando 
-y usando  \begin{scriptsize} \begin{verbatim} &gt; sim.matrix &lt;- matrix(rexp(10 * 20),20) &gt; simframe &lt;- data.frame(sim.matrix) &gt; sapply(simframe,mean) X1 X2 X3 X4 X5 1.1040028 1.0455625 1.2375904 1.1180466 0.8741030 X6 X7 X8 X9 X10 1.0673961 0.8426350 0.7323206 1.0038521 0.9744703</li>
+<li>Los nombres se pueden construir de letras, dígitos y puntos.</li>
+<li>Un nombre no puede iniciar con un dígito y un punto seguido de un dígito.</li>
+<li>Nombres que inician con punto son especiales y deben evitarse.</li>
+<li>Un ejemplo de nombre de variable: height.1yr puede representar la altura de un niño de un año de edad.</li>
+<li>Los nombres son sensibles a las mayúsculas. WT no es lo mismo que wt.</li>
+<li>Algunos nombres ya los usa el sistema y pueden causas confusiones si los usas para otros propósitos: <code>c</code>, <code>q</code>, <code>t</code>, <code>C</code>, <code>D</code>, <code>F</code>, <code>I</code>, y <code>T</code>, así como <code>diff</code>, <code>df</code>, y <code>pt</code>. <span style="color:red">¡No úses estos nombres!</span></li>
 </ul>
+</div>
+<div id="aritmética-vectorizada" class="section level3">
+<h3>Aritmética vectorizada</h3>
+<p>En estadística raras veces trabajas con un sólo dato, ocupas conjuntos de datos. Estos conjunto se pueden agrupar a través de vectores.</p>
+<pre class="r"><code>weight &lt;- c(60, 72, 57, 90, 95, 72)
+weight</code></pre>
+<pre><code>## [1] 60 72 57 90 95 72</code></pre>
+<p>La función <code>c(...)</code> se usa para definir vectores.</p>
+<p>Ahora puedes hacer cálculos aritméticos utilizando vectores.</p>
+<pre class="r"><code>height &lt;- c(1.75, 1.80, 1.65, 1.90, 1.74, 1.91)
+bmi &lt;- weight / height^2
+bmi</code></pre>
+<pre><code>## [1] 19.59184 22.22222 20.93664 24.93075 31.37799 19.73630</code></pre>
+<p>Nota que las operaciones se hacen elemento por elemento de cada vector.</p>
+<blockquote>
+<h4 id="reciclaje"><em>Reciclaje</em></h4>
+<p><span style="color:red">Si un vector es menor que otro, el vector de menor longitud se recicla. Esto es mayormente usado en vectores de tamaño 1 (escalares), pero también cuando se desean lograr un patrón. Si el vector de mayor tamaño no es múltiplo del de menor tamaño, R ejecuta el cálculo pero arroja una advertencia.</span></p>
+</blockquote>
+</div>
+<div id="ejemplo" class="section level3">
+<h3>Ejemplo</h3>
+<p>Calculemos la media y la desviación estándar de la variable <code>weight</code>.</p>
+<pre class="r"><code>sum(weight)</code></pre>
+<pre><code>## [1] 446</code></pre>
+<pre class="r"><code>sum(weight) / length(weight)</code></pre>
+<pre><code>## [1] 74.33333</code></pre>
+<p>Para salvar la media y usarla en el cálculo de la desviación estándar:</p>
+<pre class="r"><code>xbar &lt;- sum(weight) / length(weight)
+weight - xbar</code></pre>
+<pre><code>## [1] -14.333333  -2.333333 -17.333333  15.666667  20.666667  -2.333333</code></pre>
+<pre class="r"><code>(weight - xbar)^2</code></pre>
+<pre><code>## [1] 205.444444   5.444444 300.444444 245.444444 427.111111   5.444444</code></pre>
+<pre class="r"><code>sum((weight - xbar)^2)</code></pre>
+<pre><code>## [1] 1189.333</code></pre>
+<pre class="r"><code>sqrt(sum((weight - xbar)^2))</code></pre>
+<pre><code>## [1] 34.48671</code></pre>
+</div>
+<div id="ejemplo-3" class="section level3">
+<h3>Ejemplo</h3>
+<p>Otra forma de lograr el mismo resultado es mediante las funciones <code>mean(...)</code> y <code>sd(...)</code></p>
+<pre class="r"><code>mean(weight)</code></pre>
+<pre><code>## [1] 74.33333</code></pre>
+<pre class="r"><code>sd(weight)</code></pre>
+<pre><code>## [1] 15.42293</code></pre>
+</div>
+<div id="ejemplo-de-prueba-de-hipótesis" class="section level3">
+<h3>Ejemplo de Prueba de Hipótesis</h3>
+<div id="prueba-t" class="section level4">
+<h4>Prueba <strong>t</strong></h4>
+<p>Usando lo datos calculados del BMI, prueba si la media de los 6 BMI’s calculados anteriormente es 22.5 o no lo es. Usa la prueba <strong>t</strong> para averiguarlo.</p>
+<pre class="r"><code>t.test(bmi,mu=22.5)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  bmi
+## t = 0.34488, df = 5, p-value = 0.7442
+## alternative hypothesis: true mean is not equal to 22.5
+## 95 percent confidence interval:
+##  18.41734 27.84791
+## sample estimates:
+## mean of x 
+##  23.13262</code></pre>
+</div>
+<div id="gráficas" class="section level4">
+<h4>Gráficas</h4>
+<p>R puede ayudarnos a visualizar los datos mediante el uso de gráficas.</p>
+<pre class="r"><code>plot(height,weight)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>Debido a que un BMI normal debe ser alrededor de 22.5, se espera que <span class="math inline">\(weight \approx 22.5 \times height^2\)</span>. Esta línea la podemos incluir en la figura.</p>
+<pre class="r"><code>hh &lt;- c(1.65, 1.70, 1.75, 1.80, 1.85, 1.90)
+lines(hh, 22.5 * hh^2)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>La función <code>lines(...)</code> agrega valores (<code>x</code>,<code>y</code>) conectados por líneas.</p>
+<blockquote>
+<h4 id="nota">Nota</h4>
+<p>En el ejemplo se utilizó como entrada de la función la variable <code>hh</code> para aproximar la línea curva por medio de líneas equidistantes ordenadas. Prueba utilizar otros valores de entrada para averiguar que sucede si estos no están ordenados o no so equidistantes.</p>
+</blockquote>
+</div>
+</div>
+<div id="elmentos-esenciales-del-lenguaje-r" class="section level3">
+<h3>Elmentos Esenciales del Lenguaje R</h3>
+<div id="expresiones-y-objetos" class="section level4">
+<h4>Expresiones y Objetos</h4>
+<p>La forma de interactuar con R es a través de expresiones.</p>
+<ul>
+<li>El usuario ingresa una expresión, R la evalúa e imprime el resultado.</li>
+<li>Algunas expresiones se evalúan no por su resultado, sino por su efecto secundario, como una imagen o escribir en un archivo.</li>
+<li>Todas las expresiones regresan un resultado, que puede ser <code>NULL</code>, y a veces puede ser invisible.</li>
+<li>Las expresiones involucran variables de referencia, operadores como <code>+</code>, llamadas de funciones, y otras que todavía no se mencionan.</li>
+<li>Las expresiones trabajan en <em>objetos</em>. Este es un término abstracto para referirse a cualquier cosa que se puede asignar a una variable. Un vector es un ejemplo de un objeto.</li>
+</ul>
+</div>
+<div id="funciones-y-argumentos" class="section level4">
+<h4>Funciones y Argumentos</h4>
+<p>Muchas cosas en R se hacen llamando funciones. Estas son análogas a lo que en matemáticas se le conoce como función de una o más variables. Por ejemplo:</p>
+<pre class="r"><code>log(x)
+plot(height,weight)</code></pre>
+<p>En el último caso, la función se llama <code>plot</code> y los argumentos son <code>height</code> y <code>weight</code>.</p>
+<p>Una función puede tener muchos argumentos. Para ver los argumentos se una función en específico se puede utilizar la función <code>arg</code>.</p>
+<pre class="r"><code>args(plot.default)</code></pre>
+<pre><code>## function (x, y = NULL, type = &quot;p&quot;, xlim = NULL, ylim = NULL, 
+##     log = &quot;&quot;, main = NULL, sub = NULL, xlab = NULL, ylab = NULL, 
+##     ann = par(&quot;ann&quot;), axes = TRUE, frame.plot = axes, panel.first = NULL, 
+##     panel.last = NULL, asp = NA, xgap.axis = NA, ygap.axis = NA, 
+##     ...) 
+## NULL</code></pre>
+<p>Los argumentos que no están seguido por un igual son argumentos obligatorios. Mientras que los que están seguidor por un igual son opcionales. Los opcionales, de no establecerse, quedan definidos por un valor por defecto.</p>
+<p>Prueba incluir un argumento opcional a la función <code>plot</code>:</p>
+<pre class="r"><code>plot(height,weight)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<pre class="r"><code>plot(height,weight,pch = 2)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p>Algunas funciones no requieren argumentos. Por ejemplo, para mostrar el contenido del espacio de trabajo puedes usar la función <code>ls()</code>.</p>
+<blockquote>
+<p>Funciones sin argumentos Todas las funciones están seguidas por paréntesis <code>()</code>, aún si estas no requieren de argumentos para ejecutarse.</p>
+</blockquote>
+</div>
+</div>
+<div id="vectores" class="section level3">
+<h3>Vectores</h3>
+<p>Existen tres tipo de vectores:</p>
+<ul>
+<li>Vectores numéricos.</li>
+</ul>
+<pre class="r"><code>c(1, 2, 3,4, 6)</code></pre>
+<pre><code>## [1] 1 2 3 4 6</code></pre>
+<ul>
+<li>Vectores de caracteres.</li>
+</ul>
+<pre class="r"><code>c(&quot;Huey&quot;, &quot;Dewey&quot;, &quot;Louie&quot;)</code></pre>
+<pre><code>## [1] &quot;Huey&quot;  &quot;Dewey&quot; &quot;Louie&quot;</code></pre>
+<ul>
+<li>Vectores lógicos.</li>
+</ul>
+<pre class="r"><code>c(TRUE,TRUE,FALSE,TRUE)</code></pre>
+<pre><code>## [1]  TRUE  TRUE FALSE  TRUE</code></pre>
+<p>Un vector lógico puede ser de resultado de evaluar un operador lógico o una expresión de relación:</p>
+<pre class="r"><code>bmi &gt; 25</code></pre>
+<pre><code>## [1] FALSE FALSE FALSE FALSE  TRUE FALSE</code></pre>
+<p>[1] FALSE FALSE FALSE FALSE TRUE FALSE</p>
+<div id="valores-faltantes" class="section level4">
+<h4>Valores faltantes</h4>
+<p>Es frecuente encontrar bases de datos con valores faltantes. R permite identificar un valor faltante como <code>NA</code> para su posterior manipulación.</p>
+</div>
+<div id="funciones-que-crean-vectores" class="section level4">
+<h4>Funciones que crean vectores</h4>
+<p>En ocasiones es útil crear vectores. He aquí algunas funciones: * <code>c</code>: permite crear un vector especificando los valores de los elementos.</p>
+<pre class="r"><code>c(42,57,12,19,1,3,4)</code></pre>
+<pre><code>## [1] 42 57 12 19  1  3  4</code></pre>
+<ul>
+<li><code>seq</code>: Crea un secuencia de puntos equidistantes.</li>
+</ul>
+<pre class="r"><code>seq(4,9)</code></pre>
+<pre><code>## [1] 4 5 6 7 8 9</code></pre>
+<pre class="r"><code>seq(1.65,1.90,0.05)</code></pre>
+<pre><code>## [1] 1.65 1.70 1.75 1.80 1.85 1.90</code></pre>
+<ul>
+<li><code>4:9</code>: Una sitaxis especial para crear vectores tipo <code>seq(4,9)</code>. El 4 y el 9 son números usados como ejemplo.</li>
+</ul>
+<pre class="r"><code>4:9</code></pre>
+<pre><code>## [1] 4 5 6 7 8 9</code></pre>
+<ul>
+<li><code>rep</code>: Replica los valores y tiene dos variantes, dependiendo si el segundo argumento es un vector o un escalar.</li>
+</ul>
+<pre class="r"><code>oops &lt;- c(7,9,13)</code></pre>
+<pre class="r"><code>rep(oops,3)</code></pre>
+<pre><code>## [1]  7  9 13  7  9 13  7  9 13</code></pre>
+</div>
+</div>
+<div id="ejercicio" class="section level3">
+<h3>Ejercicio</h3>
+<p>Crea un vector de codificaciones. Los primeros 5 elementos corresponden a alumnos de prepatec, los siguientes 5 de licenciatura y los siguiente 8 de posgrado. Utiliza la función <code>rep</code>.</p>
+<blockquote>
+<p>Respuesta</p>
+<pre class="r"><code>rep(c(1,2,3),c(5,5,8))</code></pre>
+<pre><code>##  [1] 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3 3 3 3</code></pre>
+</blockquote>
+</div>
+<div id="matrices-y-arreglos" class="section level3">
+<h3>Matrices y arreglos</h3>
+<blockquote>
+<h4 id="matriz">Matriz</h4>
+<p>En matemáticas, una matriz es un arreglo <em>numérico</em> de dos dimensiones. En R, este arreglo no se limita a números. Pueden ser incluso <em>cadenas de caracteres</em></p>
+</blockquote>
+<div id="convierte-un-vector-a-una-matriz" class="section level4">
+<h4>Convierte un vector a una matriz</h4>
+<p>Usa el comando <code>dim</code>:</p>
+<pre class="r"><code>x &lt;- 1:12
+dim(x) &lt;- c(3,4)
+x</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    4    7   10
+## [2,]    2    5    8   11
+## [3,]    3    6    9   12</code></pre>
+<p>La función <code>dim</code> cambia el atributo de dimensiones de <code>x</code>, haciendo que R trate al vector de 12 números como una matriz <span class="math inline">\(3 \times 4\)</span>. Nota la secuencia en que los elementos del vector se acomodan en la matriz, iniciando por el primer elemento de la primer columna de la izquierda.</p>
+</div>
+<div id="crea-una-matriz-en-menos-pasos" class="section level4">
+<h4>Crea una matriz en menos pasos</h4>
+<p>Lo anterior se puede simplificar utilizando la función <code>matrix</code> de R:</p>
+<pre class="r"><code>matrix(1:12,nrow = 3,byrow = T)</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    2    3    4
+## [2,]    5    6    7    8
+## [3,]    9   10   11   12</code></pre>
+<blockquote>
+<p>Observa el llenado Nota que ahora al usar <code>byrow = T</code> la matriz se llena siguiendo las filas en lugar de las columnas.</p>
+</blockquote>
+</div>
+<div id="agrega-nombres-a-tus-filas-y-columnas" class="section level4">
+<h4>Agrega nombres a tus filas y columnas</h4>
+<p>Una característica de R es que te permite personalizar los nombres de las columnas y las filas. Esto es especialmente útil cuando la matrices son muy grandes.</p>
+<pre class="r"><code>x &lt;- matrix(1:12,nrow = 3,byrow = T)
+rownames(x) &lt;- LETTERS[1:3]</code></pre>
+<p>Además de la función <code>LETTERS</code> están <code>letters</code> y <code>month.name</code> que pueden ser de utilidad.</p>
+</div>
+<div id="trasponer-matrices" class="section level4">
+<h4>Trasponer matrices</h4>
+<p>Para transponer matrices hay que utilizar la función <code>t</code>:</p>
+<pre class="r"><code>t(x)</code></pre>
+<pre><code>##      A B  C
+## [1,] 1 5  9
+## [2,] 2 6 10
+## [3,] 3 7 11
+## [4,] 4 8 12</code></pre>
+</div>
+<div id="pegar-reglones-y-columnas" class="section level4">
+<h4>Pegar reglones y columnas</h4>
+<p>Puedes construir matrices pegando reglones y columnas:</p>
+<pre class="r"><code>cbind(A = 1:4, B= 5:8, C = 9:12)</code></pre>
+<pre><code>##      A B  C
+## [1,] 1 5  9
+## [2,] 2 6 10
+## [3,] 3 7 11
+## [4,] 4 8 12</code></pre>
+<pre class="r"><code>rbind(A = 1:4, B= 5:8, C = 9:12)</code></pre>
+<pre><code>##   [,1] [,2] [,3] [,4]
+## A    1    2    3    4
+## B    5    6    7    8
+## C    9   10   11   12</code></pre>
+</div>
+</div>
+<div id="factores" class="section level3">
+<h3>Factores</h3>
+<p>Es común en estadística tener variables categóricas. En ocaciones estas variables tienen nombres o códigos numéricos. En R estas variables se especifican como <em>factores</em>.</p>
+<pre class="r"><code>pain &lt;- c(0,3,2,2,1)
+fpain &lt;- factor(pain,levels = 0:3)
+fpain</code></pre>
+<pre><code>## [1] 0 3 2 2 1
+## Levels: 0 1 2 3</code></pre>
+<pre class="r"><code>levels(fpain) &lt;- c(&quot;none&quot;, &quot;mild&quot;, &quot;medium&quot;, &quot;severe&quot;)
+fpain</code></pre>
+<pre><code>## [1] none   severe medium medium mild  
+## Levels: none mild medium severe</code></pre>
+<p>Puedes extraer la codificación numérica de los niveles de los factores</p>
+<pre class="r"><code>as.numeric(fpain)</code></pre>
+<pre><code>## [1] 1 4 3 3 2</code></pre>
+<pre class="r"><code>levels(fpain)</code></pre>
+<pre><code>## [1] &quot;0&quot; &quot;1&quot; &quot;2&quot; &quot;3&quot;</code></pre>
+<blockquote>
+<p>Si no defines los niveles, R lo hará por ti siguiendo el orden alfabético. Sin embargo, hacer esto puede llevar consigo problemas.</p>
+<pre class="r"><code>text.pain &lt;- c(&quot;none&quot;, &quot;severe&quot;, &quot;medium&quot;, &quot;medium&quot;, &quot;mild&quot;)
+ftext.pain &lt;- factor(text.pain)
+ftext.pain</code></pre>
+<pre><code>## [1] none   severe medium medium mild  
+## Levels: medium mild none severe</code></pre>
+<pre class="r"><code>as.numeric(ftext.pain)</code></pre>
+<pre><code>## [1] 3 4 1 1 2</code></pre>
+</blockquote>
+</div>
+<div id="listas" class="section level3">
+<h3>Listas</h3>
+<p>Las listas son colecciones de objetos en un objeto compuesto más grande. Para crearlas se utiliza la función <code>list</code>. Por ejemplo:</p>
+<pre class="r"><code>intake.pre &lt;- c(5260, 5470, 5640, 6180, 6390,
++ 6515, 6805, 7515, 7515, 8230, 8770)
+intake.post &lt;- c(3910, 4220, 3885, 5160, 5645,
++ 4680, 5265, 5975, 6790, 6900, 7335)
+mylist &lt;-list(before = intake.pre, after = intake.post)
+mylist</code></pre>
+<pre><code>## $before
+##  [1] 5260 5470 5640 6180 6390 6515 6805 7515 7515 8230 8770
+## 
+## $after
+##  [1] 3910 4220 3885 5160 5645 4680 5265 5975 6790 6900 7335</code></pre>
+<div id="llamando-elementos-de-una-lista" class="section level4">
+<h4>Llamando elementos de una lista</h4>
+<p>Los componentes de una lista se nombran según los nombres de los argumentos utilizados en la función <code>list</code>. Se pueden extraer usando el operador <code>$</code>:</p>
+<pre class="r"><code>mylist$before</code></pre>
+<pre><code>##  [1] 5260 5470 5640 6180 6390 6515 6805 7515 7515 8230 8770</code></pre>
+</div>
+</div>
+<div id="data-frame" class="section level3">
+<h3>Data Frame</h3>
+<p>Un <em>data frame</em> corresponde lo que en estadística se le conoce como una <em>matriz de datos</em> o un <em>conjunto de datos</em>.</p>
+<blockquote>
+<h4 id="data-frame-1">Data frame</h4>
+<p>Es una lista de vectores y/o factores que tiene el mismo largo, y se relacionan transversalmente los unos a los otros. Además, puedes nombrar cada columna de forma única.</p>
+</blockquote>
+<p>Puede crear data frames de variables existentes:</p>
+<pre class="r"><code>d &lt;- data.frame(intake.pre, intake.post)
+d</code></pre>
+<pre><code>##    intake.pre intake.post
+## 1        5260        3910
+## 2        5470        4220
+## 3        5640        3885
+## 4        6180        5160
+## 5        6390        5645
+## 6        6515        4680
+## 7        6805        5265
+## 8        7515        5975
+## 9        7515        6790
+## 10       8230        6900
+## 11       8770        7335</code></pre>
+<p>Al igual que las listas, la información se puede extraer usando el operador <code>$</code>.</p>
+<pre class="r"><code>d$intake.pre</code></pre>
+<pre><code>##  [1] 5260 5470 5640 6180 6390 6515 6805 7515 7515 8230 8770</code></pre>
+</div>
+<div id="indexación" class="section level3">
+<h3>Indexación</h3>
+<p>Si se requiere de un elemento en particular de un vector se usan corchetes <code>[...]</code>.</p>
+<pre class="r"><code>d$intake.pre[5]</code></pre>
+<pre><code>## [1] 6390</code></pre>
+<p>Si se requieren varios elementos:</p>
+<pre class="r"><code>intake.pre[c(3,5,7)]</code></pre>
+<pre><code>## [1] 5640 6390 6805</code></pre>
+<p>Nota que <code>intake.pre[c(3,5,7)]</code> es distinto a <code>intake.pre[3,5,7]</code>. El segundo indica un indexado en tres dimensiones, y no es el caso que buscamos.</p>
+<p>Otra opción es mediante la definición previa del vector:</p>
+<pre class="r"><code>v &lt;- c(3,5,7)
+intake.pre[v]</code></pre>
+<pre><code>## [1] 5640 6390 6805</code></pre>
+<pre class="r"><code>intake.pre[1:5]</code></pre>
+<pre><code>## [1] 5260 5470 5640 6180 6390</code></pre>
+<div id="indices-negativos" class="section level4">
+<h4>Indices negativos</h4>
+<p>Con R puedes definir qué índice no deseas, y te devolverá el resto:</p>
+<pre class="r"><code>intake.pre[-c(3,5,7)]</code></pre>
+<pre><code>## [1] 5260 5470 6180 6515 7515 7515 8230 8770</code></pre>
+<blockquote>
+<h4 id="no-se-mezclan">No se mezclan</h4>
+<p>No es posible mezclar índices positivos y negativos en una misma orden.</p>
+</blockquote>
+</div>
+</div>
+<div id="selección-condicional" class="section level3">
+<h3>Selección condicional</h3>
+<p>Anteriormente vimos como extraer información a través del uso de índices. Pero en ocasiones nos interesa únicamente la información que cumpla con cierta regla. Por ejemplo:</p>
+<pre class="r"><code>intake.post</code></pre>
+<pre><code>##  [1] 3910 4220 3885 5160 5645 4680 5265 5975 6790 6900 7335</code></pre>
+<pre class="r"><code>intake.pre &gt; 7000</code></pre>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<pre class="r"><code>intake.post[intake.pre &gt; 7000]</code></pre>
+<pre><code>## [1] 5975 6790 6900 7335</code></pre>
+<p>El comando <code>intake.pre &gt; 7000</code> genera un vector lógico que es verdadero en los últimos cuatro elementos, y al incluir el vector lógico dentro de otro vector, R regresará los valores donde el vector lógico sea verdadero. Observa que las posiciones obtenidas para este caso son los valores del arreglo <code>intake.post</code> donde <code>intake.pre</code> posee valores mayores a 7000.</p>
+<div id="operadores-de-comparación" class="section level4">
+<h4>Operadores de comparación</h4>
+<p>Los operadores de comparación son:</p>
+<ul>
+<li><code>&lt;</code>: menor que.</li>
+<li><code>&gt;</code>: mayor que.</li>
+<li><code>==</code>: igual a. Se usan dos iguales para diferenciar del operador <code>=</code> que es usado para asignar valores.</li>
+<li><code>&lt;=</code>: menor o igual que.</li>
+<li><code>&gt;=</code>: mayor o igual que.</li>
+<li><code>!=</code>: diferente de.</li>
+<li><code>&amp;</code>: lógico ``y’’.</li>
+<li><code>~</code>: lógico ``0’’.</li>
+<li><code>!</code>: lógico ``No’’.</li>
+<li><code>&amp;&amp;</code>: lógico ``y también’’.</li>
+<li><code>~</code>: lógico ``0 de otra manera’’.</li>
+</ul>
+<p>El operador <code>&amp;</code> es vectorizado y el operador <code>&amp;&amp;</code> no lo es.</p>
+<pre class="r"><code>((-2:2) &gt;= 0) &amp; ((-2:2) &lt;= 0)</code></pre>
+<pre><code>## [1] FALSE FALSE  TRUE FALSE FALSE</code></pre>
+<pre class="r"><code>((-2:2) &gt;= 0) &amp;&amp; ((-2:2) &lt;= 0)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+</div>
+<div id="ejemplo-4" class="section level4">
+<h4>Ejemplo</h4>
+<p>Puedes utilizar operadores lógicos para mejorar tus índices lógicos.</p>
+<pre class="r"><code>intake.post[intake.pre &gt; 7000 &amp; intake.pre &lt;= 8000]</code></pre>
+<pre><code>## [1] 5975 6790</code></pre>
+<p>R regresará aquellos elementos donde el valor lógico sea verdadero (<code>TRUE</code>).</p>
+</div>
+<div id="valores-faltantes-1" class="section level4">
+<h4>Valores faltantes</h4>
+<blockquote>
+<p>Cuidado con los valores faltantes En caso de que existan valores faltantes, R evaluará la operación lógica, pero en lugar de general un valor de <code>TRUE</code> o <code>FALSE</code> colocará un <code>NA</code>, indicando que existe un valor faltante.</p>
+</blockquote>
+<p>Para saber si R ha asignado valores faltantes se puede utilizar la función <code>is.na()</code>. La comparación <code>x == NA</code> no es posible, por lo que R la marca como <code>NA</code>. Es decir, la comparación de <code>x</code> con un elemento desconocido es un elemento desconocido.</p>
+</div>
+<div id="indexar-data-frames" class="section level4">
+<h4>Indexar data frames</h4>
+<p>La indexación también funciona en los data frames. Se pueden llamar valores como si se tratara de coordenadas en una matriz.</p>
+<pre class="r"><code>d &lt;- data.frame(intake.pre, intake.post)
+d[5,1]</code></pre>
+<pre><code>## [1] 6390</code></pre>
+<p>Si deseas obtener todos los valores de un reglón</p>
+<pre class="r"><code>d[5,]</code></pre>
+<pre><code>##   intake.pre intake.post
+## 5       6390        5645</code></pre>
+<p>No es lo mismo <code>d[2]</code> a <code>d[,2]</code></p>
+<pre class="r"><code>d[2]</code></pre>
+<pre><code>##    intake.post
+## 1         3910
+## 2         4220
+## 3         3885
+## 4         5160
+## 5         5645
+## 6         4680
+## 7         5265
+## 8         5975
+## 9         6790
+## 10        6900
+## 11        7335</code></pre>
+<pre class="r"><code>d[,2]</code></pre>
+<pre><code>##  [1] 3910 4220 3885 5160 5645 4680 5265 5975 6790 6900 7335</code></pre>
+<p>En el primer caso tienes un data frame de una columna, en el segundo un vector.</p>
+<p>También puedes usar vectores lógicos para indexar</p>
+<pre class="r"><code>d[d$intake.pre &gt; 7000,]</code></pre>
+<pre><code>##    intake.pre intake.post
+## 8        7515        5975
+## 9        7515        6790
+## 10       8230        6900
+## 11       8770        7335</code></pre>
+<p>Recuerda usar la coma para indicar que los valores lógicos se evalúan en la primer columna.</p>
+<p>Si sólo deseas ver los primeros elementos del data frame</p>
+<pre class="r"><code>d[1:2,]</code></pre>
+<pre><code>##   intake.pre intake.post
+## 1       5260        3910
+## 2       5470        4220</code></pre>
+<p>Recuerda usar la coma para indicar que los valores lógicos se evalúan en la primer columna.</p>
+<p>También puedes ver los primeros y los últimos elementos del data frame usando las funciones <code>head()</code> y <code>tail()</code></p>
+<pre class="r"><code>head(d)</code></pre>
+<pre><code>##   intake.pre intake.post
+## 1       5260        3910
+## 2       5470        4220
+## 3       5640        3885
+## 4       6180        5160
+## 5       6390        5645
+## 6       6515        4680</code></pre>
+<p>Prueba usar <code>tail()</code> para observar el resultado.</p>
+</div>
+<div id="pausa-instala-paquete" class="section level4">
+<h4>Pausa: instala paquete</h4>
+<p>Los siguiente ejercicios los haremos siguiendo bases de datos provistas en el paquete <code>ISwR</code>. Sólo sigue las siguientes instrucciones:</p>
+<pre class="r"><code>install.packages(&quot;ISwR&quot;)
+library(ISwR)</code></pre>
+<p>\begin{verbatim} Ya puedes continuar.</p>
+</div>
+<div id="datos-agrupados-y-data-frames" class="section level4">
+<h4>Datos agrupados y data frames</h4>
+<p>Observa los siguientes datos:</p>
+<pre class="r"><code>energy</code></pre>
+<pre><code>##    expend stature
+## 1    9.21   obese
+## 2    7.53    lean
+## 3    7.48    lean
+## 4    8.08    lean
+## 5    8.09    lean
+## 6   10.15    lean
+## 7    8.40    lean
+## 8   10.88    lean
+## 9    6.13    lean
+## 10   7.90    lean
+## 11  11.51   obese
+## 12  12.79   obese
+## 13   7.05    lean
+## 14  11.85   obese
+## 15   9.97   obese
+## 16   7.48    lean
+## 17   8.79   obese
+## 18   9.69   obese
+## 19   9.68   obese
+## 20   7.58    lean
+## 21   9.19   obese
+## 22   8.11    lean</code></pre>
+<p>Puedes separar en dos vectores los valores de <code>expend</code> según el factor <code>stature</code>.</p>
+<pre class="r"><code>exp.lean &lt;- energy$expend[energy$stature == &quot;lean&quot;]
+exp.obese &lt;- energy$expend[energy$stature == &quot;obese&quot;]</code></pre>
+<p>O lo puedes hacer en un solo paso con la función <code>split()</code></p>
+<pre class="r"><code>split(energy$expend, energy$stature)</code></pre>
+<pre><code>## $lean
+##  [1]  7.53  7.48  8.08  8.09 10.15  8.40 10.88  6.13  7.90  7.05  7.48
+## [12]  7.58  8.11
+## 
+## $obese
+## [1]  9.21 11.51 12.79 11.85  9.97  8.79  9.69  9.68  9.19</code></pre>
+</div>
+</div>
+<div id="ciclos-implícitos" class="section level3">
+<h3>Ciclos implícitos</h3>
+<p>Se conoce como ciclo a un acción que se repite hasta un número determinado de veces o hasta que se cumple una condición.</p>
+<p>Cuando uno programa funciones personalizadas, es común utilizar ciclos explícitos mediante otras funciones como <code>for</code> y <code>while</code>. Sin embargo, su uso requiere control de flujo de datos, lo que incrementa la dificultad y el riesgo de error.</p>
+<p>Para facilitar estas operaciones y reducir el grado de error, R proporciona algunas funciones que permiten generar ciclos <em>sencillos</em>. Estas funciones son:</p>
+<ul>
+<li><code>lapply</code>.</li>
+<li><code>sapply</code>.</li>
+<li><code>tapply</code>.</li>
+<li><code>replicate</code>.</li>
+</ul>
+<div id="lapply" class="section level4">
+<h4><code>lapply</code></h4>
+<p>Como ejemplo, para calcular la media.</p>
+<pre class="r"><code>lapply(thuesen, mean, na.rm = T)</code></pre>
+<pre><code>## $blood.glucose
+## [1] 10.3
+## 
+## $short.velocity
+## [1] 1.325652</code></pre>
+<p>El primer argumento introducido es data frame, el segundo es la función que se aplicará a cada columna del data frame, el tercer argumento <code>na.rm = T</code> indica a R que ignore los valores faltantes.</p>
+</div>
+<div id="sapply" class="section level4">
+<h4><code>sapply</code></h4>
+<p><code>lapply</code> generó los resultados en una lista. Si deseamos los resultados en un vector o matriz, podemos utilizar la función <code>sapply</code>. La <code>s</code> es por simple.</p>
+<pre class="r"><code>sapply(thuesen, mean, na.rm = T)</code></pre>
+<pre><code>##  blood.glucose short.velocity 
+##      10.300000       1.325652</code></pre>
+</div>
+<div id="replicate" class="section level4">
+<h4><code>replicate</code></h4>
+<p>Si deseamos realizar una operación un número predeterminado de veces, podemos utilizar la función <code>replicate</code>.</p>
+<pre class="r"><code>replicate(10,mean(rexp(20)))</code></pre>
+<pre><code>##  [1] 0.9903229 1.3508635 0.6653978 0.9787817 0.9915367 0.8830595 1.3138516
+##  [8] 0.8494784 1.2256016 0.9598967</code></pre>
+<p>Aquí, el primer argumento indica el número de replicas que deseamos, el segundo argumento es la función que deseamos que se ejecute esa cantidad de veces.</p>
+</div>
+<div id="apply" class="section level4">
+<h4>apply</h4>
+<p>Si deseamos trabajar con una matriz, y deseamos realizar una operación por cada columna o reglón, podemos utilizar la función <code>apply</code>.</p>
+<pre class="r"><code>m &lt;- matrix(rnorm(12),4)
+m</code></pre>
+<pre><code>##            [,1]       [,2]       [,3]
+## [1,] -1.2872293  1.1172304  0.1190757
+## [2,]  1.1328679 -0.4927407 -0.4217447
+## [3,]  0.9526151 -1.5019047 -1.0521341
+## [4,] -1.6575612 -1.6015232  0.8533876</code></pre>
+<pre class="r"><code>apply(m,2,min)</code></pre>
+<pre><code>## [1] -1.657561 -1.601523 -1.052134</code></pre>
+<pre class="r"><code>apply(m,1,min)</code></pre>
+<pre><code>## [1] -1.2872293 -0.4927407 -1.5019047 -1.6575612</code></pre>
+<p>Aquí, en el primer caso obtenemos el mínimo por columna. En el segundo caso lo obtenemos por reglón.</p>
+</div>
+<div id="tapply" class="section level4">
+<h4><code>tapply</code></h4>
+<p><code>tapply</code> se utiliza para aplicar una función a los datos clasificados según un factor.</p>
+<pre class="r"><code>tapply(energy$expend,energy$stature,median)</code></pre>
+<pre><code>##  lean obese 
+##  7.90  9.69</code></pre>
+</div>
+</div>
+<div id="ordenamientos" class="section level3">
+<h3>Ordenamientos</h3>
+<p>Ordenar los datos es una tarea trivial con la función <code>sort</code>.</p>
+<pre class="r"><code>intake$post</code></pre>
+<pre><code>##  [1] 3910 4220 3885 5160 5645 4680 5265 5975 6790 6900 7335</code></pre>
+<pre class="r"><code>sort(intake.post)</code></pre>
+<pre><code>##  [1] 3885 3910 4220 4680 5160 5265 5645 5975 6790 6900 7335</code></pre>
+<p>Para ordenar de manera decreciente</p>
+<pre class="r"><code>sort(intake.post,decreasing = T)</code></pre>
+<pre><code>##  [1] 7335 6900 6790 5975 5645 5265 5160 4680 4220 3910 3885</code></pre>
+<div id="obtener-jerarquías" class="section level4">
+<h4>Obtener jerarquías</h4>
+<p>Las jerarquías son las posiciones relativas en orden ascendente de un conjunto de números. Se pueden obtener con la función <code>order</code>.</p>
+<pre class="r"><code>intake$post</code></pre>
+<pre><code>##  [1] 3910 4220 3885 5160 5645 4680 5265 5975 6790 6900 7335</code></pre>
+<pre class="r"><code>order(intake.post)</code></pre>
+<pre><code>##  [1]  3  1  2  6  4  7  5  8  9 10 11</code></pre>
+<p>En este caso, el <code>3</code> aparece al principio indicando que el elemento más pequeño se encuentra en la tercer posición. Sigue el <code>1</code>, indicando que el segundo más pequeño está en la primer posición, y así sucesivamente.</p>
+</div>
+<div id="extender-el-orden-de-una-arreglo-hacia-otros" class="section level4">
+<h4>Extender el orden de una arreglo hacia otros</h4>
+<p>En ocasiones se requiere ordenar un vector, pero manteniendo la posición relativa de los otros que están relacionados y que son de igual longitud. Para ello ocupamos la extraña forma en que nos indica R las jerarquías con función <code>order</code>.</p>
+<pre class="r"><code>o &lt;- order(intake$post)
+o</code></pre>
+<pre><code>##  [1]  3  1  2  6  4  7  5  8  9 10 11</code></pre>
+<pre class="r"><code>intake$post[o]</code></pre>
+<pre><code>##  [1] 3885 3910 4220 4680 5160 5265 5645 5975 6790 6900 7335</code></pre>
+<pre class="r"><code>intake$pre[o]</code></pre>
+<pre><code>##  [1] 5640 5260 5470 6515 6180 6805 6390 7515 7515 8230 8770</code></pre>
+<p>Lo anterior se puede hacer directamente en un data frame.</p>
+<pre class="r"><code>intake[o,]</code></pre>
+<pre><code>##     pre post
+## 3  5640 3885
+## 1  5260 3910
+## 2  5470 4220
+## 6  6515 4680
+## 4  6180 5160
+## 7  6805 5265
+## 5  6390 5645
+## 8  7515 5975
+## 9  7515 6790
+## 10 8230 6900
+## 11 8770 7335</code></pre>
+</div>
+</div>
+<div id="ejercicios" class="section level3">
+<h3>Ejercicios</h3>
+<ul>
+<li>¿Cómo podrías revisar si dos vectores son iguales cuando pueden contener valore faltantes (<code>NA</code>)? Usar la función <code>identical</code> se considera trampa. Puedes usar la función <code>all</code>, investígala.</li>
+</ul>
+<pre class="r"><code>(all(A[!is.na(A)] == B[!is.na(B)]) &amp; all(is.na(A)</code></pre>
+<ul>
+<li>Si <code>x</code> es un factor de <span class="math inline">\(n\)</span> niveles y <code>y</code> es un vector de <span class="math inline">\(n\)</span> elementos, qué pasa si calculas <code>y[x]</code>. Respuesta: Los niveles se representan como números que sirven de entrada como índices.</li>
+</ul>
+<pre class="r"><code>x = c(&quot;f2&quot;, &quot;f1&quot;, &quot;f3&quot;, &quot;f4&quot;, &quot;f5&quot;)
+xfactor &lt;- factor(x,c(c(&quot;f1&quot;, &quot;f2&quot;, &quot;f3&quot;, &quot;f4&quot;, &quot;f5&quot;)))
+y[xfactor]</code></pre>
+<ul>
+<li>Escribe expresiones lógicas para extraer la información de las niñas de entre 7 y 14 años de edad del conjunto de datos <code>juul</code>.</li>
+</ul>
+<pre class="r"><code>v &lt;- (juul$age &gt;= 7 &amp; juul$age &lt;= 14) &amp; !is.na(juul$age)
+juul[v,]</code></pre>
+<ul>
+<li>¿Qué pasa si cambias los niveles de un factor con la función <code>levels</code> y le das el mismo valor a dos o más niveles? Respuesta: Los valores nombre de todos los factores cambian.</li>
+</ul>
+<pre class="r"><code>xfactor</code></pre>
+<pre class="r"><code>levels(xfactor) &lt;- c(&quot;f1&quot;, &quot;f1&quot;, &quot;f3&quot;, &quot;f4&quot;, &quot;f5&quot;)
+xfactor</code></pre>
+<ul>
+<li>Anteriormente se utilizó la función <code>replicate</code> para obtener la media de 20 números aleatorios generados de una distribución exponencial, y esto se repitió 10 veces. ¿Cómo harías lo mismo utilizando la función <code>apply</code> y <code>sapply</code>?</li>
+<li>Usando <code>apply</code></li>
+</ul>
+<pre class="r"><code>  sim.matrix &lt;- matrix(rexp(10 * 20),20)
+  apply(sim.matrix,2,mean)</code></pre>
+<pre><code>##  [1] 1.0556711 1.0990365 0.9678923 1.3289922 0.8307057 1.0316245 0.8753048
+##  [8] 1.1401651 1.1313805 1.2476210</code></pre>
+<ul>
+<li>usando <code>sapply</code></li>
+</ul>
+<pre class="r"><code>sim.matrix &lt;- matrix(rexp(10 * 20),20)
+simframe &lt;- data.frame(sim.matrix)
+sapply(simframe,mean)</code></pre>
+<pre><code>##        X1        X2        X3        X4        X5        X6        X7 
+## 0.6780751 1.0852188 1.2696407 1.1923630 1.1270295 0.8424292 0.8664822 
+##        X8        X9       X10 
+## 0.6753674 1.3260842 1.0911497</code></pre>
 </div>
 </div>
 </div>
