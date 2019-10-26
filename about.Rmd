@@ -1873,4 +1873,276 @@ separa los puntos en un eje imaginario.
 ser mucha perturbación para algunos. Usar `jitter = 0.03` permite ajustar esto a valores menores.
 
 
+## Análisis Descriptivo II
+
+### Descripción del módulo
+
+#### Objetivos
+Los datos categóricos usualmente se describen en forma de tablas.
+
+En esta sección se presentan algunas estrategias para crearlas a partir de tus datos y algunas gráficas comunes para su visualización.
+
+
+### Tablas
+
+#### Generación de tablas
+Lideamos principalmente con tablas de dos dimensiones.
+
+Estas pueden ser creadas a partir de una matriz.
+
+De Altman (1991):
+
+```{r}
+caff.marital <- matrix(c(652, 1537, 598, 242, 36, 46, 38,
+                          21, 218, 327, 106, 67),
+                        nrow = 3, byrow = T)
+caff.marital
+```
+
+Para hacer la tabla es necesario definir los nombre a las columnas y los reglones
+
+```{r}
+colnames(caff.marital) <- c("0", "1-150", "151-300", ">300")
+rownames(caff.marital) <- c("Casados", "Divorciados", "Solteros")
+caff.marital
+```
+
+También puedes renombrar las dimensiones de la matriz.
+
+```{r}
+caff.marital
+```
+
+#### Clase ``table''
+Las tablas no son completamente equivalentes a matrices. En `R` existe una clase llamada `table` que puedes acceder por medio de `as.table()`.
+```{r}
+table.caff.marital <- as.table(caff.marital)
+table.caff.marital
+```
+
+Si no requieres hacer nada elaborado, usar matrices o usar tablas te darán el mismo resultado, como se observa en el ejemplo.
+
+Tener un objeto de clase `table` es útil cuando deseamos hacer algo más elaborado, como convertir una tabla en un data frame.
+
+```{r}
+as.data.frame(table.caff.marital)
+```
+
+#### Crear tablas a partir de data frames
+Recordemos el ajuste que hicimos al data frame `juul`.
+
+```{r}
+juul <- transform(juul,
+                  sex = factor(sex, labels = c("M","F")),
+                  menarche = factor(menarche, labels = c("No","Yes")),
+                  tanner = factor(tanner, labels = c("I", "II", "III",
+                                  "IV", "V")))
+```
+
+Creamos ahora algunas tablas con la función `table()`.
+```{r}
+table(juul$sex)
+```
+Algunos otros ejemplos
+```{r}
+table(juul$sex, juul$menarche)
+```
+```{r}
+table(juul$menarche, juul$tanner)
+```
+
+#### Más de dos dimensiones
+Si queremos una tabla con más de dos dimensiones
+```{r}
+table(juul$menarche, juul$tanner, juul$sex)
+```
+
+La función `table()` sigue funcionando, pero el resultado es poco estético
+
+#### Función xtabs
+Podemos intentarlo con la función `xtabs`:
+```{r}
+xtabs(~ tanner + sex, data =juul)
+```
+
+La ventaja es que podemos nombrar las variables dentro del data frame sin tener que utilizar `$`.
+
+Si son más de dos dimensiones:
+```{r}
+xtabs(~ menarche +  tanner + sex, data =juul)
+```
+
+Seguimos teniendo resultados poco estéticos.
+
+#### Función ftable
+Ahora tratamos con la función `ftable`:
+
+```{r}
+ftable(tanner~menarche + sex, data =juul)
+```
+El resultado es mucho más estético.
+
+#### Transponer una tabla
+Para transponer una tabla usamos el mismo comando `t()`
+que usamos para transponer matrices.
+
+```{r}
+table.caff.marital
+```
+```{r}
+t(table.caff.marital)
+```
+
+### Tablas marginales y frecuencias relativas
+
+#### Tablas marginales
+En ocasiones es deseable obtener los valores marginales de las tablas, esto es, las sumas de los conteos sobre una u otra dimensión en la tabla algo similar a lo que se obtiene en MS Excel con la opción de subtotales, pero restringidoa conteos.
+
+Esto se puede lograr con la opción `apply`, sin embargo, existe una función todavía más simplificada llamada `margin.table`.
+
+
+#### Función `margin.table`
+Del paquete `ISwR` creamos una tabla con el data frame `juul`.
+Revisa si el data frame lo tienes adjunto a la ruta de búsqueda de `R` con `search()`. Para adjuntarlo ejecuta el comando `attach(juul)`, para retirarlo de la ruta usa `detach(juul)`
+```{r}
+tanner.sex <- table(tanner,sex)
+tanner.sex
+```
+
+
+#### Función `margin.table`
+Ahora obtén los conteos marginales de la tabla usando `margin.table()`.
+```{r}
+margin.table(tanner.sex,1)
+```
+```{r}
+margin.table(tanner.sex,2)
+```
+El `1` indica los reglones y el `2` las columnas.
+
+
+#### Frecuencias relativas
+Obtén las frecuencias relativas mediante `prop.table()`.
+```{r}
+prop.table(tanner.sex, margin = 1)
+```
+El `1` indica los reglones y el `2` las columnas.
+
+Si deseas los porcentajes, sólo multiplica la tabla por 100.
+
+La función `prop.table()` no puede darte las frecuencias relativas al gran total. Si esto es lo que deseas siempre puedes dividir la tabla entre el gran total.
+```{r}
+tanner.sex / sum(tanner.sex)
+```
+
+
+### Resúmenes gráficos para tablas
+
+#### Gráficas de barras
+Al momento de hacer presentaciones, puede ser preferible utilizar una gráfica a presentar un grupo de totales y proporciones.
+```{r}
+total.caff <- margin.table(table.caff.marital, 2)
+total.caff
+```
+```{r}
+barplot(total.caff, col = "green")
+```
+Al momento de hacer presentaciones, puede ser preferible utilizar una gráfica a presentar un grupo de totales y proporciones.
+```{r}
+total.caff <- margin.table(table.caff.marital, 2)
+total.caff
+```
+```{r}
+barplot(total.caff, col = "green", ylim = c(0,2000))
+```
+Aquí, `ylim = c(0,2000)` es el rango a utilizar en el eje de las ordenadas.
+
+La función `barplot` también te acepta la tabla completa.
+```{r}
+barplot(table.caff.marital,
+         col = c("red","green","blue"),
+         legend.text = c("casados", "divorciados", "solteros"))
+```
+Si deseas graficar las dos dimensiones de una tabla pero no deseas que estén agrupadas dentre de una sóla barra, puedes utilizar el argumento `beside = T` para este fin.
+
+Mira las distintas opciones que puedes utilizar para crear tu gráfica de barras.
+
+```{r}
+par(mfrow = c(2,2))
+barplot(caff.marital, col="white")
+barplot(t(caff.marital), col = "white")
+barplot(t(caff.marital), col = "white", beside = T)
+barplot(prop.table(t(caff.marital),2), col="white", beside = T)
+par(mfrow = c(1,1))
+```
+
+
+
+#### Gráfica de barras
+Una idea para que tu gráfica se vea mejor
+```{r}
+barplot(prop.table(t(table.caff.marital),2),beside = T,
+         legend.text = colnames(table.caff.marital),
+         col = c("white", "grey80", "grey50", "black"))
+```
+\begin{center}
+
+`R` no tiene una forma de encontrar la mejor posición para la leyenda y en ocasiones esta se sobrepondrá sobre tu gráfica.
+
+Para tener un mayor control puedes usar la función `legend`.
+
+Con el ratón puedes hacer cick en la gráfica generada y obtener coordenadas para la leyenda usando la función `locator`.
+
+Estas funciones están fuera del alcance del curso, sin embargo, se motiva a los usuarios avanzados que las investiguen para su uso.
+
+
+#### Diagrama de puntos de Cleveland
+El diagrama de puntos de Cleveland es nombrado a partir de William S. Cleveland (1994) está formulado con la misma información de una gráfica de barras pero ofrece una impresión visual muy diferente. Para ejecutarlo usar
+```{r}
+dotchart(t(table.caff.marital), lcolor = "black")
+```
+
+#### Diagramas de pastel
+Veamos como se ven los datos de consumo de cafeína contra el estatus marital
+
+```{r}
+slices <- c("white", "grey80", "grey50", "black")
+pie(table.caff.marital["Casados",], main="Casados", col=slices)
+pie(table.caff.marital["Divorciados",], main="Divorciados", col=slices)
+pie(table.caff.marital["Solteros",], main="Solteros", col=slices)
+par(opar)
+```
+
+
+### Ejercicios
+
+* Explore distintas formas de gráficas de lineas y puntos. Cambie el tipo de línea, el grosor de la línea y el color.
+
+* Al graficar `plot(rnorm(10), type = "o")` las líneas son visibles dentro de los símbolos dibujados. ¿Cómo puedes evitar esto?
+
+* Crea un histograma de los datos `react`. Debido al alto grado de discretización de los datos, el histograma estará sesgado. ¿Por qué? Puedes utilizar la función `truehist()` del paquete `MASS` como reemplazo.
+
+
+
+### Soluciones
+
+* Este es un ejemplo.
+```{r}
+plot(rnorm(10), type = "b", col="blue", pch=1, lwd=2)
+```
+
+* Podemos cambiar el símbolo dibujado por uno sólido.
+```{r}
+plot(rnorm(10), type = "o", col="black", pch=19)
+```
+
+*
+```{r}
+hist(react)
+library(MASS)
+truehist(react)
+```
+
+
+
 

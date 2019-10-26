@@ -1691,11 +1691,11 @@ mydata &lt;- read.xlsx(&quot;c:/miexcel.xlsx&quot;, sheetName = &quot;mihoja&quo
 </div>
 </div>
 <div id="análisis-descriptivo-i" class="section level2">
-<h2>Análisis Descriptivo I}</h2>
+<h2>Análisis Descriptivo I</h2>
 <div id="descripción-del-módulo-4" class="section level3">
-<h3>Descripción del módulo}</h3>
+<h3>Descripción del módulo</h3>
 <div id="objetivos-4" class="section level4">
-<h4>Objetivos}</h4>
+<h4>Objetivos</h4>
 <p>Antes de intentar modelar datos, o hacer inferencias sobre los mismos, lo más sano es explorarlos a través de resúmenes estadísticos y visualizarlos por medio de gráficas diseñadas para ese fin.</p>
 <p>A través de ejemplos estaremos explorando algunas estrategias comunes en el análisis de datos.</p>
 </div>
@@ -2016,6 +2016,326 @@ stripchart(expend ~ stature, method = &quot;jitter&quot;, jitter=0.03)</code></p
 <p>Algunas observaciones sobre los argumentos de <code>stripchart</code> * La versión por defecto gráfica los puntos sobre la línea, que puede ser problemático si hay traslapes. * El argumento <code>method=&quot;stack&quot;</code> apila las observaciones iguales. Lo que puede ser todavía un problema con las casi iguales. * <code>method=&quot;jitter&quot;</code> crea una pequeña perturbación aleatoria que separa los puntos en un eje imaginario. * Por defecto <code>jitter</code> está definido en <code>0.1</code>, lo que puede ser mucha perturbación para algunos. Usar <code>jitter = 0.03</code> permite ajustar esto a valores menores.</p>
 </blockquote>
 </div>
+</div>
+</div>
+<div id="análisis-descriptivo-ii" class="section level2">
+<h2>Análisis Descriptivo II</h2>
+<div id="descripción-del-módulo-5" class="section level3">
+<h3>Descripción del módulo</h3>
+<div id="objetivos-5" class="section level4">
+<h4>Objetivos</h4>
+<p>Los datos categóricos usualmente se describen en forma de tablas.</p>
+<p>En esta sección se presentan algunas estrategias para crearlas a partir de tus datos y algunas gráficas comunes para su visualización.</p>
+</div>
+</div>
+<div id="tablas" class="section level3">
+<h3>Tablas</h3>
+<div id="generación-de-tablas" class="section level4">
+<h4>Generación de tablas</h4>
+<p>Lideamos principalmente con tablas de dos dimensiones.</p>
+<p>Estas pueden ser creadas a partir de una matriz.</p>
+<p>De Altman (1991):</p>
+<pre class="r"><code>caff.marital &lt;- matrix(c(652, 1537, 598, 242, 36, 46, 38,
+                          21, 218, 327, 106, 67),
+                        nrow = 3, byrow = T)
+caff.marital</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]  652 1537  598  242
+## [2,]   36   46   38   21
+## [3,]  218  327  106   67</code></pre>
+<p>Para hacer la tabla es necesario definir los nombre a las columnas y los reglones</p>
+<pre class="r"><code>colnames(caff.marital) &lt;- c(&quot;0&quot;, &quot;1-150&quot;, &quot;151-300&quot;, &quot;&gt;300&quot;)
+rownames(caff.marital) &lt;- c(&quot;Casados&quot;, &quot;Divorciados&quot;, &quot;Solteros&quot;)
+caff.marital</code></pre>
+<pre><code>##               0 1-150 151-300 &gt;300
+## Casados     652  1537     598  242
+## Divorciados  36    46      38   21
+## Solteros    218   327     106   67</code></pre>
+<p>También puedes renombrar las dimensiones de la matriz.</p>
+<pre class="r"><code>caff.marital</code></pre>
+<pre><code>##               0 1-150 151-300 &gt;300
+## Casados     652  1537     598  242
+## Divorciados  36    46      38   21
+## Solteros    218   327     106   67</code></pre>
+</div>
+<div id="clase-table-las-tablas-no-son-completamente-equivalentes-a-matrices.-enrexiste-una-clase-llamadatableque-puedes-acceder-por-medio-deas.table." class="section level4">
+<h4>Clase `<code>table'' Las tablas no son completamente equivalentes a matrices. En</code>R<code>existe una clase llamada</code>table<code>que puedes acceder por medio de</code>as.table()`.</h4>
+<pre class="r"><code>table.caff.marital &lt;- as.table(caff.marital)
+table.caff.marital</code></pre>
+<pre><code>##                0 1-150 151-300 &gt;300
+## Casados      652  1537     598  242
+## Divorciados   36    46      38   21
+## Solteros     218   327     106   67</code></pre>
+<p>Si no requieres hacer nada elaborado, usar matrices o usar tablas te darán el mismo resultado, como se observa en el ejemplo.</p>
+<p>Tener un objeto de clase <code>table</code> es útil cuando deseamos hacer algo más elaborado, como convertir una tabla en un data frame.</p>
+<pre class="r"><code>as.data.frame(table.caff.marital)</code></pre>
+<pre><code>##           Var1    Var2 Freq
+## 1      Casados       0  652
+## 2  Divorciados       0   36
+## 3     Solteros       0  218
+## 4      Casados   1-150 1537
+## 5  Divorciados   1-150   46
+## 6     Solteros   1-150  327
+## 7      Casados 151-300  598
+## 8  Divorciados 151-300   38
+## 9     Solteros 151-300  106
+## 10     Casados    &gt;300  242
+## 11 Divorciados    &gt;300   21
+## 12    Solteros    &gt;300   67</code></pre>
+</div>
+<div id="crear-tablas-a-partir-de-data-frames" class="section level4">
+<h4>Crear tablas a partir de data frames</h4>
+<p>Recordemos el ajuste que hicimos al data frame <code>juul</code>.</p>
+<pre class="r"><code>juul &lt;- transform(juul,
+                  sex = factor(sex, labels = c(&quot;M&quot;,&quot;F&quot;)),
+                  menarche = factor(menarche, labels = c(&quot;No&quot;,&quot;Yes&quot;)),
+                  tanner = factor(tanner, labels = c(&quot;I&quot;, &quot;II&quot;, &quot;III&quot;,
+                                  &quot;IV&quot;, &quot;V&quot;)))</code></pre>
+<p>Creamos ahora algunas tablas con la función <code>table()</code>.</p>
+<pre class="r"><code>table(juul$sex)</code></pre>
+<pre><code>## 
+##   M   F 
+## 621 713</code></pre>
+<p>Algunos otros ejemplos</p>
+<pre class="r"><code>table(juul$sex, juul$menarche)</code></pre>
+<pre><code>##    
+##      No Yes
+##   M   0   0
+##   F 369 335</code></pre>
+<pre class="r"><code>table(juul$menarche, juul$tanner)</code></pre>
+<pre><code>##      
+##         I  II III  IV   V
+##   No  221  43  32  14   2
+##   Yes   1   1   5  26 202</code></pre>
+</div>
+<div id="más-de-dos-dimensiones" class="section level4">
+<h4>Más de dos dimensiones</h4>
+<p>Si queremos una tabla con más de dos dimensiones</p>
+<pre class="r"><code>table(juul$menarche, juul$tanner, juul$sex)</code></pre>
+<pre><code>## , ,  = M
+## 
+##      
+##         I  II III  IV   V
+##   No    0   0   0   0   0
+##   Yes   0   0   0   0   0
+## 
+## , ,  = F
+## 
+##      
+##         I  II III  IV   V
+##   No  221  43  32  14   2
+##   Yes   1   1   5  26 202</code></pre>
+<p>La función <code>table()</code> sigue funcionando, pero el resultado es poco estético</p>
+</div>
+<div id="función-xtabs" class="section level4">
+<h4>Función xtabs</h4>
+<p>Podemos intentarlo con la función <code>xtabs</code>:</p>
+<pre class="r"><code>xtabs(~ tanner + sex, data =juul)</code></pre>
+<pre><code>##       sex
+## tanner   M   F
+##    I   291 224
+##    II   55  48
+##    III  34  38
+##    IV   41  40
+##    V   124 204</code></pre>
+<p>La ventaja es que podemos nombrar las variables dentro del data frame sin tener que utilizar <code>$</code>.</p>
+<p>Si son más de dos dimensiones:</p>
+<pre class="r"><code>xtabs(~ menarche +  tanner + sex, data =juul)</code></pre>
+<pre><code>## , , sex = M
+## 
+##         tanner
+## menarche   I  II III  IV   V
+##      No    0   0   0   0   0
+##      Yes   0   0   0   0   0
+## 
+## , , sex = F
+## 
+##         tanner
+## menarche   I  II III  IV   V
+##      No  221  43  32  14   2
+##      Yes   1   1   5  26 202</code></pre>
+<p>Seguimos teniendo resultados poco estéticos.</p>
+</div>
+<div id="función-ftable" class="section level4">
+<h4>Función ftable</h4>
+<p>Ahora tratamos con la función <code>ftable</code>:</p>
+<pre class="r"><code>ftable(tanner~menarche + sex, data =juul)</code></pre>
+<pre><code>##              tanner   I  II III  IV   V
+## menarche sex                           
+## No       M            0   0   0   0   0
+##          F          221  43  32  14   2
+## Yes      M            0   0   0   0   0
+##          F            1   1   5  26 202</code></pre>
+<p>El resultado es mucho más estético.</p>
+</div>
+<div id="transponer-una-tabla" class="section level4">
+<h4>Transponer una tabla</h4>
+<p>Para transponer una tabla usamos el mismo comando <code>t()</code> que usamos para transponer matrices.</p>
+<pre class="r"><code>table.caff.marital</code></pre>
+<pre><code>##                0 1-150 151-300 &gt;300
+## Casados      652  1537     598  242
+## Divorciados   36    46      38   21
+## Solteros     218   327     106   67</code></pre>
+<pre class="r"><code>t(table.caff.marital)</code></pre>
+<pre><code>##         Casados Divorciados Solteros
+## 0           652          36      218
+## 1-150      1537          46      327
+## 151-300     598          38      106
+## &gt;300        242          21       67</code></pre>
+</div>
+</div>
+<div id="tablas-marginales-y-frecuencias-relativas" class="section level3">
+<h3>Tablas marginales y frecuencias relativas</h3>
+<div id="tablas-marginales" class="section level4">
+<h4>Tablas marginales</h4>
+<p>En ocasiones es deseable obtener los valores marginales de las tablas, esto es, las sumas de los conteos sobre una u otra dimensión en la tabla algo similar a lo que se obtiene en MS Excel con la opción de subtotales, pero restringidoa conteos.</p>
+<p>Esto se puede lograr con la opción <code>apply</code>, sin embargo, existe una función todavía más simplificada llamada <code>margin.table</code>.</p>
+</div>
+<div id="función-margin.table" class="section level4">
+<h4>Función <code>margin.table</code></h4>
+<p>Del paquete <code>ISwR</code> creamos una tabla con el data frame <code>juul</code>. Revisa si el data frame lo tienes adjunto a la ruta de búsqueda de <code>R</code> con <code>search()</code>. Para adjuntarlo ejecuta el comando <code>attach(juul)</code>, para retirarlo de la ruta usa <code>detach(juul)</code></p>
+<pre class="r"><code>tanner.sex &lt;- table(tanner,sex)
+tanner.sex</code></pre>
+<pre><code>##       sex
+## tanner   M   F
+##    I   291 224
+##    II   55  48
+##    III  34  38
+##    IV   41  40
+##    V   124 204</code></pre>
+</div>
+<div id="función-margin.table-1" class="section level4">
+<h4>Función <code>margin.table</code></h4>
+<p>Ahora obtén los conteos marginales de la tabla usando <code>margin.table()</code>.</p>
+<pre class="r"><code>margin.table(tanner.sex,1)</code></pre>
+<pre><code>## tanner
+##   I  II III  IV   V 
+## 515 103  72  81 328</code></pre>
+<pre class="r"><code>margin.table(tanner.sex,2)</code></pre>
+<pre><code>## sex
+##   M   F 
+## 545 554</code></pre>
+<p>El <code>1</code> indica los reglones y el <code>2</code> las columnas.</p>
+</div>
+<div id="frecuencias-relativas" class="section level4">
+<h4>Frecuencias relativas</h4>
+<p>Obtén las frecuencias relativas mediante <code>prop.table()</code>.</p>
+<pre class="r"><code>prop.table(tanner.sex, margin = 1)</code></pre>
+<pre><code>##       sex
+## tanner         M         F
+##    I   0.5650485 0.4349515
+##    II  0.5339806 0.4660194
+##    III 0.4722222 0.5277778
+##    IV  0.5061728 0.4938272
+##    V   0.3780488 0.6219512</code></pre>
+<p>El <code>1</code> indica los reglones y el <code>2</code> las columnas.</p>
+<p>Si deseas los porcentajes, sólo multiplica la tabla por 100.</p>
+<p>La función <code>prop.table()</code> no puede darte las frecuencias relativas al gran total. Si esto es lo que deseas siempre puedes dividir la tabla entre el gran total.</p>
+<pre class="r"><code>tanner.sex / sum(tanner.sex)</code></pre>
+<pre><code>##       sex
+## tanner          M          F
+##    I   0.26478617 0.20382166
+##    II  0.05004550 0.04367607
+##    III 0.03093722 0.03457689
+##    IV  0.03730664 0.03639672
+##    V   0.11282985 0.18562329</code></pre>
+</div>
+</div>
+<div id="resúmenes-gráficos-para-tablas" class="section level3">
+<h3>Resúmenes gráficos para tablas</h3>
+<div id="gráficas-de-barras" class="section level4">
+<h4>Gráficas de barras</h4>
+<p>Al momento de hacer presentaciones, puede ser preferible utilizar una gráfica a presentar un grupo de totales y proporciones.</p>
+<pre class="r"><code>total.caff &lt;- margin.table(table.caff.marital, 2)
+total.caff</code></pre>
+<pre><code>##       0   1-150 151-300    &gt;300 
+##     906    1910     742     330</code></pre>
+<pre class="r"><code>barplot(total.caff, col = &quot;green&quot;)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-213-1.png" width="672" /> Al momento de hacer presentaciones, puede ser preferible utilizar una gráfica a presentar un grupo de totales y proporciones.</p>
+<pre class="r"><code>total.caff &lt;- margin.table(table.caff.marital, 2)
+total.caff</code></pre>
+<pre><code>##       0   1-150 151-300    &gt;300 
+##     906    1910     742     330</code></pre>
+<pre class="r"><code>barplot(total.caff, col = &quot;green&quot;, ylim = c(0,2000))</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-215-1.png" width="672" /> Aquí, <code>ylim = c(0,2000)</code> es el rango a utilizar en el eje de las ordenadas.</p>
+<p>La función <code>barplot</code> también te acepta la tabla completa.</p>
+<pre class="r"><code>barplot(table.caff.marital,
+         col = c(&quot;red&quot;,&quot;green&quot;,&quot;blue&quot;),
+         legend.text = c(&quot;casados&quot;, &quot;divorciados&quot;, &quot;solteros&quot;))</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-216-1.png" width="672" /> Si deseas graficar las dos dimensiones de una tabla pero no deseas que estén agrupadas dentre de una sóla barra, puedes utilizar el argumento <code>beside = T</code> para este fin.</p>
+<p>Mira las distintas opciones que puedes utilizar para crear tu gráfica de barras.</p>
+<pre class="r"><code>par(mfrow = c(2,2))
+barplot(caff.marital, col=&quot;white&quot;)
+barplot(t(caff.marital), col = &quot;white&quot;)
+barplot(t(caff.marital), col = &quot;white&quot;, beside = T)
+barplot(prop.table(t(caff.marital),2), col=&quot;white&quot;, beside = T)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-217-1.png" width="672" /></p>
+<pre class="r"><code>par(mfrow = c(1,1))</code></pre>
+</div>
+<div id="gráfica-de-barras" class="section level4">
+<h4>Gráfica de barras</h4>
+<p>Una idea para que tu gráfica se vea mejor</p>
+<pre class="r"><code>barplot(prop.table(t(table.caff.marital),2),beside = T,
+         legend.text = colnames(table.caff.marital),
+         col = c(&quot;white&quot;, &quot;grey80&quot;, &quot;grey50&quot;, &quot;black&quot;))</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-218-1.png" width="672" /> \begin{center}</p>
+<p><code>R</code> no tiene una forma de encontrar la mejor posición para la leyenda y en ocasiones esta se sobrepondrá sobre tu gráfica.</p>
+<p>Para tener un mayor control puedes usar la función <code>legend</code>.</p>
+<p>Con el ratón puedes hacer cick en la gráfica generada y obtener coordenadas para la leyenda usando la función <code>locator</code>.</p>
+<p>Estas funciones están fuera del alcance del curso, sin embargo, se motiva a los usuarios avanzados que las investiguen para su uso.</p>
+</div>
+<div id="diagrama-de-puntos-de-cleveland" class="section level4">
+<h4>Diagrama de puntos de Cleveland</h4>
+<p>El diagrama de puntos de Cleveland es nombrado a partir de William S. Cleveland (1994) está formulado con la misma información de una gráfica de barras pero ofrece una impresión visual muy diferente. Para ejecutarlo usar</p>
+<pre class="r"><code>dotchart(t(table.caff.marital), lcolor = &quot;black&quot;)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-219-1.png" width="672" /></p>
+</div>
+<div id="diagramas-de-pastel" class="section level4">
+<h4>Diagramas de pastel</h4>
+<p>Veamos como se ven los datos de consumo de cafeína contra el estatus marital</p>
+<pre class="r"><code>slices &lt;- c(&quot;white&quot;, &quot;grey80&quot;, &quot;grey50&quot;, &quot;black&quot;)
+pie(table.caff.marital[&quot;Casados&quot;,], main=&quot;Casados&quot;, col=slices)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-220-1.png" width="672" /></p>
+<pre class="r"><code>pie(table.caff.marital[&quot;Divorciados&quot;,], main=&quot;Divorciados&quot;, col=slices)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-220-2.png" width="672" /></p>
+<pre class="r"><code>pie(table.caff.marital[&quot;Solteros&quot;,], main=&quot;Solteros&quot;, col=slices)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-220-3.png" width="672" /></p>
+<pre class="r"><code>par(opar)</code></pre>
+</div>
+</div>
+<div id="ejercicios-2" class="section level3">
+<h3>Ejercicios</h3>
+<ul>
+<li><p>Explore distintas formas de gráficas de lineas y puntos. Cambie el tipo de línea, el grosor de la línea y el color.</p></li>
+<li><p>Al graficar <code>plot(rnorm(10), type = &quot;o&quot;)</code> las líneas son visibles dentro de los símbolos dibujados. ¿Cómo puedes evitar esto?</p></li>
+<li><p>Crea un histograma de los datos <code>react</code>. Debido al alto grado de discretización de los datos, el histograma estará sesgado. ¿Por qué? Puedes utilizar la función <code>truehist()</code> del paquete <code>MASS</code> como reemplazo.</p></li>
+</ul>
+</div>
+<div id="soluciones" class="section level3">
+<h3>Soluciones</h3>
+<ul>
+<li>Este es un ejemplo.</li>
+</ul>
+<pre class="r"><code>plot(rnorm(10), type = &quot;b&quot;, col=&quot;blue&quot;, pch=1, lwd=2)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-221-1.png" width="672" /></p>
+<ul>
+<li>Podemos cambiar el símbolo dibujado por uno sólido.</li>
+</ul>
+<pre class="r"><code>plot(rnorm(10), type = &quot;o&quot;, col=&quot;black&quot;, pch=19)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-222-1.png" width="672" /></p>
+<ul>
+<li></li>
+</ul>
+<pre class="r"><code>hist(react)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-223-1.png" width="672" /></p>
+<pre class="r"><code>library(MASS)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;juul&#39;:
+## 
+##     menarche</code></pre>
+<pre class="r"><code>truehist(react)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-223-2.png" width="672" /></p>
 </div>
 </div>
 </div>
