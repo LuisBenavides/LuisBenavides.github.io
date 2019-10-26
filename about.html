@@ -336,7 +336,7 @@ $(document).ready(function () {
 </div>
 <div id="descripción-de-r" class="section level3">
 <h3>Descripción de R</h3>
-<p>R es un software de fuente libre para su uso en estadística. Se modeló a raíz de S y S-Plus. El lenguaje S fue desarrollado a finales de los 80’s en los laboratorios de AT&amp;T. El proyecto R fue iniciado por Robert Gentleman y Ross Ihaka en el Departamento de Estadística de la Universidad de Auckland en 1995. <a href="https://cran.r-project.org">sitio web oficial</a></p>
+<p>R es un software de fuente libre para su uso en estadística. Se modeló a raíz de S y S-Plus. El lenguaje S fue desarrollado a finales de los 80’s en los laboratorios de <strong>AT&amp;T</strong>. El proyecto R fue iniciado por Robert Gentleman y Ross Ihaka en el Departamento de Estadística de la Universidad de Auckland en 1995. <a href="https://cran.r-project.org">sitio web oficial</a></p>
 </div>
 <div id="uso-de-r-en-el-curso" class="section level3">
 <h3>Uso de R en el curso</h3>
@@ -347,7 +347,7 @@ $(document).ready(function () {
 <p>Se espera que los alumnos aprecien los siguientes beneficios:</p>
 <ul>
 <li>R es gratis.</li>
-<li>R es de código abierto, corre en sistemas  (y similares),  y .</li>
+<li>R es de código abierto, corre en sistemas <strong>Unix</strong> (y similares), <strong>Windows</strong> y <strong>Macintosh</strong>.</li>
 <li>R tiene un sistema de ayuda muy amplio.</li>
 <li>R permite diseñar y manipular gráficas.</li>
 <li>Aprendiendo R, los alumnos pueden luego migrar a otras plataformar comerciales como S, o S-plus.</li>
@@ -891,7 +891,7 @@ d[5,1]</code></pre>
 <p>Los siguiente ejercicios los haremos siguiendo bases de datos provistas en el paquete <code>ISwR</code>. Sólo sigue las siguientes instrucciones:</p>
 <pre class="r"><code>install.packages(&quot;ISwR&quot;)
 library(ISwR)</code></pre>
-<p>\begin{verbatim} Ya puedes continuar.</p>
+<p>Ya puedes continuar.</p>
 </div>
 <div id="datos-agrupados-y-data-frames" class="section level4">
 <h4>Datos agrupados y data frames</h4>
@@ -1080,6 +1080,942 @@ sapply(simframe,mean)</code></pre>
 ## 0.6780751 1.0852188 1.2696407 1.1923630 1.1270295 0.8424292 0.8664822 
 ##        X8        X9       X10 
 ## 0.6753674 1.3260842 1.0911497</code></pre>
+</div>
+</div>
+<div id="ambiente-r" class="section level2">
+<h2>Ambiente R</h2>
+<div id="descripción-del-módulo" class="section level3">
+<h3>Descripción del módulo</h3>
+<div id="objetivos" class="section level4">
+<h4>Objetivos</h4>
+<p>Se discuten algunos aspectos prácticos de trabajar con R. Estructura del entorno de trabajo, creación de gráficas, programación elemental y entrada de datos</p>
+</div>
+</div>
+<div id="administración-de-sesiones" class="section level3">
+<h3>Administración de sesiones</h3>
+<div id="espacio-de-trabajo" class="section level4">
+<h4>Espacio de trabajo}</h4>
+<p>Todas las variables creadas en <code>R</code> se guardan en un espacio de trabajo común.</p>
+<pre class="r"><code>ls()</code></pre>
+<pre><code>##  [1] &quot;bmi&quot;         &quot;d&quot;           &quot;exp.lean&quot;    &quot;exp.obese&quot;   &quot;fpain&quot;      
+##  [6] &quot;ftext.pain&quot;  &quot;height&quot;      &quot;hh&quot;          &quot;intake.post&quot; &quot;intake.pre&quot; 
+## [11] &quot;m&quot;           &quot;mylist&quot;      &quot;o&quot;           &quot;oops&quot;        &quot;pain&quot;       
+## [16] &quot;sim.matrix&quot;  &quot;simframe&quot;    &quot;text.pain&quot;   &quot;v&quot;           &quot;weight&quot;     
+## [21] &quot;x&quot;           &quot;xbar&quot;</code></pre>
+</div>
+<div id="remover-variables" class="section level4">
+<h4>Remover variables</h4>
+<p>Si el espacio de trabajo se ve desordenado, puedes borrar algunos objetos usando <code>rm</code>.</p>
+<pre class="r"><code>rm(height,weight)
+ls()</code></pre>
+<pre><code>##  [1] &quot;bmi&quot;         &quot;d&quot;           &quot;exp.lean&quot;    &quot;exp.obese&quot;   &quot;fpain&quot;      
+##  [6] &quot;ftext.pain&quot;  &quot;hh&quot;          &quot;intake.post&quot; &quot;intake.pre&quot;  &quot;m&quot;          
+## [11] &quot;mylist&quot;      &quot;o&quot;           &quot;oops&quot;        &quot;pain&quot;        &quot;sim.matrix&quot; 
+## [16] &quot;simframe&quot;    &quot;text.pain&quot;   &quot;v&quot;           &quot;x&quot;           &quot;xbar&quot;</code></pre>
+</div>
+<div id="remover-todas-las-variables" class="section level4">
+<h4>Remover todas las variables</h4>
+<p>Puedes remover todas las variables usando <code>rm(list=ls())</code>.</p>
+<p>Sin embargo, esto no remueve las variables que inicien con un punto, pues estas no se listan en <code>ls()</code>, para eso requieres <code>ls(all=T)</code>.</p>
+<blockquote>
+<p>Cuidado Remover todas las variables con <code>ls(all=T)</code> puede ser peligroso, pues las variables que inician con un punto son del sistema.</p>
+</blockquote>
+</div>
+<div id="guardar-el-espacio-de-trabajo" class="section level4">
+<h4>Guardar el espacio de trabajo}</h4>
+<p>Puedes guardar todo es espacio de trabajo en un archivo usando la función <code>save.image()</code>.</p>
+<p>Esto hará que un archivo <code>.RData</code> se cree en el directorio por defecto.</p>
+<p>Usa un nombre entre comillas para asignarle algún nombre en particular a tu sesión y escribir la ruta donde deseas guardar como se muestra a continuación.</p>
+<pre class="r"><code>save.image(file file = &quot;trabajo.RData&quot;)
+load(&quot;trabajo.RData&quot;)
+save.image(file = &quot;/home/victor/Documents/R Works/trabajo.RData&quot;)
+load(&quot;/home/victor/Documents/R Works/trabajo.RData&quot;)</code></pre>
+</div>
+<div id="guardar-el-espacio-de-trabajo-1" class="section level4">
+<h4>Guardar el espacio de trabajo</h4>
+<p>Puedes guardar objetos específicos usando la función <code>save()</code>.</p>
+<pre class="r"><code>save(weight,bmi,file = &quot;/home/victor/Documents/RWorks/pesos.RData&quot;)
+load(&quot;/home/victor/Documents/R Works/pesos.RData&quot;)</code></pre>
+<p>Puedes seleccionar todos los objetos del espacio de trabajo que desees salvar, uno por uno separados por coma. Al final recuerda especificar el nombre para tu archivo de espacio de trabajo junto a su ruta si deseas otra que no sea tu directorio de trabajo.</p>
+</div>
+<div id="directorio-de-trabajo" class="section level4">
+<h4>Directorio de trabajo</h4>
+<p>Para ver tu directorio de trabajo actual usa <code>getwd()</code>.</p>
+<p>Para modificar tu directorio de trabajo usa <code>setwd()</code>. Ejemplo:</p>
+<pre class="r"><code>getwd()
+setwd(&quot;/home/victor/Documents/R Works&quot;)
+getwd()</code></pre>
+</div>
+<div id="atención-usuarios-de-windows" class="section level4">
+<h4>Atención usuarios de Windows</h4>
+<p>R se confunde si escribes una ruta como</p>
+<pre class="r"><code>c:\mydocuments\myfile.txt</code></pre>
+<p>Esto porque <code>R</code> reconoce <code>\</code> como un caracter de fuga. Para definir tu ruta usa:</p>
+<pre class="r"><code>c:\\my documents\\myfile.txt
+c:/mydocuments/myfile.txt</code></pre>
+</div>
+<div id="historial" class="section level4">
+<h4>Historial</h4>
+<p>Puedes desplegar los últimos 25 comando que escribiste al invocar la función <code>history()</code>. Puedes ver todo el historial con <code>history(max.show=Inf)</code>. Además puedes guardar y leer tu historial usando:</p>
+<pre class="r"><code>savehistory(file=&quot;mihistoria&quot;)
+loadhistory(file=&quot;myfile&quot;)</code></pre>
+<p>Por defecto la extensión de los archivos es <code>.RData</code>.</p>
+</div>
+<div id="pedir-ayuda" class="section level4">
+<h4>Pedir ayuda</h4>
+<p>Para pedir ayuda sobre alguna función puedes usar la función <code>help()</code> o simplemente el prefijo <code>?</code> antes de la función de la que deseas pedir ayuda.</p>
+<pre class="r"><code>help(&quot;aggregate&quot;)
+?aggregate</code></pre>
+<p>En ambos casos se logra ingresar a los manuales de ayuda para la función <code>aggregate</code>.</p>
+</div>
+<div id="paquetes" class="section level4">
+<h4>Paquetes</h4>
+<p>Una instalación típica de <code>R</code> trae consigo una o más librerías de paquetes. Algunos de estos paquetes son de la instalación básica, y otros pueden ser descargados del <code>CRAN</code> con más de 1000 paquetes para distintos propósitos. <em>¡Incluso puedes crear tus propios paquetes!</em>. Una librería es sólo un fólder en tu disco, mientras que un paquete contiene funciones escritas en el lenguaje <code>R</code>, librerías con códigos (generalmente escritas en <code>C</code> o <code>Fortran</code>), y conjuntos de datos.<br />
+</p>
+</div>
+<div id="paquetes-1" class="section level4">
+<h4>Paquetes</h4>
+<p>Para cargar un paquete, como el paquete <code>survival</code> usa la función <code>library()</code> y para sacarlo <code>detach</code> de la siguiente manera:</p>
+<pre class="r"><code>library(survival)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;survival&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:ISwR&#39;:
+## 
+##     lung</code></pre>
+<pre class="r"><code>detach(&quot;package:survival&quot;)</code></pre>
+<p>Los paquetes no forman parte del espacio de trabajo, por lo que al guardar el espacio y volverlo a cargar tendrás que volver a leer los paquetes que te inreresen.</p>
+</div>
+<div id="adjunta-data-frames" class="section level4">
+<h4>Adjunta data frames</h4>
+<p>Puedes adjuntar una copia de las variables de un data frame usando la función <code>attach()</code>:</p>
+<pre class="r"><code>attach(thuesen)
+blood.glucose</code></pre>
+<pre><code>##  [1] 15.3 10.8  8.1 19.5  7.2  5.3  9.3 11.1  7.5 12.2  6.7  5.2 19.0 15.1
+## [15]  6.7  8.6  4.2 10.3 12.5 16.1 13.3  4.9  8.8  9.5</code></pre>
+<pre class="r"><code>short.velocity</code></pre>
+<pre><code>##  [1] 1.76 1.34 1.27 1.47 1.27 1.49 1.31 1.09 1.18 1.22 1.25 1.19 1.95 1.28
+## [15] 1.52   NA 1.12 1.37 1.19 1.05 1.32 1.03 1.12 1.70</code></pre>
+<p>Con esta función <code>R</code> incluye <code>thuesen</code> en la ruta de búsqueda que puede observase con <code>search()</code>. Usa <code>detach()</code> para sacar las variable copiadas a memoria.</p>
+</div>
+</div>
+</div>
+<div id="subsistema-gráfico" class="section level2">
+<h2>Subsistema Gráfico</h2>
+<div id="descripción-del-módulo-1" class="section level3">
+<h3>Descripción del módulo}</h3>
+<div id="objetivos-1" class="section level4">
+<h4>Objetivos</h4>
+<p>Es común en estadística querer modificar los gráficos más allá del formato por defecto. En ocasiones se requiere agregar notas, modificar los ejes, cambiar las etiquedas, agregar marcas, etc.</p>
+<p>Todo esto se puede hacer en <code>R</code>. Aunque se sienta raro al principio, notarás que el enfoque es flexible y poderoso.</p>
+<p>En este módulo se estudiará la estructura de una gráfica típica y se darán indicaciones que te ayuden a lograr los resultados que desees.</p>
+<p>Se advierte que el desarrollo de gráficas es una especialidad compleja y amplia cuya profundización va más allá de un curso introductorio.</p>
+</div>
+</div>
+<div id="el-subsistema-de-gráficas" class="section level3">
+<h3>El subsistema de gráficas</h3>
+<div id="disposición-del-gráfico" class="section level4">
+<h4>Disposición del gráfico</h4>
+<p>Un gráfico estándar x-y tiene títulos de etiquetas generadas por las expresiones que se grafican. Sin embargo, puedes cambiar estas etiquetas y agregar dos títulos adicionales, un título principal sobre el área gráfica y un subtítulo en la parte inferior.</p>
+<pre class="r"><code>x &lt;- runif(50,0,2)
+y &lt;- runif(50,0,2)
+plot(x, y, main = &quot;Título principal&quot;, sub = &quot;Subtítulo&quot;,
+xlab = &quot;Título eje x&quot;, ylab = &quot;Título eje y&quot; )</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
+</div>
+<div id="agregar-puntos-y-líneas" class="section level4">
+<h4>Agregar puntos y líneas</h4>
+<p>Dentro de la región de la gráfica puedes agregar puntos y líneas.</p>
+<p>Estos los especificas en la función <code>plot</code> o los agregas más tarde con <code>points</code> y <code>lines</code>. También puedes agregar texto con</p>
+<pre class="r"><code>text(0.6,0.6,&quot;Texto en punto (0.6,0.6)&quot;)
+abline(h = 0.6, v = 0.6)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-113-1.png" width="672" /></p>
+</div>
+<div id="agregar-texto-en-los-márgenes" class="section level4">
+<h4>Agregar texto en los márgenes</h4>
+<p>Puedes agregar texto partiendo de las coordenadas de los márgenes. <code>line = -1</code> indica una línea dentro de la figura, <code>line = 1</code>, indica una línea dentro de la figura.</p>
+<pre class="r"><code>for (side in 1:4) mtext(-1:4, side = side, at = .7, line = -1:4)
+mtext(paste(&quot;side&quot;,1:4), side = 1:4, line = -1, font = 2)</code></pre>
+<p>Usando distintas line puedes agregar muchas líneas de texto en cada lado de la figura.</p>
+<p><img src="about_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
+<p>Nota que no todos los márgenes son suficientemente grandes para registrar todos los números, por lo que conviene utilizar posiciones negativas para añadir texto si se desea.</p>
+</div>
+<div id="contruir-un-gráfico-por-partes" class="section level4">
+<h4>Contruir un gráfico por partes</h4>
+<p>Para tener más control puedes iniciar un área gráfica en blanco y poco a poco agregar las partes con comandos individuales.</p>
+<pre class="r"><code>plot(x, y, type = &quot;n&quot;, xlab = &quot;&quot;, ylab = &quot;&quot;, axes = F)
+points(x,y) #agrega los puntos de forma individual
+axis(1)
+axis(2)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
+<pre class="r"><code>plot(x, y, type = &quot;n&quot;, xlab = &quot;&quot;, ylab = &quot;&quot;, axes = F) #prerapa el área de gráfico.
+points(x,y) #agrega los puntos de forma individual
+axis(1)
+axis(2, at =seq(0.2,1.8,0.2))
+box()
+title(main = &quot;Título principal&quot;, sub = &quot;Subtítulo&quot;, xlab = &quot;Eje x&quot;, ylab = &quot;Eje y&quot;)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-117-1.png" width="672" /></p>
+</div>
+<div id="función-par" class="section level4">
+<h4>Función par</h4>
+<p><code>par</code> es una función que permite modificar el grosor de las líneas, el tamaño de los caracteres y su fuente, colres, estilo de ejes, tamaño de las áreas gráficas y regiones de figuras, etc.</p>
+<p>Incluso es posible dividir la figura en varias subfiguras usando <code>mfrow</code> y <code>mfcol</code>.</p>
+<p>En este momento explicar todos los parámetros gráficos carece de sentido. En su lugar se explicarán cuando se presenten gráficos específicos.</p>
+</div>
+<div id="combinar-figuras" class="section level4">
+<h4>Combinar figuras</h4>
+<p>También podemos combinar figuras si así lo deseamos</p>
+<pre class="r"><code>x &lt;- rnorm(100) #generamos datos distribución normal
+hist(x, freq = F) #creamos un histograma de frecuencias relativas haciendo freq = F
+curve(dnorm(x), add = T) #agregamos una curva normal al establecer add = T</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-118-1.png" width="672" /></p>
+</div>
+<div id="combinar-figuras-1" class="section level4">
+<h4>Combinar figuras</h4>
+<p>Para asegurar que el histograma y la curva tengan espacio suficiente en la figura, modifica la magnitud de los valores de <code>y</code> en los elementos de ambas gráficas.</p>
+<pre class="r"><code>h &lt;- hist(x, plot = F)
+ylim &lt;- range(0, h$density, dnorm(0))
+hist(x, freq = F, ylim = ylim)
+curve(dnorm(x), add = T)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-119-1.png" width="672" /> Al usar en <code>hist</code> el argumento <code>plot = F</code>, <code>hist</code> no despliega nada, pero regresa una estructura que contine las alturas de las barras de las densidades. Esto y el hecho de que el máximo de <code>dnorm(x)</code> es <code>dnorm(0)</code> nor permite calcular el rango que se requiere para los valors de y.</p>
+</div>
+</div>
+</div>
+<div id="programación" class="section level2">
+<h2>Programación</h2>
+<div id="descripción-del-módulo-2" class="section level3">
+<h3>Descripción del módulo</h3>
+<div id="objetivos-2" class="section level4">
+<h4>Objetivos}</h4>
+<p>Es posible escribir tus propias funciones usando <code>R</code>. Esta posibilidad es principalmente importante al utilizar la aplicación en el largo plazo.</p>
+<p>En esta sección veremos estudiaremos las estructura de control que dirigen la ejecución de un programa.</p>
+</div>
+</div>
+<div id="estructuras-de-control" class="section level3">
+<h3>Estructuras de control</h3>
+<div id="if" class="section level4">
+<h4>IF</h4>
+<p>La construcción <code>if</code> y <code>else</code> permiten ejecutar o saltar un conjunto de instrucciones dentro del código de un programa de <code>R</code>.</p>
+<pre class="r"><code>aa &lt;- 15
+if(aa &gt; 14)
+ print(&quot;FELICIDADES&quot;)</code></pre>
+<pre><code>## [1] &quot;FELICIDADES&quot;</code></pre>
+<pre class="r"><code>if(aa &gt; 14) print(&quot;FELICIDADES&quot;)</code></pre>
+<pre><code>## [1] &quot;FELICIDADES&quot;</code></pre>
+<pre class="r"><code>if(aa &gt; 14){
+   print(&quot;PRIMER REGLÓN&quot;)
+   print(&quot;SEGUNDO REGLÓN&quot;)
+ }</code></pre>
+<pre><code>## [1] &quot;PRIMER REGLÓN&quot;
+## [1] &quot;SEGUNDO REGLÓN&quot;</code></pre>
+<p>Puedes usar el valor que regresa <code>if</code> de forma directa</p>
+<pre class="r"><code>y &lt;- 10
+y &lt;- if(aa &gt; 14) 50
+y</code></pre>
+<pre><code>## [1] 50</code></pre>
+</div>
+<div id="if-else" class="section level4">
+<h4>IF-ELSE</h4>
+<p>La construcción <code>if</code> admite una sóla expresión, pero ésta puede ser la expresión compuesta, que se construye mediante el uso de llaves <code>{ }</code> y las expresiones en su interior, separadas ya sea por un cambio de reglón o por <code>;</code>.</p>
+<p>Para agregar más expresiones en distintas condiciones podemos utilizar la construcción <code>else if</code> y <code>else</code>.</p>
+<pre class="r"><code>if(10 &gt; aa){
+   print(&quot;RANGO MENOR&quot;)
+ } else if(10 &lt;= aa &amp;&amp; aa &lt;= 20){
+   print(&quot;RANGO MEDIO&quot;)
+ } else{
+   print(&quot;RANGO ALTO&quot;)
+ }</code></pre>
+<pre><code>## [1] &quot;RANGO MEDIO&quot;</code></pre>
+</div>
+<div id="ciclos" class="section level4">
+<h4>Ciclos</h4>
+<p>En el lenguaje de programación es común utilizar ciclos o repeticiones. Estas repeticiones implican instrucciones que se repiten un determinado número de veces mientras se cumple una condición.</p>
+</div>
+<div id="ciclo-for" class="section level4">
+<h4>Ciclo FOR</h4>
+<pre class="r"><code>letras &lt;- c(&quot;S&quot;, &quot;U&quot;, &quot;A&quot;, &quot;V&quot;, &quot;E&quot;)
+for (i in 1:5) {
+   print(letras[i])
+ }</code></pre>
+<pre><code>## [1] &quot;S&quot;
+## [1] &quot;U&quot;
+## [1] &quot;A&quot;
+## [1] &quot;V&quot;
+## [1] &quot;E&quot;</code></pre>
+<p>La estructura que sigue el ciclo <code>for</code> es:</p>
+<pre class="r"><code>for (var in seq) expr</code></pre>
+<p>Donde la expresión puede ser compuesta utilizando llaves <code>{ }</code> como en el ejemplo anterior.</p>
+<p>Otras formas de lograr el ciclo <code>for</code> es:</p>
+<pre class="r"><code>for (i in seq_along(letras)) {
+print(letras[i])
+}</code></pre>
+<pre><code>## [1] &quot;S&quot;
+## [1] &quot;U&quot;
+## [1] &quot;A&quot;
+## [1] &quot;V&quot;
+## [1] &quot;E&quot;</code></pre>
+<pre class="r"><code>for (letra in letras) {
+print(letra)
+}</code></pre>
+<pre><code>## [1] &quot;S&quot;
+## [1] &quot;U&quot;
+## [1] &quot;A&quot;
+## [1] &quot;V&quot;
+## [1] &quot;E&quot;</code></pre>
+<p>La función <code>seq_along()</code> genera una secuencia de enteros de acuerdo al número de elementos del objeto usado como argumento.</p>
+<p>En el segundo caso se toma uno a uno los elementos del objeto después de la partícula <code>in</code> del <code>for</code>.</p>
+</div>
+<div id="ciclo-while" class="section level4">
+<h4>Ciclo WHILE</h4>
+<p>El ejercicio anterior lo podemos lograr utilizando ciclo condicionados al cumplimiento de una regla con la instrucción <code>while</code>.</p>
+<pre class="r"><code>i &lt;- 1
+while (i &lt;= 5) {
+   print(letras[i])
+   i &lt;- i + 1
+ }</code></pre>
+<pre><code>## [1] &quot;S&quot;
+## [1] &quot;U&quot;
+## [1] &quot;A&quot;
+## [1] &quot;V&quot;
+## [1] &quot;E&quot;</code></pre>
+<p>La instrucción <code>while</code> sigue la estructura</p>
+<pre class="r"><code>while (cond) expr</code></pre>
+<p>Donde la expresión puede se compuesta al utilizar llaves <code>{ }</code> como se observó en el ejemplo.</p>
+</div>
+<div id="repeticiones-infinitas" class="section level4">
+<h4>Repeticiones infinitas</h4>
+<p>La instrucción <code>repeat</code> permite crear ciclos infinitos que no se detienen a menos que agreguemos alguna interrupción como <code>break</code>.</p>
+<pre class="r"><code>i &lt;- 1
+repeat {
+   print(letras[i])
+   i &lt;- i + 1
+   if (i &gt; 5)
+     break
+ }</code></pre>
+<pre><code>## [1] &quot;S&quot;
+## [1] &quot;U&quot;
+## [1] &quot;A&quot;
+## [1] &quot;V&quot;
+## [1] &quot;E&quot;</code></pre>
+</div>
+<div id="interrupciones-del-flujo-normal-de-los-cilos" class="section level4">
+<h4>Interrupciones del flujo normal de los cilos</h4>
+<p>Existen funciones como <code>break</code>, <code>next</code> y <code>return</code> que permiten interrumpir los ciclos en el momento en que se ejecutan.</p>
+<blockquote>
+<p>Advertencia Interrumpir ciclos usando funciones como <code>break</code>, <code>next</code> y <code>return</code> no es recomendado bajo los principios de la programación estructurada.</p>
+</blockquote>
+<p>Debido a que el uso de estas funciones no es recomendado, no profundizaremos en su uso y aplicación.</p>
+</div>
+</div>
+<div id="escritura-de-funciones" class="section level3">
+<h3>Escritura de funciones</h3>
+<div id="por-qué-escribir-funciones" class="section level4">
+<h4>¿Por qué escribir funciones?</h4>
+<p>Cuando el código que escribirmos es muy extenso y complejo, utilizar funciones que nos permitan reciclar nuestros códigos y atender las necesidades en módulos separados de forma ordenada.</p>
+</div>
+<div id="estructura-formal-de-una-función" class="section level4">
+<h4>Estructura formal de una función</h4>
+<p>Para crear o definir funciones personalizadas se utiliza la directiva <code>function</code>.</p>
+<pre class="r"><code>f &lt;- function(&lt;argumentos&gt;){
+  
+  #expresiones
+  
+  &lt;valor&gt; #la última expresión de la lista
+}</code></pre>
+<p>Esta directiva tiene dos partes:</p>
+<ul>
+<li>Definición de argumentos formales.</li>
+<li>Expresiones.</li>
+</ul>
+<p>Al ejecutarse la función el valor de la última expresión en la secuencia de ejecución se entrega como resultado</p>
+</div>
+<div id="ejemplo-de-funciones-caso-1" class="section level4">
+<h4>Ejemplo de funciones: Caso 1</h4>
+<p>Definimos una función llamada <code>Mifuncion.v1</code> con argumentos <code>x</code>, <code>yyy</code>, <code>z</code>, y <code>t</code>.</p>
+<pre class="r"><code>Mifuncion.v1 &lt;- function (x, yyy, z=5, t) {
+  w &lt;- x + yyy - z
+  w
+}
+Mifuncion.v1(x = 1, yyy = 2)</code></pre>
+<pre><code>## [1] -2</code></pre>
+<p><code>x</code>, <code>yyy</code> son argumentos obligatorios. El usuario debe definir su valor al momento de ejecutar la función.</p>
+<p><code>z</code> es un argumento opcional, pues si el usuario no lo define, automáticamente toma el valor de 5.</p>
+<p><code>t</code> es un argumento adicional que no se emplea en el cuerpo de la función y su definición o falta de ella no afecta el resultado.</p>
+<p>Observa el efecto que distintas formas de ejecutar tu función tiene en ella y discute.</p>
+<pre class="r"><code>Mifuncion.v1(x = 1, yyy = 2)
+Mifuncion.v1(x = 1, yyy = 2, z = 5)
+Mifuncion.v1(x = 1, yyy = 2, z = 7)
+Mifuncion.v1(x = 1, yyy = 2, z = 7, t = 10)
+
+Mifuncion.v1(1, 2)
+Mifuncion.v1(1, 2, 5)
+Mifuncion.v1(1, 2, 7)
+Mifuncion.v1(1, 2, 7, 10)
+
+Mifuncion.v1(yyy = 2, z = 7, x = 1)
+Mifuncion.v1(2, 7, 1)
+
+a = 1
+b = 2
+c = 3
+Mifuncion.v1(x = a, yyy = b, z = c)
+Mifuncion.v1(a, b, c)
+Mifuncion.v1(a, b, z = c)</code></pre>
+</div>
+<div id="ejemplo-de-funciones-caso-2" class="section level4">
+<h4>Ejemplo de funciones: Caso 2}</h4>
+<p>Ahora veremos que sucede si agregamos la función <code>return</code> dentro de las expresiones que ejecutará la función que definimos</p>
+<pre class="r"><code>Mifuncion.v2 &lt;- function (x, yyy, z=5, t) {
+   w &lt;- x + yyy - z
+   return (w)
+   3.1416 # Este código nunca se ejecuta
+ }
+Mifuncion.v2(x = 1, yyy = 2)</code></pre>
+<pre><code>## [1] -2</code></pre>
+<p>La función detiene su ejecución al llegar a <code>return (w)</code> y regresa como resultado el valor del objeto defino entre paréntesis.</p>
+</div>
+<div id="ejemplo-de-funciones-caso-3" class="section level4">
+<h4>Ejemplo de funciones: Caso 3</h4>
+<p>Ahora veremos que sucede si el resultado no lo salvas en una variable</p>
+<pre class="r"><code>Mifuncion.v3 &lt;- function (x, yyy, z=5, t) {
+   x + yyy - z
+ }
+Mifuncion.v3(x = 1, yyy = 2)</code></pre>
+<pre><code>## [1] -2</code></pre>
+<p>La función regresa el valor de la última expresión ejecutada, y obtenemos el mismo resultado en en los casos anteriores.</p>
+</div>
+<div id="variables-locales" class="section level4">
+<h4>Variables locales</h4>
+<p>Si observamos la variable <code>w</code>, esta se define al moento de ejecutar la función.</p>
+<pre class="r"><code>Mifuncion.v1 &lt;- function (x, yyy, z=5, t) {
+  w &lt;- x + yyy - z
+  w
+}</code></pre>
+<p><code>w</code> nace en la función y desaparece cuando termina de ejecutarse la función. Se dice que <code>w</code> es una varible local.</p>
+</div>
+<div id="variables-locales-1" class="section level4">
+<h4>Variables locales</h4>
+<p>Haz la siguente prueba y observa el resultado</p>
+<pre class="r"><code>w &lt;- 9
+Mifuncion.v1 &lt;- function (x, yyy, z=5, t) {
+   w &lt;- x + yyy - z
+   w
+ }
+Mifuncion.v1(x = 1, yyy = 2)</code></pre>
+<pre><code>## [1] -2</code></pre>
+<pre class="r"><code>w</code></pre>
+<pre><code>## [1] 9</code></pre>
+<p>La ejecución de la función no afectó el valor de <code>w</code> definido fuera de ella.</p>
+</div>
+<div id="vs" class="section level4">
+<h4><code>&lt;-</code> vs <code>=</code></h4>
+<p>Usar <code>&lt;-</code> para asignar permite que el código sea compatible con códigos y versiones de <code>R</code> viejas.</p>
+<p>Asignar con <code>=</code> es una tendencia moderna, y en general se obtiene el mismo efectos que al usar <code>&lt;-</code>. Sin embargo existen diferencias sutiles.</p>
+<p>Observa que sucede con el valor de <code>x</code> al definir su valor dentro de los argumentos de una función:</p>
+<pre class="r"><code>x = 8
+Mifuncion.v1(x = 1, yyy = 2)</code></pre>
+<pre><code>## [1] -2</code></pre>
+<pre class="r"><code>x</code></pre>
+<pre><code>## [1] 8</code></pre>
+<pre class="r"><code>Mifuncion.v1(x &lt;- 1, yyy = 2)</code></pre>
+<pre><code>## [1] -2</code></pre>
+<pre class="r"><code>x</code></pre>
+<pre><code>## [1] 1</code></pre>
+</div>
+<div id="revisión-de-los-argumentos-de-una-función" class="section level4">
+<h4>Revisión de los argumentos de una función</h4>
+<p>Para revisar los argumentos de una función, ya sea definida por el usuario por o no, podemos utilizar la función <code>args()</code></p>
+<pre class="r"><code>args(Mifuncion.v1)</code></pre>
+<pre><code>## function (x, yyy, z = 5, t) 
+## NULL</code></pre>
+<pre class="r"><code>args(lm)</code></pre>
+<pre><code>## function (formula, data, subset, weights, na.action, method = &quot;qr&quot;, 
+##     model = TRUE, x = FALSE, y = FALSE, qr = TRUE, singular.ok = TRUE, 
+##     contrasts = NULL, offset, ...) 
+## NULL</code></pre>
+<p>Aquí, el estudio del argumento especial <code>...</code> está fuera del alcance del curso, sin embargo el usuario debe saber que se usa para transferir un número variable de argumentos.</p>
+</div>
+</div>
+</div>
+<div id="entrada-de-datos" class="section level2">
+<h2>Entrada de Datos</h2>
+<div id="descripción-del-módulo-3" class="section level3">
+<h3>Descripción del módulo</h3>
+<div id="objetivos-3" class="section level4">
+<h4>Objetivos</h4>
+<p>Los conjuntos de datos no tienen que llegar a ser demasiado grandes para que sea impráctico teclearlos usando <code>c(...)</code>. La mayoría de los ejemplos que hemos visto hasta el momento corresponden a bases de datos existentes en el paquete <code>ISwR</code>. Sin embargo, en el momento en que deseamos aplicar estos métodos a nuestros propios datos, tendrás que lidiar con archivos. En esta sección hablaremos sobre cómo leer archivos de datos y como editarlos usando <code>R</code>. Se harán algunas consideraciones para los usuarios de sistemas operativos <strong>Windows</strong>.</p>
+</div>
+</div>
+<div id="entrada-de-datos-1" class="section level3">
+<h3>Entrada de datos</h3>
+<div id="lectura-de-un-archivo-de-texto" class="section level4">
+<h4>Lectura de un archivo de texto</h4>
+<p>La forma más conveniente de leer datos en <code>R</code> es a través de la función <code>read.table</code>. Se requiere que los datos estén en <em>formato ASCII</em>; esto es, un `<code>archivo plano'' creado con **NotePad** de **Windows** o cualquier editor de texto plano. El resultado de usar</code>read.table` es un data frame, por lo que la función espera encontrar la disposición de datos correspondiente, donde cada línea en el archivo contiene todos los datos de cada sujeto (o rata, o cliente, o…) en un orden específico, separados por espacios en blanco, u opcionalmente, algún otro separador. La primera línea del archivo contiene el encabezado dando los nombre a las variables, una práctica muy recomendada.</p>
+</div>
+<div id="lee-una-base-de-datos" class="section level4">
+<h4>Lee una base de datos</h4>
+<pre class="r"><code>thuesenBD &lt;- read.table(&quot;/home/victor/Desktop/Curso de R/IE06_Entrada de Datos/thuesenBD.txt&quot;, header = T)</code></pre>
+<pre class="r"><code>head(thuesenBD)
+  blood.glucose short.velocity
+1          15.3           1.76
+2          10.8           1.34
+3           8.1           1.27
+4          19.5           1.47
+5           7.2           1.27
+6           5.3           1.49</code></pre>
+<p>Recuerda ajustar la ruta del archivo en tu computadora.</p>
+</div>
+<div id="nota-sobre-windows" class="section level4">
+<h4>Nota sobre Windows</h4>
+<p>Si usas <strong>Windows</strong> recuerda usar <code>\\' o</code>/<code>en lugar de</code>’ para separar los directorios.</p>
+<pre class="r"><code>N:\\documentos\\thuesenBD.txt
+N:/documentos/thuesenBD.txt</code></pre>
+</div>
+<div id="textos-y-números" class="section level4">
+<h4>Textos y números</h4>
+<p><code>read.table</code> detecta automáticamente si un vector es numérico y texto, y lo convierte a factor en caso de ser texto. <code>R</code> no intenta reconocer códigos numéricos como factores.</p>
+<pre class="r"><code>head(secretinBD)
+  gluc person time repl time20plus time.comb
+1   92      A  pre    a        pre       pre
+2   93      A  pre    b        pre       pre
+3   84      A   20    a        20+        20
+4   88      A   20    b        20+        20
+5   88      A   30    a        20+       30+
+6   90      A   30    b        20+       30+</code></pre>
+</div>
+<div id="textos-y-números-1" class="section level4">
+<h4>Textos y números</h4>
+<p>Leer factores de esta manera es conveniente, pero hay un punto en contra. Los niveles se leen alfabéticamente.</p>
+<pre class="r"><code>levels(secretinBD$time)
+[1] &quot;20&quot;  &quot;30&quot;  &quot;60&quot;  &quot;90&quot;  &quot;pre&quot;</code></pre>
+<p>Si esto no es lo que se desea, tendrás que manipular los niveles de los factores.</p>
+</div>
+<div id="archivos-delimitados" class="section level4">
+<h4>Archivos delimitados</h4>
+<p>Las aplicaciones como las hojas de cálculo y bases de datos producen archivos de texto en formatos que requieren que se ajusten múltiples opciones. Para estos propósitos existen variantes de <code>read.table</code> `<code>pre-cocinadas''.</code>read.csv<code>y</code>read.csv2<code>permiten leer archivos **Csv** separados por coma (</code>,<code>) y punto y coma (</code>;<code>) respectivamente. Ambos asumen</code>header=T<code>por defecto.</code>read.delim<code>y</code>read.delim2<code>ayudan a leer archivos delimitados por tabulaciones. &gt; Recomendación &gt; Usa estas variantes cuando observes que</code>read.table` no te da los resultados esperados.</p>
+</div>
+<div id="conversión-de-datos-entrantes" class="section level4">
+<h4>Conversión de datos entrantes</h4>
+<p>Por defecto <code>read.table</code> convierte tus datos numéricos como numéricos y los no numéricos como factores. Si por alguna razón esto no tiene sentido puedes revisar los argumentos <code>stringAsFactor</code> para modificar todas las columnas, o <code>as.is</code> para hacerlo de forma individual. La opción <code>colClasses</code> permite espicificar cómo deseas que se lea cada columna, como las clases estándar <code>character</code>, <code>numeric</code>, etc. Si no deseas alguna columna usas <code>NULL</code>.</p>
+</div>
+<div id="ejemplo-de-conversión-de-datos" class="section level4">
+<h4>Ejemplo de conversión de datos</h4>
+<p>Si deseas especificar <code>colClasses</code> en <code>read.csv</code> en un conjunto de datos donde la primera columna ``time’’ es un vector de caracteres mientras que las cinco columnas restantes es numérico:</p>
+<pre class="r"><code>data &lt;- read.csv(&quot;test.csv&quot;, comment.char=&quot;&quot; , 
+                 colClasses=c(&quot;character&quot;,rep(&quot;numeric&quot;,5)), 
+                 strip.white=FALSE)</code></pre>
+<p>Observa que <code>colClasses</code> debe tener el mismo número de elementos que la cantidad de columnas a importar.</p>
+</div>
+<div id="editor-de-datos" class="section level4">
+<h4>Editor de Datos</h4>
+<p><code>R</code> ofrece un editor de texto con una intefaz primitiva de hoja de cálculo, pero muy útil en caso de contar con pequeños conjuntos de datos.</p>
+<pre class="r"><code>aq &lt;- edit(airquality)</code></pre>
+<p>En este ejemplo, cuando cierras el editor de datos, los datos editados se asignan a la variable <code>aq</code>, mientras que el original <code>airquality</code> permanece intacto.</p>
+</div>
+<div id="editor-de-datos-1" class="section level4">
+<h4>Editor de Datos}</h4>
+<p>Si no te importa modificar los datos originales puedes usar</p>
+<pre class="r"><code>fix(aq)</code></pre>
+<p>Esto es equivalente a usar <code>aq &lt;- edit(aq)</code>.</p>
+</div>
+<div id="editor-de-datos-2" class="section level4">
+<h4>Editor de Datos</h4>
+<p>Puedes aprovechar el editor para agregar datos manualmente a un dataframe.</p>
+<pre class="r"><code>dd &lt;- data.frame()
+fix(dd)</code></pre>
+<p>Esto es equivalente a usar <code>aq &lt;- edit(aq)</code>.</p>
+</div>
+<div id="interfaz-con-otros-programas" class="section level4">
+<h4>Interfaz con otros programas</h4>
+<p>En algunas ocasiones vas a querer extraer datos de otros programas a <code>R</code>.</p>
+<p>Por ejemplo, si tienes datos en otros paquetes estadísticos u hojas de cálculo.</p>
+<p>Una solución simple a este problema es pedir que el otro programa exporte los datos como un archivo de texto o algún formato compatible con <code>read.table, read.csv, read.csv2, read.delim</code> o <code>read.delim2</code>.</p>
+</div>
+<div id="paquete-foreign" class="section level4">
+<h4>Paquete <code>foreign</code></h4>
+<p>El paquete <code>foreign</code> es generalmente etiquetado como ``recomendado’’.</p>
+<p>Permite leer archivos de <strong>Spss</strong> (formato <code>.sav</code>), <strong>Sas</strong> (librerías de exportación), <strong>Epi-info</strong> (<code>.rec</code>), <strong>Stata</strong>, <strong>Systat</strong>, <strong>Minitab</strong>, y <strong>S-plus</strong>.</p>
+</div>
+<div id="leer-del-clipboard" class="section level4">
+<h4>Leer del Clipboard</h4>
+<p>Una manera rápida de leer datos es usando el Clipboard.</p>
+<p>Por ejemplo</p>
+<pre class="r"><code>read.table(&quot;clipboard&quot;, header = T)</code></pre>
+<p>Esto requiere cierta atención, pues se puede perder la precisión ya que sólo se transfieren los datos que aparecen en pantalla, lo que puede ser un problema si tienes muchos dígitos de significancia.</p>
+</div>
+<div id="una-nota-para-usuarios-avanzados" class="section level4">
+<h4>Una nota para usuarios avanzados</h4>
+<p>Para información guardada en bases de datos existe un número de paquetes en el CRAN.</p>
+<p>En particular el paquete RODBC te permite configurar una conección ODBC (<em>Open Database Connectivity</em>) para aplicaciones comunes como <strong>Excel</strong> y <strong>Access</strong>.</p>
+<p>Para información más actualizada y amplia visita el manual <em>R Data Import/Export</em> en el CRAN.</p>
+</div>
+</div>
+<div id="tareas" class="section level3">
+<h3>Tareas</h3>
+<div id="ejercicios-1" class="section level4">
+<h4>Ejercicios}</h4>
+<ul>
+<li><p>Describe como insertar un valor entre dos elementos de un vector en una posición dada usando la función <code>append</code>. Usa la ayuda del sistema para averiguarlo. ¿Sin <code>append</code> cómo lo harías?</p></li>
+<li><p>Escribe la base de datos <code>thuesen</code> en un archivo de texto separado por tabulaciones usando <code>write.table</code>. Revisa la base de datos usando un editor de texto. Cambia los valores <code>NA</code> a <code>.</code> (punto), y lee el archivo modificado de regreso en <code>R</code> con un comando apropiado. También intenta importar los datos de otras aplicaciones de tu elección y expórtalas a un nuevo archivo luego de editarlas. Es posible que tengas que remover los nombres de las columnas para que esto funcione.</p></li>
+</ul>
+</div>
+<div id="ejercicio-1-solución" class="section level4">
+<h4>Ejercicio 1: solución</h4>
+<pre class="r"><code>?append
+x &lt;- c(1,2,3,4,5,6,7) #creamos un vector de prueba
+append(x,c(8,9,10),after = length(x)) #agregamos datos al final del vector
+append(x,c(8,9,10),after = 4) #agregamos datos después de la cuarta posición
+
+c(x,c(8,9,10)) #agregamos datos al final del vector x
+c(x[1:4],c(8,9,10),x[5:7]) #agregamos datos después de la cuarta posición</code></pre>
+</div>
+<div id="ejercicio-2-solución" class="section level4">
+<h4>Ejercicio 2: solución</h4>
+<pre class="r"><code>?write.table
+write.table(thuesen, file = &quot;Datos.txt&quot;, quote = TRUE, sep = &quot;\t&quot;,
+            na = &quot;NA&quot;, row.names = F,
+            col.names = TRUE,
+            fileEncoding = &quot;&quot;)
+
+#despues de cambiar NA por .
+
+thuesenBD2 &lt;- read.table(&quot;Datos.txt&quot;, header = TRUE,
+              sep = &quot;\t&quot;, na.strings = &quot;.&quot;)</code></pre>
+<pre class="r"><code># Lee la primera hoja de un documento en miexcel.xlsx
+# La primera fila contiene el nombre de las variables
+library(xlsx)
+mydata &lt;- read.xlsx(&quot;c:/miexcel.xlsx&quot;, 1)
+
+# Lee en la hoja con el nombre mihoja
+mydata &lt;- read.xlsx(&quot;c:/miexcel.xlsx&quot;, sheetName = &quot;mihoja&quot;)</code></pre>
+</div>
+</div>
+</div>
+<div id="análisis-descriptivo-i" class="section level2">
+<h2>Análisis Descriptivo I}</h2>
+<div id="descripción-del-módulo-4" class="section level3">
+<h3>Descripción del módulo}</h3>
+<div id="objetivos-4" class="section level4">
+<h4>Objetivos}</h4>
+<p>Antes de intentar modelar datos, o hacer inferencias sobre los mismos, lo más sano es explorarlos a través de resúmenes estadísticos y visualizarlos por medio de gráficas diseñadas para ese fin.</p>
+<p>A través de ejemplos estaremos explorando algunas estrategias comunes en el análisis de datos.</p>
+</div>
+</div>
+<div id="resúmenes-estadísticos" class="section level3">
+<h3>Resúmenes estadísticos</h3>
+<div id="estadísticos-simples" class="section level4">
+<h4>Estadísticos simples</h4>
+<p>Para calcular la media, desviación estándar, varianza y mediana:</p>
+<pre class="r"><code>x &lt;- rnorm(50)
+mean(x)</code></pre>
+<pre><code>## [1] -0.116448</code></pre>
+<pre class="r"><code>sd(x)</code></pre>
+<pre><code>## [1] 1.047074</code></pre>
+<pre class="r"><code>var(x)</code></pre>
+<pre><code>## [1] 1.096363</code></pre>
+<pre class="r"><code>median(x)</code></pre>
+<pre><code>## [1] -0.10314</code></pre>
+</div>
+<div id="más-cuantiles" class="section level4">
+<h4>Más Cuantiles</h4>
+<p>Cuantiles empíricos se pueden calcular también</p>
+<pre class="r"><code>quantile(x)</code></pre>
+<pre><code>##         0%        25%        50%        75%       100% 
+## -2.3435404 -0.8245821 -0.1031400  0.7206288  2.1599132</code></pre>
+<p>Cuantiles empíricos se pueden calcular también</p>
+<pre class="r"><code>pvec &lt;- seq(0,1,0.1)
+pvec</code></pre>
+<pre><code>##  [1] 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0</code></pre>
+<pre class="r"><code>quantile(x,pvec)</code></pre>
+<pre><code>##          0%         10%         20%         30%         40%         50% 
+## -2.34354042 -1.27912182 -0.98309251 -0.69626314 -0.32790828 -0.10313996 
+##         60%         70%         80%         90%        100% 
+## -0.01655324  0.55655645  0.74515408  1.23981254  2.15991316</code></pre>
+<p>Por defecto <code>R</code> usa interpolación. Existen 7 métodos para calcular cuantiles que se pueden acceder mediante el argumento <code>type</code></p>
+</div>
+<div id="datos-faltantes" class="section level4">
+<h4>Datos faltantes</h4>
+<p>Usa los argumentos de las funciones para lidear con datos faltantes.</p>
+<pre class="r"><code>attach(juul)
+mean(igf1)</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>#Le pedimos a la función ignorar los datos faltantes
+mean(igf1,na.rm = T)</code></pre>
+<pre><code>## [1] 340.168</code></pre>
+</div>
+<div id="contar-elementos-cuando-hay-datos-faltantes" class="section level4">
+<h4>Contar elementos cuando hay datos faltantes</h4>
+<p>La función <code>length</code> no entiende la instrucción <code>na.rm</code>, por lo que no se puede usar para contar la cantidad de datos no faltantes. Para ello se puede usar algo como:</p>
+<pre class="r"><code>sum(!is.na(igf1))</code></pre>
+<pre><code>## [1] 1018</code></pre>
+<p>Los valores <code>TRUE</code> se traducen como <code>1</code> y los <code>FALSE</code> como <code>0</code>. al momento de sumarlos.</p>
+</div>
+<div id="resumen-de-estadísticos" class="section level4">
+<h4>Resumen de estadísticos</h4>
+<p>Una resumen de estadísticos de las variables numéricas se puede obtener mediante la función <code>summary</code>.</p>
+<pre class="r"><code>summary(igf1)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##    25.0   202.2   313.5   340.2   462.8   915.0     321</code></pre>
+</div>
+<div id="resumen-de-estadísticos-1" class="section level4">
+<h4>Resumen de estadísticos</h4>
+<p>También puedes obtener una descripción de todo el data frame.</p>
+<pre class="r"><code>summary(juul)</code></pre>
+<pre><code>##       age            menarche          sex             igf1      
+##  Min.   : 0.170   Min.   :1.000   Min.   :1.000   Min.   : 25.0  
+##  1st Qu.: 9.053   1st Qu.:1.000   1st Qu.:1.000   1st Qu.:202.2  
+##  Median :12.560   Median :1.000   Median :2.000   Median :313.5  
+##  Mean   :15.095   Mean   :1.476   Mean   :1.534   Mean   :340.2  
+##  3rd Qu.:16.855   3rd Qu.:2.000   3rd Qu.:2.000   3rd Qu.:462.8  
+##  Max.   :83.000   Max.   :2.000   Max.   :2.000   Max.   :915.0  
+##  NA&#39;s   :5        NA&#39;s   :635     NA&#39;s   :5       NA&#39;s   :321    
+##      tanner        testvol      
+##  Min.   :1.00   Min.   : 1.000  
+##  1st Qu.:1.00   1st Qu.: 1.000  
+##  Median :2.00   Median : 3.000  
+##  Mean   :2.64   Mean   : 7.896  
+##  3rd Qu.:5.00   3rd Qu.:15.000  
+##  Max.   :5.00   Max.   :30.000  
+##  NA&#39;s   :240    NA&#39;s   :859</code></pre>
+<p>Aquí <code>menarche</code>, <code>sex</code> y <code>tanner</code> están codificadas como numéricas cuando en realidad son categóricas. Podemos corregir esto:</p>
+<pre class="r"><code>detach(juul)
+juul$sex &lt;- factor(juul$sex, labels = c(&quot;M&quot;,&quot;F&quot;))
+juul$menarche &lt;- factor(juul$menarche, labels = c(&quot;No&quot;,&quot;Yes&quot;))
+juul$tanner &lt;- factor(juul$tanner, labels = c(&quot;I&quot;, &quot;II&quot;, &quot;III&quot;, &quot;IV&quot;, &quot;V&quot;))
+attach(juul)
+summary(juul)</code></pre>
+<pre><code>##       age         menarche     sex           igf1        tanner   
+##  Min.   : 0.170   No  :369   M   :621   Min.   : 25.0   I   :515  
+##  1st Qu.: 9.053   Yes :335   F   :713   1st Qu.:202.2   II  :103  
+##  Median :12.560   NA&#39;s:635   NA&#39;s:  5   Median :313.5   III : 72  
+##  Mean   :15.095                         Mean   :340.2   IV  : 81  
+##  3rd Qu.:16.855                         3rd Qu.:462.8   V   :328  
+##  Max.   :83.000                         Max.   :915.0   NA&#39;s:240  
+##  NA&#39;s   :5                              NA&#39;s   :321               
+##     testvol      
+##  Min.   : 1.000  
+##  1st Qu.: 1.000  
+##  Median : 3.000  
+##  Mean   : 7.896  
+##  3rd Qu.:15.000  
+##  Max.   :30.000  
+##  NA&#39;s   :859</code></pre>
+<p>Nota como cambia la presentación de los datos categóricos.</p>
+<p>Las modificaciones al data frame no afectan la versión adjunta con <code>attach</code>, por eso del <code>detach</code> usado.</p>
+</div>
+<div id="función-transform-o-within" class="section level4">
+<h4>Función <code>transform</code> o <code>within</code></h4>
+<p>Para ajustar varias variables dentro de un data frame puedes usar:</p>
+<pre class="r"><code>juul &lt;- transform(juul,
+                   sex = factor(sex, labels = c(&quot;M&quot;,&quot;F&quot;)),
+                   menarche = factor(menarche, labels = c(&quot;No&quot;,&quot;Yes&quot;)),
+                   tanner = factor(tanner, labels = c(&quot;I&quot;, &quot;II&quot;, &quot;III&quot;, &quot;IV&quot;, &quot;V&quot;)))</code></pre>
+<p>Recuerda usar comas para separar cada modificación.</p>
+</div>
+</div>
+<div id="gráficas-1" class="section level3">
+<h3>Gráficas</h3>
+<div id="histogramas" class="section level4">
+<h4>Histogramas</h4>
+<p>Puedes crear histogramas con la función <code>hist()</code></p>
+<pre class="r"><code>x = rnorm(1000)
+hist(x)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-173-1.png" width="672" /> Controla el número de clases con <code>breaks = n</code>.</p>
+<pre class="r"><code>hist(x, breaks = 5)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-174-1.png" width="672" /></p>
+</div>
+<div id="histogramas-1" class="section level4">
+<h4>Histogramas</h4>
+<p>También puedes especificar los límites de los intervalos de clase con el mismo argumento <code>breaks</code> al definirlo como vector.</p>
+<p>Usemos como ejemplo los datos de accidentes por grupo de edad documentados por Altman (1991):</p>
+<pre class="r"><code>mid.age &lt;- c(2.5,7.5,13,16.5,17.5,19,22.5,44.5,70.5)
+acc.count &lt;- c(28,46,58,20,31,64,149,316,103)
+age.acc &lt;- rep(mid.age,acc.count)
+brk &lt;- c(0,5,10,16,17,18,20,25,60,80)
+hist(age.acc,breaks = brk)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
+<p>Nota que automáticamente el histograma corrige el área de la columna para hacerla proporcional a la cantidad de elementos en ella.</p>
+</div>
+<div id="distribución-acumulada-empírica" class="section level4">
+<h4>Distribución acumulada empírica</h4>
+<p>La distribución acumulada se define como la fracción de datos menores o iguales a <span class="math inline">\(x\)</span>. Esto es, si <span class="math inline">\(x\)</span> es la <span class="math inline">\(k\)</span>-ésima observación más pequeña, la proporción <span class="math inline">\(k/n\)</span> de los datos son menores o iguales a <span class="math inline">\(x\)</span>. Así, la distriución empírica puede ser graficada como</p>
+<pre class="r"><code>n &lt;- length(x)
+plot(sort(x), (1:n)/n, xlab=&quot;x&quot;,
+     ylab=&quot;Proporción&quot;, type = &quot;s&quot;, ylim = c(0,1))</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
+<p>Usar <code>type = &quot;s&quot;</code> crea una función escalonada.</p>
+</div>
+<div id="graficas-cuantil-cuantil" class="section level4">
+<h4>Graficas Cuantil-Cuantil</h4>
+<p>Una de las razones para construir la distribución empírica acumulada es para verificar si los datos siguen una distribución normal. Para una mejor evaluación de este hecho podemos ocupar las gráficas cuantil-cuantil</p>
+<pre class="r"><code>qqnorm(x)</code></pre>
+<p><img src="about_files/figure-html/e-1.png" width="672" /></p>
+<p>Si los datos siguen una distribución normal, las gráfica cuantil-cuantil deberá mostrar aproximadamente una línea recta.</p>
+</div>
+<div id="gráfica-de-cajas" class="section level4">
+<h4>Gráfica de cajas</h4>
+<p>Una gráfica de cajas, o gráfica de cajas y bigotes, brinda una visión de los datos y permite su rápida comparación. Además, nos ayuda a detectar si existen puntos atípicos en las observaciones que puedan requerir atención especial.</p>
+<pre class="r"><code>par(mfrow=c(1,2))
+boxplot(IgM)
+boxplot(log(IgM))</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
+<pre class="r"><code>par(mfrow=c(1,1))</code></pre>
+<p>La función <code>par()</code> permite controlar los parámetros globales del ambiente gráfico. Uno de estos parámetros globales es <code>mfrow</code>, que se lee <code>multiframe, rowwise</code>. <code>c(1,2)</code> define una fila con dos columnas para acomodar figuras.</p>
+<blockquote>
+<p>Nota sobre la función par La función par afecta los parámetros de maner global, por lo que es necesario indicarle a <code>R</code> que luego de crear la figura regrese los parámetros a su estado por defecto.</p>
+</blockquote>
+<p>En el ejemplo anterior. Después de crear dos figuras en una misma área tuvimos que ejecutar nuevamente el comando <code>par(mfrow=c(1,1))</code> para reestablecer la configuración inicial (a menos que desees mantenerla para siguientes gráficas).</p>
+</div>
+</div>
+<div id="resúmenes-estadísticos-por-grupo" class="section level3">
+<h3>Resúmenes estadísticos por grupo</h3>
+<ul>
+<li>Estadísticas por grupos Cuando se trabaja con datos agrupados, es muy común querer obtener resúmenes estadísticos de los mismos dentro de cada grupo.</li>
+</ul>
+<p>Por ejemplo, una tabla de medias y desviaciones estándar.</p>
+<p>Para este fin usaremos <code>apply</code>.</p>
+<ul>
+<li>Medias</li>
+</ul>
+<pre class="r"><code>tapply(folate,ventilation,mean)</code></pre>
+<ul>
+<li>Desviaciones</li>
+</ul>
+<pre class="r"><code>tapply(folate,ventilation,sd)</code></pre>
+<ul>
+<li>Conteos</li>
+</ul>
+<pre class="r"><code>tapply(folate,ventilation,length)</code></pre>
+<ul>
+<li>Junta varios resultados} Si quieres que se vea más bonito prueba lo siguiente:</li>
+</ul>
+<pre class="r"><code>cbind(media = xbar, desv.est = s, n = n)</code></pre>
+<ul>
+<li>Valores faltantes Si tienes valores faltantes por defecto no se analizan</li>
+</ul>
+<pre class="r"><code>attach(juul)</code></pre>
+<pre><code>## The following objects are masked from juul (pos = 3):
+## 
+##     age, igf1, menarche, sex, tanner, testvol</code></pre>
+<pre class="r"><code>tapply(igf1,tanner,mean)</code></pre>
+<pre><code>##   I  II III  IV   V 
+##  NA  NA  NA  NA  NA</code></pre>
+<p>Modifica el argumento <code>na.rm=T</code></p>
+<pre class="r"><code>tapply(igf1,tanner,mean, na.rm=T)</code></pre>
+<pre><code>##        I       II      III       IV        V 
+## 207.4727 352.6714 483.2222 513.0172 465.3344</code></pre>
+<div id="otras-opciones-aggregate" class="section level4">
+<h4>Otras opciones: aggregate</h4>
+<p><code>aggregate</code> y <code>by</code> son variaciones de lo mismo ya visto, salvo que el primero funciona para todo el data frame y presenta los resultados en un data frame.</p>
+<p>Muy útil para presentar varios resultados a la vez.</p>
+<pre class="r"><code>aggregate(juul[c(&quot;age&quot;,&quot;igf1&quot;)],
+           list(sex=juul$sex), mean, na.rm=T)</code></pre>
+<pre><code>##   sex      age     igf1
+## 1   M 15.38436 310.8866
+## 2   F 14.84363 368.1006</code></pre>
+<p>Nota que el argumento que agrupa debe estar contenido en una lista siempre.</p>
+<p>La variable índice no necesariamente forma parte del data frame evaluado, por lo que hay que incluir toda su ruta como <code>juul$sex</code>.</p>
+<p>En este caso, puesto que un data frame es en realidad una lista:</p>
+<pre class="r"><code>aggregate(juul[c(&quot;age&quot;,&quot;igf1&quot;)],juul[&quot;sex&quot;], mean, na.rm=T)</code></pre>
+<pre><code>##   sex      age     igf1
+## 1   M 15.38436 310.8866
+## 2   F 14.84363 368.1006</code></pre>
+<p>El truco está en que el indice, al estar entre corchetes, regresa un data frame.</p>
+</div>
+<div id="otras-opciones-by" class="section level4">
+<h4>Otras opciones: by</h4>
+<p>Puedes hacer los mismo con la función by</p>
+<pre class="r"><code>by(juul$age, juul[&quot;sex&quot;], mean, na.rm=T)</code></pre>
+<pre><code>## sex: M
+## [1] 15.38436
+## -------------------------------------------------------- 
+## sex: F
+## [1] 14.84363</code></pre>
+<p>Si quieres un resumen de todas las variables</p>
+<pre class="r"><code>by(juul, juul[&quot;sex&quot;], summary)</code></pre>
+<pre><code>## sex: M
+##       age        menarche   sex          igf1        tanner   
+##  Min.   : 0.17   No  :  0   M:621   Min.   : 29.0   I   :291  
+##  1st Qu.: 8.85   Yes :  0   F:  0   1st Qu.:176.0   II  : 55  
+##  Median :12.38   NA&#39;s:621           Median :280.0   III : 34  
+##  Mean   :15.38                      Mean   :310.9   IV  : 41  
+##  3rd Qu.:16.77                      3rd Qu.:430.2   V   :124  
+##  Max.   :83.00                      Max.   :915.0   NA&#39;s: 76  
+##                                     NA&#39;s   :145               
+##     testvol      
+##  Min.   : 1.000  
+##  1st Qu.: 1.000  
+##  Median : 3.000  
+##  Mean   : 7.896  
+##  3rd Qu.:15.000  
+##  Max.   :30.000  
+##  NA&#39;s   :141     
+## -------------------------------------------------------- 
+## sex: F
+##       age        menarche   sex          igf1        tanner   
+##  Min.   : 0.25   No  :369   M:  0   Min.   : 25.0   I   :224  
+##  1st Qu.: 9.30   Yes :335   F:713   1st Qu.:233.0   II  : 48  
+##  Median :12.80   NA&#39;s:  9           Median :352.0   III : 38  
+##  Mean   :14.84                      Mean   :368.1   IV  : 40  
+##  3rd Qu.:16.93                      3rd Qu.:483.0   V   :204  
+##  Max.   :75.12                      Max.   :914.0   NA&#39;s:159  
+##                                     NA&#39;s   :176               
+##     testvol   
+##  Min.   : NA  
+##  1st Qu.: NA  
+##  Median : NA  
+##  Mean   :NaN  
+##  3rd Qu.: NA  
+##  Max.   : NA  
+##  NA&#39;s   :713</code></pre>
+<p>Cuyo resultado ahora es en forma de lista.</p>
+</div>
+</div>
+<div id="gráficas-para-datos-agrupados" class="section level3">
+<h3>Gráficas para datos agrupados</h3>
+<div id="histogramas-2" class="section level4">
+<h4>Histogramas</h4>
+<p>Veamos algunos ejemplos. Primero adjuntemos los datos del data frame <code>energy</code>.</p>
+<pre class="r"><code>attach(energy)
+expend.lean &lt;- expend[stature == &quot;lean&quot;]
+expend.obese &lt;- expend[stature == &quot;obese&quot;]</code></pre>
+<p>Ahora hagamos histogramas.</p>
+<pre class="r"><code>par(mfrow = c(2,1))
+hist(expend.lean, breaks = 10, xlim = c(5,13),
+      ylim = c(0,4), col = &quot;white&quot;)
+ hist(expend.obese, breaks = 10, xlim = c(5,13),
+      ylim = c(0,4), col = &quot;grey&quot;)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
+<pre class="r"><code> par(mfrow =c(1,1))</code></pre>
+</div>
+<div id="gráficas-de-caja-paralelas" class="section level4">
+<h4>Gráficas de caja paralelas</h4>
+<p>Usa el comando</p>
+<pre class="r"><code>boxplot(expend ~ stature, col = c(&quot;red&quot;, &quot;blue&quot;))</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
+<p>También pudimos haber creado el diagrama con el comando <code>boxplot(expend.lean, expend.obese)</code>.</p>
+</div>
+<div id="diagrama-de-puntos" class="section level4">
+<h4>Diagrama de puntos</h4>
+<p>Cuando se tienen pocos datos, como en el ejemplo anterior, el cálculo del intervalo intercuartílico (largo de la caja) es poco preciso y nuestros gráficos pueden sufrir del efecto del .</p>
+<p>Cuando tenemos pocos datos puede ser más conveniente utilizar un diagrama de observaciones individuales donde cada observación es graficada como un punto en el eje.</p>
+<p>Para lograr esto usamos la función <code>stripchart</code>.</p>
+</div>
+<div id="diagrama-de-observaciones-individuales" class="section level4">
+<h4>Diagrama de observaciones individuales</h4>
+<pre class="r"><code>opar &lt;- par(mfrow = c(2,2), mex=0.6, mar=c(3,3,2,1)+0.1)
+stripchart(expend ~ stature)
+stripchart(expend ~ stature, method = &quot;stack&quot;)
+stripchart(expend ~ stature, method = &quot;jitter&quot;)
+stripchart(expend ~ stature, method = &quot;jitter&quot;, jitter=0.03)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-191-1.png" width="672" /></p>
+<pre class="r"><code>par(opar)</code></pre>
+<blockquote>
+<p>Algunas observaciones sobre la función <code>par</code> * La configuración original de par se guarda en una variable (opar). * La configuración original se reestablece con <code>par(opar)</code> * El argumento <code>mex</code> reduce la distancia entre líneas. * <code>mar</code> reduce el número de líneas que rodean la región de la gráfica.</p>
+</blockquote>
+<blockquote>
+<p>Algunas observaciones sobre los argumentos de <code>stripchart</code> * La versión por defecto gráfica los puntos sobre la línea, que puede ser problemático si hay traslapes. * El argumento <code>method=&quot;stack&quot;</code> apila las observaciones iguales. Lo que puede ser todavía un problema con las casi iguales. * <code>method=&quot;jitter&quot;</code> crea una pequeña perturbación aleatoria que separa los puntos en un eje imaginario. * Por defecto <code>jitter</code> está definido en <code>0.1</code>, lo que puede ser mucha perturbación para algunos. Usar <code>jitter = 0.03</code> permite ajustar esto a valores menores.</p>
+</blockquote>
+</div>
 </div>
 </div>
 </div>

@@ -1,5 +1,9 @@
 ---
 title: "Curso de R"
+#output:
+#    html_document:
+#      toc: true
+#      toc_float: true
 ---
 # {.tabset .tabset-fade .tabset-pills}
 
@@ -9,8 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Introducción
 ### Instalación de R 
-Para utilizar R es necesario instalarlo en tu máquina. Para ello sigue
-las instrucciones en https://cran.r-project.org/.
+Para utilizar R es necesario instalarlo en tu máquina. Para ello sigue las instrucciones en https://cran.r-project.org/.
 
 Para facilitar la programación en R, es necesario descargar otro software que
 asista como interfaz de usuario, creando un ambiente integrado de desarrollo
@@ -23,7 +26,7 @@ libremente de https://www.rstudio.com.
 
 R es un software de fuente libre para su uso en estadística. Se modeló a raíz de
 S y S-Plus. El lenguaje S fue desarrollado a finales de los 80's en los
-laboratorios de AT\&T. El proyecto R fue iniciado por Robert Gentleman y Ross
+laboratorios de **AT&T**. El proyecto R fue iniciado por Robert Gentleman y Ross
 Ihaka en el Departamento de Estadística de la Universidad de Auckland en 1995. [sitio web oficial](https://cran.r-project.org)
 
 ### Uso de R en el curso
@@ -37,7 +40,7 @@ más sofisticado a pesar de la curva de aprendizaje menos pronunciada.
 Se espera que los alumnos aprecien los siguientes beneficios:
 
 * R es gratis.
-* R es de código abierto, corre en sistemas \textsc{Unix} (y similares), \textsc{Windows} y \textsc{Macintosh}.
+* R es de código abierto, corre en sistemas **Unix** (y similares), **Windows** y **Macintosh**.
 * R tiene un sistema de ayuda muy amplio.
 * R permite diseñar y manipular gráficas.
 * Aprendiendo R, los alumnos pueden luego migrar a otras plataformar comerciales como S, o S-plus.
@@ -633,7 +636,6 @@ en el paquete `ISwR`. Sólo sigue las siguientes instrucciones:
 install.packages("ISwR")
 library(ISwR)
 ```
-\begin{verbatim}
 Ya puedes continuar.
 
 #### Datos agrupados y data frames
@@ -803,6 +805,1072 @@ xfactor
   sapply(simframe,mean)
   ```
 
+## Ambiente R
+
+### Descripción del módulo
+
+#### Objetivos
+Se discuten algunos aspectos prácticos de trabajar con R. Estructura del entorno de trabajo, creación de gráficas, programación elemental y entrada de datos
+
+### Administración de sesiones
+
+#### Espacio de trabajo}
+Todas las variables creadas en `R` se guardan en un espacio de trabajo común.
+```{r}
+ls()
+```
+
+#### Remover variables
+Si el espacio de trabajo se ve desordenado, puedes borrar algunos objetos usando `rm`.
+```{r}
+rm(height,weight)
+ls()
+```
+
+#### Remover todas las variables
+Puedes remover todas las variables usando `rm(list=ls())`.
+
+Sin embargo, esto no remueve las variables que inicien con un punto, pues estas no se listan en `ls()`, para eso requieres `ls(all=T)`.
+
+> Cuidado
+> Remover todas las variables con `ls(all=T)` puede ser peligroso, pues las variables que inician con un punto son del sistema.
+
+
+#### Guardar el espacio de trabajo}
+Puedes guardar todo es espacio de trabajo en un archivo usando la función `save.image()`.
+
+Esto hará que un archivo `.RData` se cree en el directorio por defecto.
+
+Usa un nombre entre comillas para asignarle algún nombre en particular a tu sesión y escribir la ruta donde deseas guardar como se muestra a continuación.
+```{r eval=FALSE}
+save.image(file file = "trabajo.RData")
+load("trabajo.RData")
+save.image(file = "/home/victor/Documents/R Works/trabajo.RData")
+load("/home/victor/Documents/R Works/trabajo.RData")
+```
+
+
+#### Guardar el espacio de trabajo
+Puedes guardar objetos específicos usando la función `save()`.
+```{r eval=FALSE}
+save(weight,bmi,file = "/home/victor/Documents/RWorks/pesos.RData")
+load("/home/victor/Documents/R Works/pesos.RData")
+```
+Puedes seleccionar todos los objetos del espacio de trabajo que desees salvar, uno por uno separados por coma. Al final recuerda especificar el nombre para tu archivo de espacio de trabajo junto a su ruta si deseas otra que no sea tu directorio de trabajo.
+
+#### Directorio de trabajo
+Para ver tu directorio de trabajo actual usa `getwd()`.
+
+Para modificar tu directorio de trabajo usa `setwd()`.
+Ejemplo:
+```{r eval=FALSE}
+getwd()
+setwd("/home/victor/Documents/R Works")
+getwd()
+```
+
+#### Atención usuarios de Windows
+R se confunde si escribes una ruta como
+```{r eval=FALSE}
+c:\mydocuments\myfile.txt
+```
+
+Esto porque `R` reconoce `\` como un caracter de fuga. Para definir tu ruta usa:
+```{r eval=FALSE}
+c:\\my documents\\myfile.txt
+c:/mydocuments/myfile.txt
+```
+
+#### Historial
+Puedes desplegar los últimos 25 comando que escribiste al invocar la función `history()`.
+Puedes ver todo el historial con `history(max.show=Inf)`.
+Además puedes guardar y leer tu historial usando:
+```{r eval=FALSE}
+savehistory(file="mihistoria")
+loadhistory(file="myfile")
+```
+
+Por defecto la extensión de los archivos es `.RData`.
+
+#### Pedir ayuda
+Para pedir ayuda sobre alguna función puedes usar la función `help()` o simplemente el prefijo `?` antes de la función de la que deseas pedir ayuda.
+
+```{r eval=FALSE}
+help("aggregate")
+?aggregate
+```
+En ambos casos se logra ingresar a los manuales de ayuda para la función `aggregate`.
+
+#### Paquetes
+Una instalación típica de `R` trae consigo una o más librerías de paquetes. Algunos de estos paquetes son de la instalación básica, y otros pueden ser descargados del `CRAN` con más de 1000 paquetes para distintos propósitos. *¡Incluso puedes crear tus propios paquetes!*.
+Una librería es sólo un fólder en tu disco, mientras que un paquete contiene
+funciones escritas en el lenguaje `R`, librerías con códigos (generalmente escritas en `C` o `Fortran`), y conjuntos de datos.\
+
+#### Paquetes
+Para cargar un paquete, como el paquete `survival` usa la función `library()` y para sacarlo `detach` de la siguiente manera:
+```{r evl=FALSE}
+library(survival)
+detach("package:survival")
+```
+Los paquetes no forman parte del espacio de trabajo, por lo que al guardar el espacio y volverlo a cargar tendrás que volver a leer los paquetes que te inreresen.
+
+#### Adjunta data frames
+Puedes adjuntar una copia de las variables de un data frame usando la función `attach()`:
+```{r }
+attach(thuesen)
+blood.glucose
+short.velocity
+```
+
+Con esta función `R` incluye `thuesen` en la ruta de búsqueda que puede observase con `search()`. Usa `detach()` para sacar las variable copiadas a memoria.
+
+
+## Subsistema Gráfico
+
+### Descripción del módulo}
+
+#### Objetivos
+Es común en estadística querer modificar los gráficos más allá del formato
+por defecto. En ocasiones se requiere agregar notas, modificar los ejes, cambiar las etiquedas, agregar marcas, etc.
+
+Todo esto se puede hacer en `R`. Aunque se sienta raro al principio, notarás que el enfoque es flexible y poderoso.
+
+En este módulo se estudiará la estructura de una gráfica típica y se darán indicaciones que te ayuden a lograr los resultados que desees.
+
+Se advierte que el desarrollo de gráficas es una especialidad compleja y amplia cuya profundización va más allá de un curso introductorio.
+
+
+### El subsistema de gráficas
+
+#### Disposición del gráfico
+Un gráfico estándar x-y tiene títulos de etiquetas generadas por las expresiones que se grafican. Sin embargo, puedes cambiar estas etiquetas y agregar dos títulos adicionales, un título principal sobre el área gráfica y un subtítulo en la parte inferior.
+```{r}
+x <- runif(50,0,2)
+y <- runif(50,0,2)
+plot(x, y, main = "Título principal", sub = "Subtítulo",
+xlab = "Título eje x", ylab = "Título eje y" )
+```
+
+#### Agregar puntos y líneas
+Dentro de la región de la gráfica puedes agregar puntos y líneas.
+
+Estos los especificas en la función `plot` o los agregas más tarde con `points` y `lines`.
+También puedes agregar texto con
+```{r eval=FALSE}
+text(0.6,0.6,"Texto en punto (0.6,0.6)")
+abline(h = 0.6, v = 0.6)
+```
+```{r echo=FALSE}
+plot(x, y, main = "Título principal", sub = "Subtítulo",
+xlab = "Título eje x", ylab = "Título eje y" )
+text(0.6,0.6,"Texto en punto (0.6,0.6)")
+abline(h = 0.6, v = 0.6)
+```
+
+
+#### Agregar texto en los márgenes
+Puedes agregar texto partiendo de las coordenadas de los márgenes.
+`line = -1` indica una línea dentro de la figura, `line = 1`, indica una línea dentro de la figura.
+```{r eval=FALSE}
+for (side in 1:4) mtext(-1:4, side = side, at = .7, line = -1:4)
+mtext(paste("side",1:4), side = 1:4, line = -1, font = 2)
+```
+Usando distintas line puedes agregar muchas líneas de texto en cada lado de la figura.
+
+```{r echo=FALSE, eval=TRUE}
+plot(x, y, main = "Título principal", sub = "Subtítulo",
+xlab = "Título eje x", ylab = "Título eje y" )
+text(0.6,0.6,"Texto en punto (0.6,0.6)")
+abline(h = 0.6, v = 0.6)
+for (side in 1:4) mtext(-1:4, side = side, at = .7, line = -1:4)
+mtext(paste("side",1:4), side = 1:4, line = -1, font = 2)
+```
+
+Nota que no todos los márgenes son suficientemente grandes para registrar todos los números, por lo que conviene utilizar posiciones negativas para añadir texto si se desea.
+
+
+#### Contruir un gráfico por partes
+Para tener más control puedes iniciar un área gráfica en blanco y poco a poco
+agregar las partes con comandos individuales.
+```{r}
+plot(x, y, type = "n", xlab = "", ylab = "", axes = F)
+points(x,y) #agrega los puntos de forma individual
+axis(1)
+axis(2)
+```
+```{r}
+plot(x, y, type = "n", xlab = "", ylab = "", axes = F) #prerapa el área de gráfico.
+points(x,y) #agrega los puntos de forma individual
+axis(1)
+axis(2, at =seq(0.2,1.8,0.2))
+box()
+title(main = "Título principal", sub = "Subtítulo", xlab = "Eje x", ylab = "Eje y")
+```
+
+
+#### Función par
+`par` es una función que permite modificar el grosor de las líneas,
+el tamaño de los caracteres y su fuente, colres, estilo de ejes, tamaño
+de las áreas gráficas y regiones de figuras, etc.
+
+Incluso es posible dividir la figura en varias subfiguras usando `mfrow` y `mfcol`.
+
+En este momento explicar todos los parámetros gráficos carece de sentido.
+En su lugar se explicarán cuando se presenten gráficos específicos.
+
+
+#### Combinar figuras
+También podemos combinar figuras si así lo deseamos
+```{r}
+x <- rnorm(100) #generamos datos distribución normal
+hist(x, freq = F) #creamos un histograma de frecuencias relativas haciendo freq = F
+curve(dnorm(x), add = T) #agregamos una curva normal al establecer add = T
+```
+
+
+#### Combinar figuras
+Para asegurar que el histograma y la curva tengan espacio suficiente
+en la figura, modifica la magnitud de los valores de `y` en los
+elementos de ambas gráficas.
+```{r}
+h <- hist(x, plot = F)
+ylim <- range(0, h$density, dnorm(0))
+hist(x, freq = F, ylim = ylim)
+curve(dnorm(x), add = T)
+```
+Al usar en `hist` el argumento `plot = F`, `hist` no despliega
+nada, pero regresa una estructura que contine las alturas de las barras de las densidades. Esto y el hecho de que el máximo de `dnorm(x)` es `dnorm(0)` nor permite calcular el rango que se requiere para los valors de y.
+
+
+## Programación
+
+### Descripción del módulo
+
+#### Objetivos}
+Es posible escribir tus propias funciones usando `R`. Esta posibilidad
+es principalmente importante al utilizar la aplicación en el largo plazo.
+
+En esta sección veremos estudiaremos las estructura de control que dirigen la ejecución de un programa.
+
+
+### Estructuras de control
+
+#### IF
+La construcción `if` y `else` permiten ejecutar o saltar un conjunto de instrucciones dentro del código de un programa de `R`.
+```{r}
+aa <- 15
+if(aa > 14)
+ print("FELICIDADES")
+```
+```{r}
+if(aa > 14) print("FELICIDADES")
+```
+```{r}
+if(aa > 14){
+   print("PRIMER REGLÓN")
+   print("SEGUNDO REGLÓN")
+ }
+```
+
+
+Puedes usar el valor que regresa `if` de forma directa
+```{r}
+y <- 10
+y <- if(aa > 14) 50
+y
+```
+
+#### IF-ELSE
+La construcción `if` admite una sóla expresión, pero ésta puede ser la expresión compuesta, que se construye mediante el uso de llaves `{ }` y las expresiones en su interior, separadas ya sea por un cambio de reglón o por `;`.
+
+
+Para agregar más expresiones en distintas condiciones podemos utilizar la construcción `else if ` y `else`.
+```{r}
+if(10 > aa){
+   print("RANGO MENOR")
+ } else if(10 <= aa && aa <= 20){
+   print("RANGO MEDIO")
+ } else{
+   print("RANGO ALTO")
+ }
+```
+
+#### Ciclos
+En el lenguaje de programación es común utilizar ciclos o repeticiones.
+Estas repeticiones implican instrucciones que se repiten un determinado número de veces mientras se cumple una condición.
+
+
+#### Ciclo FOR
+```{r}
+letras <- c("S", "U", "A", "V", "E")
+for (i in 1:5) {
+   print(letras[i])
+ }
+```
+
+La estructura que sigue el ciclo `for` es:
+```{r eval=FALSE}
+for (var in seq) expr
+```
+Donde la expresión puede ser compuesta utilizando llaves `{ }` como en el ejemplo anterior.
+
+
+Otras formas de lograr el ciclo `for` es:
+```{r}
+for (i in seq_along(letras)) {
+print(letras[i])
+}
+```
+```{r}
+for (letra in letras) {
+print(letra)
+}
+```
+La función `seq_along()` genera una secuencia de enteros de acuerdo al número de elementos del objeto usado como argumento.
+
+En el segundo caso se toma uno a uno los elementos del objeto después de la
+partícula `in` del `for`.
+
+
+#### Ciclo WHILE
+El ejercicio anterior lo podemos lograr utilizando ciclo condicionados al cumplimiento de una regla con la instrucción `while`.
+```{r}
+i <- 1
+while (i <= 5) {
+   print(letras[i])
+   i <- i + 1
+ }
+```
+La instrucción `while` sigue la estructura
+```{r eval=FALSE}
+while (cond) expr
+```
+Donde la expresión puede se compuesta al utilizar llaves `{ }` como se observó en el ejemplo.
+
+
+#### Repeticiones infinitas
+La instrucción `repeat` permite crear ciclos infinitos que no se detienen a menos que agreguemos alguna interrupción como `break`.
+```{r}
+i <- 1
+repeat {
+   print(letras[i])
+   i <- i + 1
+   if (i > 5)
+     break
+ }
+```
+
+#### Interrupciones del flujo normal de los cilos
+Existen funciones como `break`, `next` y `return` que permiten
+interrumpir los ciclos en el momento en que se ejecutan.
+
+> Advertencia
+> Interrumpir ciclos usando funciones como `break`, `next` y `return` no es recomendado bajo los principios de la programación estructurada.
+
+Debido a que el uso de estas funciones no es recomendado, no profundizaremos en su uso y aplicación.
+
+
+### Escritura de funciones
+
+#### ¿Por qué escribir funciones?
+Cuando el código que escribirmos es muy extenso y complejo, utilizar funciones que nos permitan reciclar nuestros códigos y atender las necesidades en módulos separados de forma ordenada.
+
+#### Estructura formal de una función
+Para crear o definir funciones personalizadas se utiliza la directiva `function`.
+
+```{r eval=FALSE}
+f <- function(<argumentos>){
+  
+  #expresiones
+  
+  <valor> #la última expresión de la lista
+}
+```
+
+Esta directiva tiene dos partes:
+
+* Definición de argumentos formales.
+* Expresiones.
+
+Al ejecutarse la función el valor de la última expresión en la secuencia de ejecución se entrega como resultado
+
+
+#### Ejemplo de funciones: Caso 1
+Definimos una función llamada `Mifuncion.v1` con argumentos `x`, `yyy`, `z`, y `t`.
+
+```{r}
+Mifuncion.v1 <- function (x, yyy, z=5, t) {
+  w <- x + yyy - z
+  w
+}
+Mifuncion.v1(x = 1, yyy = 2)
+```
+
+`x`, `yyy` son argumentos obligatorios. El usuario debe definir su valor al momento de ejecutar la función.
+
+`z` es un argumento opcional, pues si el usuario no lo define, automáticamente toma el valor de 5.
+
+`t` es un argumento adicional que no se emplea en el cuerpo de la función y su definición o falta de ella no afecta el resultado.
+
+Observa el efecto que distintas formas de ejecutar tu función tiene en ella y discute.
+
+```{r eval=FALSE}
+Mifuncion.v1(x = 1, yyy = 2)
+Mifuncion.v1(x = 1, yyy = 2, z = 5)
+Mifuncion.v1(x = 1, yyy = 2, z = 7)
+Mifuncion.v1(x = 1, yyy = 2, z = 7, t = 10)
+
+Mifuncion.v1(1, 2)
+Mifuncion.v1(1, 2, 5)
+Mifuncion.v1(1, 2, 7)
+Mifuncion.v1(1, 2, 7, 10)
+
+Mifuncion.v1(yyy = 2, z = 7, x = 1)
+Mifuncion.v1(2, 7, 1)
+
+a = 1
+b = 2
+c = 3
+Mifuncion.v1(x = a, yyy = b, z = c)
+Mifuncion.v1(a, b, c)
+Mifuncion.v1(a, b, z = c)
+```
+
+
+#### Ejemplo de funciones: Caso 2}
+Ahora veremos que sucede si agregamos la función `return` dentro de las expresiones que ejecutará la función que definimos
+
+```{r}
+Mifuncion.v2 <- function (x, yyy, z=5, t) {
+   w <- x + yyy - z
+   return (w)
+   3.1416 # Este código nunca se ejecuta
+ }
+Mifuncion.v2(x = 1, yyy = 2)
+```
+
+La función detiene su ejecución al llegar a `return (w)` y regresa como resultado el valor del objeto defino entre paréntesis.
+
+
+#### Ejemplo de funciones: Caso 3
+Ahora veremos que sucede si el resultado no lo salvas en una variable
+
+```{r}
+Mifuncion.v3 <- function (x, yyy, z=5, t) {
+   x + yyy - z
+ }
+Mifuncion.v3(x = 1, yyy = 2)
+```
+
+La función regresa el valor de la última expresión ejecutada, y obtenemos el mismo resultado en en los casos anteriores.
+
+#### Variables locales
+Si observamos la variable `w`, esta se define al moento de
+ejecutar la función.
+
+```{r}
+Mifuncion.v1 <- function (x, yyy, z=5, t) {
+  w <- x + yyy - z
+  w
+}
+```
+
+`w` nace en la función y desaparece cuando termina de ejecutarse la función. Se dice que `w` es una varible local.
+
+
+#### Variables locales
+Haz la siguente prueba y observa el resultado
+
+```{r}
+w <- 9
+Mifuncion.v1 <- function (x, yyy, z=5, t) {
+   w <- x + yyy - z
+   w
+ }
+Mifuncion.v1(x = 1, yyy = 2)
+```
+```{r}
+w
+```
+
+La ejecución de la función no afectó el valor de `w` definido fuera de ella.
+
+
+#### `<-` vs `=`
+Usar `<-` para asignar permite que el código sea compatible con códigos y versiones de `R` viejas.
+
+Asignar con `=` es una tendencia moderna, y en general se obtiene el mismo efectos que al usar `<-`. Sin embargo existen diferencias sutiles.
+
+Observa que sucede con el valor de `x` al definir su valor dentro de los argumentos de una función:
+
+```{r}
+x = 8
+Mifuncion.v1(x = 1, yyy = 2)
+```
+```{r}
+x
+```
+```{r}
+Mifuncion.v1(x <- 1, yyy = 2)
+```
+```{r}
+x
+```
+
+#### Revisión de los argumentos de una función
+Para revisar los argumentos de una función, ya sea definida por el usuario por o no, podemos utilizar la función `args()`
+
+```{r}
+args(Mifuncion.v1)
+```
+```{r}
+args(lm)
+```
+
+Aquí, el estudio del argumento especial `...` está fuera del alcance del curso, sin embargo el usuario debe saber que se usa para transferir un número variable de argumentos.
+
+
+## Entrada de Datos
+
+### Descripción del módulo
+
+#### Objetivos
+Los conjuntos de datos no tienen que llegar a ser demasiado grandes para que sea impráctico teclearlos usando `c(...)`.
+La mayoría de los ejemplos que hemos visto hasta el momento corresponden a bases de datos existentes en el paquete `ISwR`. Sin embargo, en el momento en que deseamos aplicar estos métodos a nuestros propios datos, tendrás que lidiar con archivos.
+En esta sección hablaremos sobre cómo leer archivos de datos y como editarlos usando `R`.
+Se harán algunas consideraciones para los usuarios de sistemas operativos **Windows**.
+
+
+### Entrada de datos
+
+#### Lectura de un archivo de texto
+La forma más conveniente de leer datos en `R` es a través de la función `read.table`.
+Se requiere que los datos estén en *formato ASCII*; esto es, un
+``archivo plano'' creado con **NotePad** de **Windows** o cualquier editor de texto plano.
+El resultado de usar `read.table` es un data frame, por lo que la función espera encontrar la disposición de datos correspondiente, donde cada línea en el archivo contiene todos los datos de cada sujeto (o rata, o cliente, o...) en un orden específico, separados por espacios en blanco, u opcionalmente, algún otro separador.
+La primera línea del archivo contiene el encabezado dando los nombre a las variables, una práctica muy recomendada.
+
+#### Lee una base de datos
+
+```{r eval=FALSE}
+thuesenBD <- read.table("/home/victor/Desktop/Curso de R/IE06_Entrada de Datos/thuesenBD.txt", header = T)
+```
+```{r eval=FALSE}
+head(thuesenBD)
+  blood.glucose short.velocity
+1          15.3           1.76
+2          10.8           1.34
+3           8.1           1.27
+4          19.5           1.47
+5           7.2           1.27
+6           5.3           1.49
+```
+
+Recuerda ajustar la ruta del archivo en tu computadora.
+
+
+#### Nota sobre Windows
+Si usas **Windows** recuerda usar `\\' o `/` en lugar de `\textbackslash' para separar los directorios.
+```{r eval=FALSE}
+N:\\documentos\\thuesenBD.txt
+N:/documentos/thuesenBD.txt
+```
+
+#### Textos y números
+`read.table` detecta automáticamente si un vector es numérico y texto, y lo convierte a factor en caso de ser texto.
+`R` no intenta reconocer códigos numéricos como factores.
+
+```{r eval=FALSE}
+head(secretinBD)
+  gluc person time repl time20plus time.comb
+1   92      A  pre    a        pre       pre
+2   93      A  pre    b        pre       pre
+3   84      A   20    a        20+        20
+4   88      A   20    b        20+        20
+5   88      A   30    a        20+       30+
+6   90      A   30    b        20+       30+
+```
+
+#### Textos y números
+Leer factores de esta manera es conveniente, pero hay un punto en contra. Los niveles se leen alfabéticamente.
+
+```{r eval=FALSE}
+levels(secretinBD$time)
+[1] "20"  "30"  "60"  "90"  "pre"
+```
+Si esto no es lo que se desea, tendrás que manipular los niveles de los factores.
+
+
+#### Archivos delimitados
+Las aplicaciones como las hojas de cálculo y bases de datos producen archivos de texto en formatos que requieren que se ajusten múltiples opciones. Para estos propósitos existen variantes de `read.table` ``pre-cocinadas''.
+`read.csv` y `read.csv2` permiten leer archivos **Csv** separados
+por coma (`,`) y punto y coma (`;`) respectivamente. Ambos asumen `header=T` por defecto.
+`read.delim` y `read.delim2` ayudan a leer archivos delimitados
+por tabulaciones.
+> Recomendación
+> Usa estas variantes cuando observes que `read.table` no te da los
+resultados esperados.
+
+
+#### Conversión de datos entrantes
+Por defecto `read.table` convierte tus datos numéricos como numéricos y los no numéricos como factores.
+Si por alguna razón esto no tiene sentido puedes revisar los argumentos `stringAsFactor` para modificar todas las columnas, o `as.is` para hacerlo de forma individual.
+La opción `colClasses` permite espicificar cómo deseas que se lea cada columna, como las clases estándar `character`, `numeric`, etc. Si no deseas alguna columna usas `NULL`.
+
+
+
+#### Ejemplo de conversión de datos
+Si deseas especificar `colClasses` en `read.csv` en un conjunto
+de datos donde la primera columna ``time'' es un vector de caracteres mientras que las cinco columnas restantes es numérico:
+
+```{r eval=FALSE}
+data <- read.csv("test.csv", comment.char="" , 
+                 colClasses=c("character",rep("numeric",5)), 
+                 strip.white=FALSE)
+```
+
+Observa que `colClasses` debe tener el mismo número de elementos que la cantidad de columnas a importar.
+
+
+#### Editor de Datos
+`R` ofrece un editor de texto con una intefaz
+primitiva de hoja de cálculo, pero muy útil en caso de
+contar con pequeños conjuntos de datos.
+```{r eval=FALSE}
+aq <- edit(airquality)
+```
+En este ejemplo, cuando cierras el editor de datos, los datos editados se asignan a la variable `aq`, mientras que
+el original `airquality` permanece intacto.
+
+
+#### Editor de Datos}
+Si no te importa modificar los datos originales puedes usar
+```{r eval=FALSE}
+fix(aq)
+```
+Esto es equivalente a usar `aq <- edit(aq)`.
+
+
+#### Editor de Datos
+Puedes aprovechar el editor para agregar datos manualmente a un dataframe.
+```{r eval=FALSE}
+dd <- data.frame()
+fix(dd)
+```
+Esto es equivalente a usar `aq <- edit(aq)`.
+
+
+#### Interfaz con otros programas
+En algunas ocasiones vas a querer extraer datos de otros programas a `R`.
+
+Por ejemplo, si tienes datos en otros paquetes estadísticos u hojas de cálculo.
+
+Una solución simple a este problema es pedir que el otro programa exporte los datos como un archivo de texto o algún formato compatible con
+`read.table, read.csv, read.csv2, read.delim` o `read.delim2`.
+
+
+#### Paquete `foreign`
+El paquete `foreign` es generalmente etiquetado como ``recomendado''.
+
+Permite leer archivos de **Spss** (formato `.sav`), **Sas** (librerías de exportación),
+**Epi-info** (`.rec`), **Stata**, **Systat**, **Minitab**, y **S-plus**.
+
+
+#### Leer del Clipboard
+Una manera rápida de leer datos es usando el Clipboard.
+
+Por ejemplo
+```{r eval=FALSE}
+read.table("clipboard", header = T)
+```
+Esto requiere cierta atención, pues se puede perder la precisión ya que sólo se transfieren los datos que aparecen en pantalla, lo que puede ser un problema si tienes muchos dígitos de significancia.
+
+
+#### Una nota para usuarios avanzados
+Para información guardada en bases de datos existe un número de paquetes en el CRAN.
+
+En particular el paquete RODBC te permite configurar una conección ODBC
+(*Open Database Connectivity*) para aplicaciones comunes como **Excel** y **Access**.
+
+Para información más actualizada y amplia visita el manual *R Data Import/Export* en el CRAN.
+
+
+### Tareas
+
+#### Ejercicios}
+* Describe como insertar un valor entre dos elementos de un vector en una
+posición dada usando la función `append`. Usa la ayuda del sistema para
+averiguarlo. ¿Sin `append` cómo lo harías?
+
+* Escribe la base de datos `thuesen` en un archivo de texto separado por tabulaciones usando `write.table`. Revisa la base de datos usando un editor de texto. Cambia los valores `NA` a `.` (punto), y lee el archivo modificado de regreso en `R` con un comando apropiado. También intenta importar los datos de otras aplicaciones de tu elección y expórtalas a un nuevo archivo luego de editarlas. Es posible que tengas que remover los nombres de las columnas para que esto funcione.
+
+
+#### Ejercicio 1: solución
+```{r eval =FALSE}
+?append
+x <- c(1,2,3,4,5,6,7) #creamos un vector de prueba
+append(x,c(8,9,10),after = length(x)) #agregamos datos al final del vector
+append(x,c(8,9,10),after = 4) #agregamos datos después de la cuarta posición
+
+c(x,c(8,9,10)) #agregamos datos al final del vector x
+c(x[1:4],c(8,9,10),x[5:7]) #agregamos datos después de la cuarta posición
+```
+
+
+#### Ejercicio 2: solución
+
+```{r eval=FALSE}
+?write.table
+write.table(thuesen, file = "Datos.txt", quote = TRUE, sep = "\t",
+            na = "NA", row.names = F,
+            col.names = TRUE,
+            fileEncoding = "")
+
+#despues de cambiar NA por .
+
+thuesenBD2 <- read.table("Datos.txt", header = TRUE,
+              sep = "\t", na.strings = ".")
+
+```
+
+```{r eval=FALSE}
+# Lee la primera hoja de un documento en miexcel.xlsx
+# La primera fila contiene el nombre de las variables
+library(xlsx)
+mydata <- read.xlsx("c:/miexcel.xlsx", 1)
+
+# Lee en la hoja con el nombre mihoja
+mydata <- read.xlsx("c:/miexcel.xlsx", sheetName = "mihoja")
+
+```
+
+## Análisis Descriptivo I
+
+### Descripción del módulo
+
+#### Objetivos
+Antes de intentar modelar datos, o hacer inferencias sobre los mismos, lo más sano
+es explorarlos a través de resúmenes estadísticos y visualizarlos por medio
+de gráficas diseñadas para ese fin.
+
+A través de ejemplos estaremos explorando algunas estrategias comunes en el análisis
+de datos.
+
+
+### Resúmenes estadísticos
+
+#### Estadísticos simples
+Para calcular la media, desviación estándar, varianza y mediana:
+```{r}
+x <- rnorm(50)
+mean(x)
+```
+```{r}
+sd(x)
+```
+```{r}
+var(x)
+```
+```{r}
+median(x)
+```
+
+#### Más Cuantiles
+Cuantiles empíricos se pueden calcular también
+```{r}
+quantile(x)
+```
+Cuantiles empíricos se pueden calcular también
+```{r}
+pvec <- seq(0,1,0.1)
+pvec
+```
+```{r}
+quantile(x,pvec)
+```
+Por defecto `R` usa interpolación. Existen 7 métodos
+para calcular cuantiles que se pueden acceder mediante el argumento `type`
+
+
+#### Datos faltantes
+Usa los argumentos de las funciones para lidear con datos faltantes.
+```{r}
+attach(juul)
+mean(igf1)
+```
+```{r}
+#Le pedimos a la función ignorar los datos faltantes
+mean(igf1,na.rm = T)
+```
+
+#### Contar elementos cuando hay datos faltantes
+La función `length` no entiende la instrucción `na.rm`, por lo que no se puede usar para contar la cantidad de datos no faltantes. Para ello se puede usar algo como:
+```{r}
+sum(!is.na(igf1))
+```
+Los valores `TRUE` se traducen como `1` y los `FALSE` como `0`.
+al momento de sumarlos.
+
+
+#### Resumen de estadísticos
+Una resumen de estadísticos de las variables numéricas se puede obtener mediante la función `summary`.
+```{r}
+summary(igf1)
+```
+
+
+#### Resumen de estadísticos
+También puedes obtener una descripción de todo el data frame.
+
+```{r}
+summary(juul)
+```
+
+
+Aquí `menarche`, `sex` y `tanner` están codificadas como numéricas cuando en realidad son categóricas. Podemos corregir esto:
+```{r}
+detach(juul)
+juul$sex <- factor(juul$sex, labels = c("M","F"))
+juul$menarche <- factor(juul$menarche, labels = c("No","Yes"))
+juul$tanner <- factor(juul$tanner, labels = c("I", "II", "III", "IV", "V"))
+attach(juul)
+summary(juul)
+```   
+Nota como cambia la presentación de los datos categóricos.
+
+Las modificaciones al data frame no afectan la versión adjunta con `attach`, por eso del `detach` usado.
+
+
+#### Función `transform` o `within`
+Para ajustar varias variables dentro de un data frame puedes usar:
+```{r}
+juul <- transform(juul,
+                   sex = factor(sex, labels = c("M","F")),
+                   menarche = factor(menarche, labels = c("No","Yes")),
+                   tanner = factor(tanner, labels = c("I", "II", "III", "IV", "V")))
+```
+Recuerda usar comas para separar cada modificación.
+
+
+### Gráficas
+
+#### Histogramas
+Puedes crear histogramas con la función `hist()`
+
+```{r}
+x = rnorm(1000)
+hist(x)
+```
+Controla el número de clases con `breaks = n`.
+```{r}
+hist(x, breaks = 5)
+```
+
+
+#### Histogramas
+También puedes especificar los límites de los intervalos de clase
+con el mismo argumento `breaks` al definirlo como vector.
+
+Usemos como ejemplo los datos de accidentes por grupo de edad
+documentados por Altman (1991):
+```{r}
+mid.age <- c(2.5,7.5,13,16.5,17.5,19,22.5,44.5,70.5)
+acc.count <- c(28,46,58,20,31,64,149,316,103)
+age.acc <- rep(mid.age,acc.count)
+brk <- c(0,5,10,16,17,18,20,25,60,80)
+hist(age.acc,breaks = brk)
+```
+
+Nota que automáticamente el histograma corrige el área de la columna para hacerla proporcional a la cantidad de elementos en ella.
+
+
+#### Distribución acumulada empírica
+La distribución acumulada se define como la fracción de datos menores o iguales a $x$. Esto es, si $x$ es la $k$-ésima observación más pequeña, la proporción $k/n$ de los datos son menores o iguales a $x$. Así, la distriución empírica puede
+ser graficada como
+```{r}
+n <- length(x)
+plot(sort(x), (1:n)/n, xlab="x",
+     ylab="Proporción", type = "s", ylim = c(0,1))
+```
+
+Usar `type = "s"` crea una función escalonada.
+
+#### Graficas Cuantil-Cuantil
+Una de las razones para construir la distribución empírica acumulada es para verificar si los datos siguen una distribución normal. Para una mejor evaluación de este hecho podemos ocupar las gráficas cuantil-cuantil
+```{r e}
+qqnorm(x)
+```
+
+Si los datos siguen una distribución normal, las gráfica cuantil-cuantil deberá mostrar aproximadamente una línea recta.
+
+
+
+#### Gráfica de cajas
+Una gráfica de cajas, o gráfica de cajas y bigotes, brinda una visión de los datos y permite su rápida comparación. Además, nos ayuda a detectar si existen puntos atípicos en las observaciones que puedan requerir atención especial.
+```{r}
+par(mfrow=c(1,2))
+boxplot(IgM)
+boxplot(log(IgM))
+par(mfrow=c(1,1))
+```
+
+La función `par()` permite controlar los parámetros globales del ambiente gráfico. Uno de estos parámetros globales es `mfrow`, que se lee `multiframe, rowwise`. `c(1,2)` define una fila con dos columnas para
+acomodar figuras.
+
+
+> Nota sobre la función par
+> La función par afecta los parámetros de maner global, por lo que es necesario indicarle a `R` que luego de crear la figura regrese los parámetros a su estado
+por defecto.
+
+En el ejemplo anterior. Después de crear dos figuras en una misma área tuvimos que ejecutar nuevamente el comando `par(mfrow=c(1,1))` para reestablecer la configuración inicial (a menos que desees mantenerla para siguientes gráficas).
+
+
+### Resúmenes estadísticos por grupo
+
+* Estadísticas por grupos
+Cuando se trabaja con datos agrupados, es muy común querer obtener resúmenes estadísticos de los mismos dentro de cada grupo.
+
+Por ejemplo, una tabla de medias y desviaciones estándar.
+
+Para este fin usaremos `apply`.
+
+* Medias
+
+```{r eval=FALSE}
+tapply(folate,ventilation,mean)
+```
+
+
+* Desviaciones
+```{r eval=FALSE}
+tapply(folate,ventilation,sd)
+```
+
+* Conteos
+```{r eval=FALSE}
+tapply(folate,ventilation,length)
+```
+
+* Junta varios resultados}
+Si quieres que se vea más bonito prueba lo siguiente:
+```{r eval=FALSE}
+cbind(media = xbar, desv.est = s, n = n)
+```
+
+* Valores faltantes
+Si tienes valores faltantes por defecto no se analizan
+```{r}
+attach(juul)
+tapply(igf1,tanner,mean)
+```
+Modifica el argumento `na.rm=T`
+```{r}
+tapply(igf1,tanner,mean, na.rm=T)
+```
+
+
+#### Otras opciones: aggregate
+`aggregate` y `by` son variaciones de lo mismo ya visto, salvo que el primero funciona para todo el data frame y presenta los resultados en
+un data frame.
+
+Muy útil para presentar varios resultados a la vez.
+```{r}
+aggregate(juul[c("age","igf1")],
+           list(sex=juul$sex), mean, na.rm=T)
+```
+Nota que el argumento que agrupa debe estar contenido en una lista siempre.
+
+La variable índice no necesariamente forma parte del data frame evaluado, por lo
+que hay que incluir toda su ruta como `juul$sex`.
+
+En este caso, puesto que un data frame es en realidad una lista:
+```{r}
+aggregate(juul[c("age","igf1")],juul["sex"], mean, na.rm=T)
+```
+El truco está en que el indice, al estar entre corchetes, regresa un data frame.
+
+
+#### Otras opciones: by
+Puedes hacer los mismo con la función by
+```{r}
+by(juul$age, juul["sex"], mean, na.rm=T)
+```
+Si quieres un resumen de todas las variables
+```{r}
+by(juul, juul["sex"], summary)
+```
+Cuyo resultado ahora es en forma de lista.
+
+
+### Gráficas para datos agrupados
+
+#### Histogramas
+
+
+Veamos algunos ejemplos. Primero adjuntemos los datos del
+data frame `energy`.
+```{r}
+attach(energy)
+expend.lean <- expend[stature == "lean"]
+expend.obese <- expend[stature == "obese"]
+```
+
+Ahora hagamos histogramas.
+```{r}
+par(mfrow = c(2,1))
+hist(expend.lean, breaks = 10, xlim = c(5,13),
+      ylim = c(0,4), col = "white")
+ hist(expend.obese, breaks = 10, xlim = c(5,13),
+      ylim = c(0,4), col = "grey")
+ par(mfrow =c(1,1))
+```
+
+
+#### Gráficas de caja paralelas
+Usa el comando
+```{r}
+boxplot(expend ~ stature, col = c("red", "blue"))
+```
+
+También pudimos haber creado el diagrama con el
+comando `boxplot(expend.lean, expend.obese)`.
+
+
+#### Diagrama de puntos
+Cuando se tienen pocos datos, como en el ejemplo anterior, el cálculo del intervalo intercuartílico (largo de la caja) es poco preciso y nuestros gráficos pueden sufrir del efecto del \emph{gordo y el flaco}.
+
+Cuando tenemos pocos datos puede ser más conveniente utilizar un diagrama de observaciones individuales donde cada observación es graficada como un punto en el eje.
+
+Para lograr esto usamos la función `stripchart`.
+
+
+
+#### Diagrama de observaciones individuales
+
+```{r}
+opar <- par(mfrow = c(2,2), mex=0.6, mar=c(3,3,2,1)+0.1)
+stripchart(expend ~ stature)
+stripchart(expend ~ stature, method = "stack")
+stripchart(expend ~ stature, method = "jitter")
+stripchart(expend ~ stature, method = "jitter", jitter=0.03)
+par(opar)
+```
+
+> Algunas observaciones sobre la función `par`
+> * La configuración original de par se guarda en una variable (opar).
+> * La configuración original se reestablece con `par(opar)`
+> * El argumento `mex` reduce la distancia entre líneas.
+> * `mar` reduce el número de líneas que rodean la región de la gráfica.
+
+
+> Algunas observaciones sobre los argumentos de `stripchart`
+> * La versión por defecto gráfica los puntos sobre la línea,
+que puede ser problemático si hay traslapes.
+> * El argumento `method="stack"` apila las observaciones iguales. Lo que puede ser todavía un problema con las casi iguales.
+> * `method="jitter"` crea una pequeña perturbación aleatoria que
+separa los puntos en un eje imaginario.
+> * Por defecto `jitter` está definido en `0.1`, lo que puede
+ser mucha perturbación para algunos. Usar `jitter = 0.03` permite ajustar esto a valores menores.
 
 
 
