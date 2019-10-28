@@ -120,15 +120,19 @@ vectores de mayor tamaño.
 
 ### Ejemplo 2
 Considera el comando:
-```{r}
+```{r echo=FALSE, eval=TRUE}
+x = rnorm(15)
+x
+```
+```{r echo=TRUE, eval=FALSE}
 rnorm(15)
 ```
 
 * El `[1]` indica la posición del primer resultado en el vector de 15 elementos.
-* El `[8]` indica que el valor `-0.18483426` está en la posición 6.
-* El `[15]` indica que el valor `-2.43976437` está en la posición 15.
-* Las posiciones de los demás valores se pueden obtener contando a partir del elemento de la izquierda. Por ejemplo, `0.96775782` tiene la posición 2, pues `-0.86100260` que está a su izquierda tiene la posición 1. Así, `0.44071900` tiene
-la posición 3, `0.73326055` la 4, etc.
+* El `[8]` indica que el valor ``r x[8]`` está en la posición 8.
+* El `[15]` indica que el valor ``r x[15]`` está en la posición 15.
+* Las posiciones de los demás valores se pueden obtener contando a partir del elemento de la izquierda. Por ejemplo, ``r x[2]`` tiene la posición 2, pues ``r x[1]`` que está a su izquierda tiene la posición 1. Así, ``r x[3]`` tiene
+la posición 3, ``r x[4]`` la 4, etc.
 
 
 ### Asignaciones

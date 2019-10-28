@@ -407,15 +407,15 @@ $(document).ready(function () {
 <div id="ejemplo-2-1" class="section level3">
 <h3>Ejemplo 2</h3>
 <p>Considera el comando:</p>
-<pre class="r"><code>rnorm(15)</code></pre>
 <pre><code>##  [1] -0.03061906 -0.97111587 -1.15463507 -0.25357359 -0.84178462
 ##  [6] -0.87447461 -1.21731351  0.85545904 -0.07474867 -0.07011212
 ## [11]  0.52324553 -1.28329335 -0.40078628 -1.36817791  0.43799233</code></pre>
+<pre class="r"><code>rnorm(15)</code></pre>
 <ul>
 <li>El <code>[1]</code> indica la posición del primer resultado en el vector de 15 elementos.</li>
-<li>El <code>[8]</code> indica que el valor <code>-0.18483426</code> está en la posición 6.</li>
-<li>El <code>[15]</code> indica que el valor <code>-2.43976437</code> está en la posición 15.</li>
-<li>Las posiciones de los demás valores se pueden obtener contando a partir del elemento de la izquierda. Por ejemplo, <code>0.96775782</code> tiene la posición 2, pues <code>-0.86100260</code> que está a su izquierda tiene la posición 1. Así, <code>0.44071900</code> tiene la posición 3, <code>0.73326055</code> la 4, etc.</li>
+<li>El <code>[8]</code> indica que el valor <code>0.855459</code> está en la posición 8.</li>
+<li>El <code>[15]</code> indica que el valor <code>0.4379923</code> está en la posición 15.</li>
+<li>Las posiciones de los demás valores se pueden obtener contando a partir del elemento de la izquierda. Por ejemplo, <code>-0.9711159</code> tiene la posición 2, pues <code>-0.0306191</code> que está a su izquierda tiene la posición 1. Así, <code>-1.1546351</code> tiene la posición 3, <code>-0.2535736</code> la 4, etc.</li>
 </ul>
 </div>
 <div id="asignaciones" class="section level3">
@@ -506,11 +506,11 @@ weight - xbar</code></pre>
 <h4>Gráficas</h4>
 <p>R puede ayudarnos a visualizar los datos mediante el uso de gráficas.</p>
 <pre class="r"><code>plot(height,weight)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p>Debido a que un BMI normal debe ser alrededor de 22.5, se espera que <span class="math inline">\(weight \approx 22.5 \times height^2\)</span>. Esta línea la podemos incluir en la figura.</p>
 <pre class="r"><code>hh &lt;- c(1.65, 1.70, 1.75, 1.80, 1.85, 1.90)
 lines(hh, 22.5 * hh^2)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <p>La función <code>lines(...)</code> agrega valores (<code>x</code>,<code>y</code>) conectados por líneas.</p>
 <blockquote>
 <h4 id="nota">Nota</h4>
@@ -548,9 +548,9 @@ plot(height,weight)</code></pre>
 <p>Los argumentos que no están seguido por un igual son argumentos obligatorios. Mientras que los que están seguidor por un igual son opcionales. Los opcionales, de no establecerse, quedan definidos por un valor por defecto.</p>
 <p>Prueba incluir un argumento opcional a la función <code>plot</code>:</p>
 <pre class="r"><code>plot(height,weight)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
-<pre class="r"><code>plot(height,weight,pch = 2)</code></pre>
 <p><img src="about_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<pre class="r"><code>plot(height,weight,pch = 2)</code></pre>
+<p><img src="about_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 <p>Algunas funciones no requieren argumentos. Por ejemplo, para mostrar el contenido del espacio de trabajo puedes usar la función <code>ls()</code>.</p>
 <blockquote>
 <p>Funciones sin argumentos Todas las funciones están seguidas por paréntesis <code>()</code>, aún si estas no requieren de argumentos para ejecutarse.</p>
@@ -1234,7 +1234,7 @@ blood.glucose</code></pre>
 y &lt;- runif(50,0,2)
 plot(x, y, main = &quot;Título principal&quot;, sub = &quot;Subtítulo&quot;,
 xlab = &quot;Título eje x&quot;, ylab = &quot;Título eje y&quot; )</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
 </div>
 <div id="agregar-puntos-y-líneas" class="section level4">
 <h4>Agregar puntos y líneas</h4>
@@ -1242,7 +1242,7 @@ xlab = &quot;Título eje x&quot;, ylab = &quot;Título eje y&quot; )</code></pre
 <p>Estos los especificas en la función <code>plot</code> o los agregas más tarde con <code>points</code> y <code>lines</code>. También puedes agregar texto con</p>
 <pre class="r"><code>text(0.6,0.6,&quot;Texto en punto (0.6,0.6)&quot;)
 abline(h = 0.6, v = 0.6)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-113-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
 </div>
 <div id="agregar-texto-en-los-márgenes" class="section level4">
 <h4>Agregar texto en los márgenes</h4>
@@ -1250,7 +1250,7 @@ abline(h = 0.6, v = 0.6)</code></pre>
 <pre class="r"><code>for (side in 1:4) mtext(-1:4, side = side, at = .7, line = -1:4)
 mtext(paste(&quot;side&quot;,1:4), side = 1:4, line = -1, font = 2)</code></pre>
 <p>Usando distintas line puedes agregar muchas líneas de texto en cada lado de la figura.</p>
-<p><img src="about_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
 <p>Nota que no todos los márgenes son suficientemente grandes para registrar todos los números, por lo que conviene utilizar posiciones negativas para añadir texto si se desea.</p>
 </div>
 <div id="contruir-un-gráfico-por-partes" class="section level4">
@@ -1260,14 +1260,14 @@ mtext(paste(&quot;side&quot;,1:4), side = 1:4, line = -1, font = 2)</code></pre>
 points(x,y) #agrega los puntos de forma individual
 axis(1)
 axis(2)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-117-1.png" width="672" /></p>
 <pre class="r"><code>plot(x, y, type = &quot;n&quot;, xlab = &quot;&quot;, ylab = &quot;&quot;, axes = F) #prerapa el área de gráfico.
 points(x,y) #agrega los puntos de forma individual
 axis(1)
 axis(2, at =seq(0.2,1.8,0.2))
 box()
 title(main = &quot;Título principal&quot;, sub = &quot;Subtítulo&quot;, xlab = &quot;Eje x&quot;, ylab = &quot;Eje y&quot;)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-117-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-118-1.png" width="672" /></p>
 </div>
 <div id="función-par" class="section level4">
 <h4>Función par</h4>
@@ -1281,7 +1281,7 @@ title(main = &quot;Título principal&quot;, sub = &quot;Subtítulo&quot;, xlab =
 <pre class="r"><code>x &lt;- rnorm(100) #generamos datos distribución normal
 hist(x, freq = F) #creamos un histograma de frecuencias relativas haciendo freq = F
 curve(dnorm(x), add = T) #agregamos una curva normal al establecer add = T</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-118-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-119-1.png" width="672" /></p>
 </div>
 <div id="combinar-figuras-1" class="section level4">
 <h4>Combinar figuras</h4>
@@ -1290,7 +1290,7 @@ curve(dnorm(x), add = T) #agregamos una curva normal al establecer add = T</code
 ylim &lt;- range(0, h$density, dnorm(0))
 hist(x, freq = F, ylim = ylim)
 curve(dnorm(x), add = T)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-119-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
 <p>Al usar en <code>hist</code> el argumento <code>plot = F</code>, <code>hist</code> no despliega nada, pero regresa una estructura que contine las alturas de las barras de las densidades. Esto y el hecho de que el máximo de <code>dnorm(x)</code> es <code>dnorm(0)</code> nor permite calcular el rango que se requiere para los valors de y.</p>
 </div>
 </div>
@@ -1835,10 +1835,10 @@ summary(juul)</code></pre>
 <p>Puedes crear histogramas con la función <code>hist()</code></p>
 <pre class="r"><code>x = rnorm(1000)
 hist(x)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
 <p>Controla el número de clases con <code>breaks = n</code>.</p>
 <pre class="r"><code>hist(x, breaks = 5)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
 </div>
 <div id="histogramas-1" class="section level4">
 <h4>Histogramas</h4>
@@ -1849,7 +1849,7 @@ acc.count &lt;- c(28,46,58,20,31,64,149,316,103)
 age.acc &lt;- rep(mid.age,acc.count)
 brk &lt;- c(0,5,10,16,17,18,20,25,60,80)
 hist(age.acc,breaks = brk)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
 <p>Nota que automáticamente el histograma corrige el área de la columna para hacerla proporcional a la cantidad de elementos en ella.</p>
 </div>
 <div id="distribución-acumulada-empírica" class="section level4">
@@ -1858,7 +1858,7 @@ hist(age.acc,breaks = brk)</code></pre>
 <pre class="r"><code>n &lt;- length(x)
 plot(sort(x), (1:n)/n, xlab=&quot;x&quot;,
      ylab=&quot;Proporción&quot;, type = &quot;s&quot;, ylim = c(0,1))</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
 <p>Usar <code>type = &quot;s&quot;</code> crea una función escalonada.</p>
 </div>
 <div id="graficas-cuantil-cuantil" class="section level4">
@@ -1874,7 +1874,7 @@ plot(sort(x), (1:n)/n, xlab=&quot;x&quot;,
 <pre class="r"><code>par(mfrow=c(1,2))
 boxplot(IgM)
 boxplot(log(IgM))</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
 <pre class="r"><code>par(mfrow=c(1,1))</code></pre>
 <p>La función <code>par()</code> permite controlar los parámetros globales del ambiente gráfico. Uno de estos parámetros globales es <code>mfrow</code>, que se lee <code>multiframe, rowwise</code>. <code>c(1,2)</code> define una fila con dos columnas para acomodar figuras.</p>
 <blockquote>
@@ -2001,14 +2001,14 @@ hist(expend.lean, breaks = 10, xlim = c(5,13),
       ylim = c(0,4), col = &quot;white&quot;)
  hist(expend.obese, breaks = 10, xlim = c(5,13),
       ylim = c(0,4), col = &quot;grey&quot;)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-191-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-192-1.png" width="672" /></p>
 <pre class="r"><code> par(mfrow =c(1,1))</code></pre>
 </div>
 <div id="gráficas-de-caja-paralelas" class="section level4">
 <h4>Gráficas de caja paralelas</h4>
 <p>Usa el comando</p>
 <pre class="r"><code>boxplot(expend ~ stature, col = c(&quot;red&quot;, &quot;blue&quot;))</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-192-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
 <p>También pudimos haber creado el diagrama con el comando <code>boxplot(expend.lean, expend.obese)</code>.</p>
 </div>
 <div id="diagrama-de-puntos" class="section level4">
@@ -2024,7 +2024,7 @@ stripchart(expend ~ stature)
 stripchart(expend ~ stature, method = &quot;stack&quot;)
 stripchart(expend ~ stature, method = &quot;jitter&quot;)
 stripchart(expend ~ stature, method = &quot;jitter&quot;, jitter=0.03)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-194-1.png" width="672" /></p>
 <pre class="r"><code>par(opar)</code></pre>
 <blockquote>
 <p>Algunas observaciones sobre la función <code>par</code> * La configuración original de par se guarda en una variable (opar). * La configuración original se reestablece con <code>par(opar)</code> * El argumento <code>mex</code> reduce la distancia entre líneas. * <code>mar</code> reduce el número de líneas que rodean la región de la gráfica.</p>
@@ -2269,20 +2269,20 @@ total.caff</code></pre>
 <pre><code>##       0   1-150 151-300    &gt;300 
 ##     906    1910     742     330</code></pre>
 <pre class="r"><code>barplot(total.caff, col = &quot;green&quot;)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-215-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-216-1.png" width="672" /></p>
 <p>Al momento de hacer presentaciones, puede ser preferible utilizar una gráfica a presentar un grupo de totales y proporciones.</p>
 <pre class="r"><code>total.caff &lt;- margin.table(table.caff.marital, 2)
 total.caff</code></pre>
 <pre><code>##       0   1-150 151-300    &gt;300 
 ##     906    1910     742     330</code></pre>
 <pre class="r"><code>barplot(total.caff, col = &quot;green&quot;, ylim = c(0,2000))</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-217-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-218-1.png" width="672" /></p>
 <p>Aquí, <code>ylim = c(0,2000)</code> es el rango a utilizar en el eje de las ordenadas.</p>
 <p>La función <code>barplot</code> también te acepta la tabla completa.</p>
 <pre class="r"><code>barplot(table.caff.marital,
          col = c(&quot;red&quot;,&quot;green&quot;,&quot;blue&quot;),
          legend.text = c(&quot;casados&quot;, &quot;divorciados&quot;, &quot;solteros&quot;))</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-218-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-219-1.png" width="672" /></p>
 <p>Si deseas graficar las dos dimensiones de una tabla pero no deseas que estén agrupadas dentre de una sóla barra, puedes utilizar el argumento <code>beside = T</code> para este fin.</p>
 <p>Mira las distintas opciones que puedes utilizar para crear tu gráfica de barras.</p>
 <pre class="r"><code>par(mfrow = c(2,2))
@@ -2290,7 +2290,7 @@ barplot(caff.marital, col=&quot;white&quot;)
 barplot(t(caff.marital), col = &quot;white&quot;)
 barplot(t(caff.marital), col = &quot;white&quot;, beside = T)
 barplot(prop.table(t(caff.marital),2), col=&quot;white&quot;, beside = T)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-219-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-220-1.png" width="672" /></p>
 <pre class="r"><code>par(mfrow = c(1,1))</code></pre>
 </div>
 <div id="gráfica-de-barras" class="section level4">
@@ -2299,7 +2299,7 @@ barplot(prop.table(t(caff.marital),2), col=&quot;white&quot;, beside = T)</code>
 <pre class="r"><code>barplot(prop.table(t(table.caff.marital),2),beside = T,
          legend.text = colnames(table.caff.marital),
          col = c(&quot;white&quot;, &quot;grey80&quot;, &quot;grey50&quot;, &quot;black&quot;))</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-220-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-221-1.png" width="672" /></p>
 <p><code>R</code> no tiene una forma de encontrar la mejor posición para la leyenda y en ocasiones esta se sobrepondrá sobre tu gráfica.</p>
 <p>Para tener un mayor control puedes usar la función <code>legend</code>.</p>
 <p>Con el ratón puedes hacer cick en la gráfica generada y obtener coordenadas para la leyenda usando la función <code>locator</code>.</p>
@@ -2309,18 +2309,18 @@ barplot(prop.table(t(caff.marital),2), col=&quot;white&quot;, beside = T)</code>
 <h4>Diagrama de puntos de Cleveland</h4>
 <p>El diagrama de puntos de Cleveland es nombrado a partir de William S. Cleveland (1994) está formulado con la misma información de una gráfica de barras pero ofrece una impresión visual muy diferente. Para ejecutarlo usar</p>
 <pre class="r"><code>dotchart(t(table.caff.marital), lcolor = &quot;black&quot;)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-221-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-222-1.png" width="672" /></p>
 </div>
 <div id="diagramas-de-pastel" class="section level4">
 <h4>Diagramas de pastel</h4>
 <p>Veamos como se ven los datos de consumo de cafeína contra el estatus marital</p>
 <pre class="r"><code>slices &lt;- c(&quot;white&quot;, &quot;grey80&quot;, &quot;grey50&quot;, &quot;black&quot;)
 pie(table.caff.marital[&quot;Casados&quot;,], main=&quot;Casados&quot;, col=slices)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-222-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-223-1.png" width="672" /></p>
 <pre class="r"><code>pie(table.caff.marital[&quot;Divorciados&quot;,], main=&quot;Divorciados&quot;, col=slices)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-222-2.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-223-2.png" width="672" /></p>
 <pre class="r"><code>pie(table.caff.marital[&quot;Solteros&quot;,], main=&quot;Solteros&quot;, col=slices)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-222-3.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-223-3.png" width="672" /></p>
 <pre class="r"><code>par(opar)</code></pre>
 </div>
 </div>
@@ -2338,17 +2338,17 @@ pie(table.caff.marital[&quot;Casados&quot;,], main=&quot;Casados&quot;, col=slic
 <li>Este es un ejemplo.</li>
 </ul>
 <pre class="r"><code>plot(rnorm(10), type = &quot;b&quot;, col=&quot;blue&quot;, pch=1, lwd=2)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-223-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-224-1.png" width="672" /></p>
 <ul>
 <li>Podemos cambiar el símbolo dibujado por uno sólido.</li>
 </ul>
 <pre class="r"><code>plot(rnorm(10), type = &quot;o&quot;, col=&quot;black&quot;, pch=19)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-224-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
 <ul>
 <li></li>
 </ul>
 <pre class="r"><code>hist(react)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-226-1.png" width="672" /></p>
 <pre class="r"><code>library(MASS)</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;MASS&#39;</code></pre>
@@ -2356,7 +2356,7 @@ pie(table.caff.marital[&quot;Casados&quot;,], main=&quot;Casados&quot;, col=slic
 ## 
 ##     menarche</code></pre>
 <pre class="r"><code>truehist(react)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-225-2.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-226-2.png" width="672" /></p>
 </div>
 </div>
 <div id="otros-tópicos" class="section level2">
@@ -2500,7 +2500,7 @@ View(mtcars)  #para ver los datos.</code></pre>
 <h4>Analizamos la relación de los datos</h4>
 <p>Estudiaremos la relación entre la fuerza medidas en caballos (hp) y el consumo de combustible en millas por galón (mpg). Hacemos un diagrama de dispersión.</p>
 <pre class="r"><code>plot(mtcars$hp, mtcars$mpg, xlab = &quot;HP&quot;, ylab = &quot;MPG&quot;)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-237-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-238-1.png" width="672" /></p>
 </div>
 <div id="correlación" class="section level4">
 <h4>Correlación</h4>
@@ -2551,7 +2551,7 @@ y = mtcars$mpg
 yhat = fitted(lm.mpg)
 plot(x = x,y = y, pch = 19, xlab = &quot;HP&quot;, ylab = &quot;MPG&quot;)
 points(sort(x), yhat[order(x)], type=&quot;l&quot;, col=&quot;red&quot;, lwd=2)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-241-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-242-1.png" width="672" /></p>
 <p>Nota que el ajuste parece no ser muy bueno.</p>
 </div>
 <div id="mejoramos-el-ajuste" class="section level4">
@@ -2564,7 +2564,7 @@ lm.mpg&lt;-lm(y~trans.x)
 plot(x,y, pch = 19, xlab = &quot;HP&quot;, ylab = &quot;MPG&quot;)
 yhat = fitted(lm.mpg)
 points(sort(x), yhat[order(x)], type=&quot;l&quot;, col=&quot;red&quot;, lwd=2)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-242-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-243-1.png" width="672" /></p>
 <p>El ajuste se observa mucho mejor. Ahora podemos utilizar la ecuación para hacer predicciones con más confianza.</p>
 </div>
 </div>
@@ -2594,7 +2594,7 @@ x &lt;- rnorm(100)</code></pre>
 qqnorm(x)
 #graficar la recta con mejor ajuste
 qqline(x)</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-244-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-245-1.png" width="672" /></p>
 <p>Comparar la distribución de dos conjuntos de datos</p>
 <pre class="r"><code>#primer conjunto de datos
 x &lt;- rnorm(100)
@@ -2604,7 +2604,7 @@ qqplot(x,y)
 qqline(x,y)</code></pre>
 <pre><code>## Warning in if (datax) {: the condition has length &gt; 1 and only the first
 ## element will be used</code></pre>
-<p><img src="about_files/figure-html/unnamed-chunk-245-1.png" width="672" /></p>
+<p><img src="about_files/figure-html/unnamed-chunk-246-1.png" width="672" /></p>
 </div>
 <div id="prueba-de-shaphiro-wilks" class="section level4">
 <h4>Prueba de Shaphiro-Wilks</h4>
