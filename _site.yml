@@ -8,10 +8,10 @@ navbar:
       icon: fa-home
       href: index.html
     - text: "Curso"
-      icon: fa-user 
+      icon: fa-folder 
       href: about.html
     - text: "Material"
-      icon: fa-user 
+      icon: fa-archive
       href: material.html
     #- text: "CV"
     #  icon: fa-file-pdf-o
@@ -23,9 +23,9 @@ navbar:
     - text: "Contáctame"
       icon: fa-envelope-o
       href: mailto:luisbv@tec.mx                    # CHANGE HERE 
-    - text: "GitHub"
-      icon: fa-github
-      href: https://github.com/LuisBenavides       # CHANGE HERE 
+    #- text: "GitHub"
+    #  icon: fa-github
+    #  href: https://github.com/LuisBenavides       # CHANGE HERE 
 output:
   html_document:
     theme: cosmo

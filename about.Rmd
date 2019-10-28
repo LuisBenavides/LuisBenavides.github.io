@@ -212,7 +212,7 @@ sum((weight - xbar)^2)
 ```
 
 ```{r}
-sqrt(sum((weight - xbar)^2))
+sqrt(sum((weight - xbar)^2))/(length(weight) - 1)
 ```
 
 ### Ejemplo
