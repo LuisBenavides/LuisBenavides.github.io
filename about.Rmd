@@ -1038,6 +1038,7 @@ ylim <- range(0, h$density, dnorm(0))
 hist(x, freq = F, ylim = ylim)
 curve(dnorm(x), add = T)
 ```
+
 Al usar en `hist` el argumento `plot = F`, `hist` no despliega
 nada, pero regresa una estructura que contine las alturas de las barras de las densidades. Esto y el hecho de que el máximo de `dnorm(x)` es `dnorm(0)` nor permite calcular el rango que se requiere para los valors de y.
 
@@ -1346,7 +1347,7 @@ Se harán algunas consideraciones para los usuarios de sistemas operativos **Win
 #### Lectura de un archivo de texto
 La forma más conveniente de leer datos en `R` es a través de la función `read.table`.
 Se requiere que los datos estén en *formato ASCII*; esto es, un
-``archivo plano'' creado con **NotePad** de **Windows** o cualquier editor de texto plano.
+*archivo plano* creado con **NotePad** de **Windows** o cualquier editor de texto plano.
 El resultado de usar `read.table` es un data frame, por lo que la función espera encontrar la disposición de datos correspondiente, donde cada línea en el archivo contiene todos los datos de cada sujeto (o rata, o cliente, o...) en un orden específico, separados por espacios en blanco, u opcionalmente, algún otro separador.
 La primera línea del archivo contiene el encabezado dando los nombre a las variables, una práctica muy recomendada.
 
@@ -1365,7 +1366,7 @@ Recuerda ajustar la ruta del archivo en tu computadora. Descarga el achivo [thue
 
 
 #### Nota sobre Windows
-Si usas **Windows** recuerda usar `\\' o `/` en lugar de `\textbackslash' para separar los directorios.
+Si usas **Windows** recuerda usar `\\' o `/` en lugar de `\` para separar los directorios.
 ```{r eval=FALSE}
 N:\\documentos\\thuesenBD.txt
 N:/documentos/thuesenBD.txt
@@ -1392,7 +1393,7 @@ Si esto no es lo que se desea, tendrás que manipular los niveles de los factore
 
 
 #### Archivos delimitados
-Las aplicaciones como las hojas de cálculo y bases de datos producen archivos de texto en formatos que requieren que se ajusten múltiples opciones. Para estos propósitos existen variantes de `read.table` ``pre-cocinadas''.
+Las aplicaciones como las hojas de cálculo y bases de datos producen archivos de texto en formatos que requieren que se ajusten múltiples opciones. Para estos propósitos existen variantes de `read.table` *pre-cocinadas*.
 `read.csv` y `read.csv2` permiten leer archivos **Csv** separados
 por coma (`,`) y punto y coma (`;`) respectivamente. Ambos asumen `header=T` por defecto.
 `read.delim` y `read.delim2` ayudan a leer archivos delimitados
@@ -1649,6 +1650,7 @@ Puedes crear histogramas con la función `hist()`
 x = rnorm(1000)
 hist(x)
 ```
+
 Controla el número de clases con `breaks = n`.
 ```{r}
 hist(x, breaks = 5)
@@ -1901,7 +1903,7 @@ También puedes renombrar las dimensiones de la matriz.
 caff.marital
 ```
 
-#### Clase ``table''
+#### Clase `table`
 Las tablas no son completamente equivalentes a matrices. En `R` existe una clase llamada `table` que puedes acceder por medio de `as.table()`.
 ```{r}
 table.caff.marital <- as.table(caff.marital)
@@ -2035,6 +2037,7 @@ total.caff
 ```{r}
 barplot(total.caff, col = "green")
 ```
+
 Al momento de hacer presentaciones, puede ser preferible utilizar una gráfica a presentar un grupo de totales y proporciones.
 ```{r}
 total.caff <- margin.table(table.caff.marital, 2)
@@ -2043,6 +2046,7 @@ total.caff
 ```{r}
 barplot(total.caff, col = "green", ylim = c(0,2000))
 ```
+
 Aquí, `ylim = c(0,2000)` es el rango a utilizar en el eje de las ordenadas.
 
 La función `barplot` también te acepta la tabla completa.
@@ -2051,6 +2055,7 @@ barplot(table.caff.marital,
          col = c("red","green","blue"),
          legend.text = c("casados", "divorciados", "solteros"))
 ```
+
 Si deseas graficar las dos dimensiones de una tabla pero no deseas que estén agrupadas dentre de una sóla barra, puedes utilizar el argumento `beside = T` para este fin.
 
 Mira las distintas opciones que puedes utilizar para crear tu gráfica de barras.
