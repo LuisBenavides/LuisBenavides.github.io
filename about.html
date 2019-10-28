@@ -1092,7 +1092,7 @@ sapply(simframe,mean)</code></pre>
 <div id="administración-de-sesiones" class="section level3">
 <h3>Administración de sesiones</h3>
 <div id="espacio-de-trabajo" class="section level4">
-<h4>Espacio de trabajo}</h4>
+<h4>Espacio de trabajo</h4>
 <p>Todas las variables creadas en <code>R</code> se guardan en un espacio de trabajo común.</p>
 <pre class="r"><code>ls()</code></pre>
 <pre><code>##  [1] &quot;a&quot;                   &quot;aa&quot;                  &quot;b&quot;                  
@@ -1136,7 +1136,7 @@ ls()</code></pre>
 </blockquote>
 </div>
 <div id="guardar-el-espacio-de-trabajo" class="section level4">
-<h4>Guardar el espacio de trabajo}</h4>
+<h4>Guardar el espacio de trabajo</h4>
 <p>Puedes guardar todo es espacio de trabajo en un archivo usando la función <code>save.image()</code>.</p>
 <p>Esto hará que un archivo <code>.RData</code> se cree en el directorio por defecto.</p>
 <p>Usa un nombre entre comillas para asignarle algún nombre en particular a tu sesión y escribir la ruta donde deseas guardar como se muestra a continuación.</p>
@@ -1216,7 +1216,7 @@ blood.glucose</code></pre>
 <div id="subsistema-gráfico" class="section level2">
 <h2>Subsistema Gráfico</h2>
 <div id="descripción-del-módulo-1" class="section level3">
-<h3>Descripción del módulo}</h3>
+<h3>Descripción del módulo</h3>
 <div id="objetivos-1" class="section level4">
 <h4>Objetivos</h4>
 <p>Es común en estadística querer modificar los gráficos más allá del formato por defecto. En ocasiones se requiere agregar notas, modificar los ejes, cambiar las etiquedas, agregar marcas, etc.</p>
@@ -1300,7 +1300,7 @@ curve(dnorm(x), add = T)</code></pre>
 <div id="descripción-del-módulo-2" class="section level3">
 <h3>Descripción del módulo</h3>
 <div id="objetivos-2" class="section level4">
-<h4>Objetivos}</h4>
+<h4>Objetivos</h4>
 <p>Es posible escribir tus propias funciones usando <code>R</code>. Esta posibilidad es principalmente importante al utilizar la aplicación en el largo plazo.</p>
 <p>En esta sección veremos estudiaremos las estructura de control que dirigen la ejecución de un programa.</p>
 </div>
@@ -1477,7 +1477,7 @@ Mifuncion.v1(a, b, c)
 Mifuncion.v1(a, b, z = c)</code></pre>
 </div>
 <div id="ejemplo-de-funciones-caso-2" class="section level4">
-<h4>Ejemplo de funciones: Caso 2}</h4>
+<h4>Ejemplo de funciones: Caso 2</h4>
 <p>Ahora veremos que sucede si agregamos la función <code>return</code> dentro de las expresiones que ejecutará la función que definimos</p>
 <pre class="r"><code>Mifuncion.v2 &lt;- function (x, yyy, z=5, t) {
    w &lt;- x + yyy - z
@@ -1628,7 +1628,7 @@ N:/documentos/thuesenBD.txt</code></pre>
 <p>En este ejemplo, cuando cierras el editor de datos, los datos editados se asignan a la variable <code>aq</code>, mientras que el original <code>airquality</code> permanece intacto.</p>
 </div>
 <div id="editor-de-datos-1" class="section level4">
-<h4>Editor de Datos}</h4>
+<h4>Editor de Datos</h4>
 <p>Si no te importa modificar los datos originales puedes usar</p>
 <pre class="r"><code>fix(aq)</code></pre>
 <p>Esto es equivalente a usar <code>aq &lt;- edit(aq)</code>.</p>
@@ -2394,7 +2394,7 @@ pie(table.caff.marital[&quot;Casados&quot;,], main=&quot;Casados&quot;, col=slic
 <pre class="r"><code>dim(secretinBD)</code></pre>
 </div>
 <div id="crea-un-data-table" class="section level4">
-<h4>Crea un data table}</h4>
+<h4>Crea un data table</h4>
 <p>Puedes crear tu propio data table usando la función <code>data.table</code></p>
 <pre class="r"><code>library(data.table)
 DT = data.table(ID = c(&quot;b&quot;,&quot;b&quot;,&quot;b&quot;,&quot;a&quot;,&quot;a&quot;,&quot;c&quot;),

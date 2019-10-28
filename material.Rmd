@@ -30,7 +30,7 @@ title: "Material"
 * Empresa: Vialutek.
 * Técnicas: Diagnóstico, Control, predicción de falla en proceso de colada.
 
-[Ficha Técnica](archivos/Proyecto3_Ficha.doc)
+[Ficha Técnica](archivos/Proyecto3_Ficha.docx)
 
 [Archivos del Proyecto 3](archivos/Proyecto3.csv)
 

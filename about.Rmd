@@ -814,7 +814,7 @@ Se discuten algunos aspectos prácticos de trabajar con R. Estructura del entorn
 
 ### Administración de sesiones
 
-#### Espacio de trabajo}
+#### Espacio de trabajo
 Todas las variables creadas en `R` se guardan en un espacio de trabajo común.
 ```{r}
 ls()
@@ -836,7 +836,7 @@ Sin embargo, esto no remueve las variables que inicien con un punto, pues estas 
 > Remover todas las variables con `ls(all=T)` puede ser peligroso, pues las variables que inician con un punto son del sistema.
 
 
-#### Guardar el espacio de trabajo}
+#### Guardar el espacio de trabajo
 Puedes guardar todo es espacio de trabajo en un archivo usando la función `save.image()`.
 
 Esto hará que un archivo `.RData` se cree en el directorio por defecto.
@@ -927,7 +927,7 @@ Con esta función `R` incluye `thuesen` en la ruta de búsqueda que puede observ
 
 ## Subsistema Gráfico
 
-### Descripción del módulo}
+### Descripción del módulo
 
 #### Objetivos
 Es común en estadística querer modificar los gráficos más allá del formato
@@ -1047,7 +1047,7 @@ nada, pero regresa una estructura que contine las alturas de las barras de las d
 
 ### Descripción del módulo
 
-#### Objetivos}
+#### Objetivos
 Es posible escribir tus propias funciones usando `R`. Esta posibilidad
 es principalmente importante al utilizar la aplicación en el largo plazo.
 
@@ -1238,7 +1238,7 @@ Mifuncion.v1(a, b, z = c)
 ```
 
 
-#### Ejemplo de funciones: Caso 2}
+#### Ejemplo de funciones: Caso 2
 Ahora veremos que sucede si agregamos la función `return` dentro de las expresiones que ejecutará la función que definimos
 
 ```{r}
@@ -1433,7 +1433,7 @@ En este ejemplo, cuando cierras el editor de datos, los datos editados se asigna
 el original `airquality` permanece intacto.
 
 
-#### Editor de Datos}
+#### Editor de Datos
 Si no te importa modificar los datos originales puedes usar
 ```{r eval=FALSE}
 fix(aq)
@@ -2179,7 +2179,7 @@ dim(secretinBD)
 ```
 
 
-#### Crea un data table}
+#### Crea un data table
 Puedes crear tu propio data table usando la función `data.table`
 ```{r}
 library(data.table)
