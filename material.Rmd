@@ -9,7 +9,7 @@ title: "Material"
 * Empresa: Magnekon.
 * Técnicas: Diagnóstico y Control de tiempo
 
-[Ficha Técnica](archivos/Proyecto1-FichaTécnica.docx)
+[Ficha Técnica](archivos/Proyecto1_Ficha.docx)
 
 [Archivos del Proyecto 1](archivos/Proyecto1.csv)
 
@@ -19,7 +19,8 @@ title: "Material"
 * Empresa:  Multipak.
 * Técnicas: Diagnóstico, Control, predicción vida útil y pronóstico de compras.
 
-[Ficha Técnica](archivos/Proyecto2-FichaTécnica.docx)
+[Ficha Técnica](archivos/Proyecto2_Ficha.docx)
+
 [Archivos del Proyecto 2](archivos/Proyecto2.zip)
 
 
@@ -29,6 +30,7 @@ title: "Material"
 * Empresa: Vialutek.
 * Técnicas: Diagnóstico, Control, predicción de falla en proceso de colada.
 
-[Ficha Técnica](archivos/Proyecto3-FichaTécnica.doc)
+[Ficha Técnica](archivos/Proyecto3_Ficha.doc)
+
 [Archivos del Proyecto 3](archivos/Proyecto3.csv)
 
