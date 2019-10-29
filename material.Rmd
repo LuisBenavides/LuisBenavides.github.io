@@ -5,7 +5,7 @@ title: "Material"
 
 ## Proyecto 1
 * Objetivo del proyecto: Análisis de tiempos en Planta # 3 Magnekon
-* Responsable: Raúl Hernández
+* Responsable: Raúl
 * Empresa: Magnekon.
 * Técnicas: Diagnóstico y Control de tiempo
 
@@ -13,9 +13,16 @@ title: "Material"
 
 [Archivos del Proyecto 1](archivos/Proyecto1.csv)
 
+### Equipo
+| Integrantes |	Becario |
+| :--- | :--- |
+| Sergio Andres | Luis |
+| Brisia Shiomara |Yaneli |
+| Luis Osvaldo 	| |
+
 ## Proyecto 2
 * Objetivo del proyecto: Control de herramentales (Inventario, vida útil, pronóstico de compras)
-* Responsable: Joel Mejorado.
+* Responsable: Joel jorado.
 * Empresa:  Multipak.
 * Técnicas: Diagnóstico, Control, predicción vida útil y pronóstico de compras.
 
@@ -23,14 +30,30 @@ title: "Material"
 
 [Archivos del Proyecto 2](archivos/Proyecto2.zip)
 
+### Equipo
+| Integrantes|	Becario |
+| :--- | :--- |
+| Paola Janeth | Abel |
+| Federico | |
+| Jorge Ricardo | |
+| Alessandra| |
 
 ## Proyecto 3
 * Objetivo del proyecto: Control de proceso en Colada.
-* Responsable: Claudia Eugenia Canales
+* Responsable: Claudia
 * Empresa: Vialutek.
 * Técnicas: Diagnóstico, Control, predicción de falla en proceso de colada.
 
 [Ficha Técnica](archivos/Proyecto3_Ficha.docx)
 
 [Archivos del Proyecto 3](archivos/Proyecto3.csv)
+
+### Equipo
+| Integrantes |	Becario |
+| :--- | :--- |
+| Edgar | Guillermo |
+| Montserrat Albar ||
+| Eduardo Abad || 
+
+
 
