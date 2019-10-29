@@ -10,7 +10,7 @@ navbar:
     - text: "Curso"
       icon: fa-folder 
       href: about.html
-    - text: "Material"
+    - text: "Proyectos"
       icon: fa-archive
       href: material.html
     #- text: "CV"
