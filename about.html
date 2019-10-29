@@ -408,14 +408,14 @@ $(document).ready(function () {
 <h3>Ejemplo 2</h3>
 <p>Considera el comando:</p>
 <pre class="r"><code>rnorm(15)</code></pre>
-<pre><code>##  [1]  1.3011004 -1.0676883  0.8755235 -0.1245912  0.7417492  0.5046817
-##  [7] -0.2326356 -1.0957142  0.4376768  0.4644900  1.0882050 -0.4327371
-## [13]  0.3742403  0.6098659 -2.5427772</code></pre>
+<pre><code>##  [1] -1.105221944  0.823420499  0.206916567  0.001260328 -0.443099543
+##  [6] -0.312864090  0.637907581  0.762829119  0.519018996  1.133210012
+## [11]  0.275898196  0.683290081 -1.026249013  0.980127928 -0.783800005</code></pre>
 <ul>
 <li>El <code>[1]</code> indica la posición del primer resultado en el vector de 15 elementos.</li>
-<li>El <code>[8]</code> indica que el valor <code>-1.0957142</code> está en la posición 8.</li>
-<li>El <code>[15]</code> indica que el valor <code>-2.5427772</code> está en la posición 15.</li>
-<li>Las posiciones de los demás valores se pueden obtener contando a partir del elemento de la izquierda. Por ejemplo, <code>-1.0676883</code> tiene la posición 2, pues <code>1.3011004</code> que está a su izquierda tiene la posición 1. Así, <code>0.8755235</code> tiene la posición 3, <code>-0.1245912</code> la 4, etc.</li>
+<li>El <code>[8]</code> indica que el valor <code>0.7628291</code> está en la posición 8.</li>
+<li>El <code>[15]</code> indica que el valor <code>-0.7838</code> está en la posición 15.</li>
+<li>Las posiciones de los demás valores se pueden obtener contando a partir del elemento de la izquierda. Por ejemplo, <code>0.8234205</code> tiene la posición 2, pues <code>-1.1052219</code> que está a su izquierda tiene la posición 1. Así, <code>0.2069166</code> tiene la posición 3, <code>0.0012603</code> la 4, etc.</li>
 </ul>
 </div>
 <div id="asignaciones" class="section level3">
@@ -967,8 +967,8 @@ exp.obese &lt;- energy$expend[energy$stature == &quot;obese&quot;]</code></pre>
 <h4><code>replicate</code></h4>
 <p>Si deseamos realizar una operación un número predeterminado de veces, podemos utilizar la función <code>replicate</code>.</p>
 <pre class="r"><code>replicate(10,mean(rexp(20)))</code></pre>
-<pre><code>##  [1] 0.8793889 1.1095998 0.6277996 1.0826092 1.2026059 0.8607725 0.7683865
-##  [8] 1.4116684 1.1164196 0.8369804</code></pre>
+<pre><code>##  [1] 0.9283372 0.8147619 1.0908091 0.9639237 0.9115609 0.7955955 1.2212414
+##  [8] 0.6844574 0.5718489 0.8534110</code></pre>
 <p>Aquí, el primer argumento indica el número de replicas que deseamos, el segundo argumento es la función que deseamos que se ejecute esa cantidad de veces.</p>
 </div>
 <div id="apply" class="section level4">
@@ -976,15 +976,15 @@ exp.obese &lt;- energy$expend[energy$stature == &quot;obese&quot;]</code></pre>
 <p>Si deseamos trabajar con una matriz, y deseamos realizar una operación por cada columna o reglón, podemos utilizar la función <code>apply</code>.</p>
 <pre class="r"><code>m &lt;- matrix(rnorm(12),4)
 m</code></pre>
-<pre><code>##            [,1]       [,2]       [,3]
-## [1,] -0.3716489 -0.9874455 -1.8644874
-## [2,]  0.4073668  0.6492805  1.0016857
-## [3,]  0.8205320 -1.8132873  0.1309328
-## [4,]  1.0152800  1.5326633 -0.7984668</code></pre>
+<pre><code>##            [,1]        [,2]        [,3]
+## [1,]  0.7034571 -0.09008334 -0.02315072
+## [2,] -0.3128095  1.07255742 -0.84649235
+## [3,] -0.4218867  0.90121368  1.00209536
+## [4,]  0.9402725 -0.16807975 -0.21942753</code></pre>
 <pre class="r"><code>apply(m,2,min)</code></pre>
-<pre><code>## [1] -0.3716489 -1.8132873 -1.8644874</code></pre>
+<pre><code>## [1] -0.4218867 -0.1680798 -0.8464923</code></pre>
 <pre class="r"><code>apply(m,1,min)</code></pre>
-<pre><code>## [1] -1.8644874  0.4073668 -1.8132873 -0.7984668</code></pre>
+<pre><code>## [1] -0.09008334 -0.84649235 -0.42188667 -0.21942753</code></pre>
 <p>Aquí, en el primer caso obtenemos el mínimo por columna. En el segundo caso lo obtenemos por reglón.</p>
 </div>
 <div id="tapply" class="section level4">
@@ -1069,8 +1069,8 @@ xfactor</code></pre>
 </ul>
 <pre class="r"><code>  sim.matrix &lt;- matrix(rexp(10 * 20),20)
   apply(sim.matrix,2,mean)</code></pre>
-<pre><code>##  [1] 0.6156128 0.9127325 0.9334024 0.4482861 1.3249086 1.0249329 1.4219485
-##  [8] 1.1778864 0.9505090 1.0949936</code></pre>
+<pre><code>##  [1] 1.1200865 0.6866116 1.0257821 0.9988833 0.8720954 1.1421653 0.8866758
+##  [8] 0.8368170 1.1517605 1.0908197</code></pre>
 <ul>
 <li>usando <code>sapply</code></li>
 </ul>
@@ -1078,9 +1078,9 @@ xfactor</code></pre>
 simframe &lt;- data.frame(sim.matrix)
 sapply(simframe,mean)</code></pre>
 <pre><code>##        X1        X2        X3        X4        X5        X6        X7 
-## 1.1026229 1.0636467 1.1903860 0.7709754 0.7959554 0.9733961 0.8030551 
+## 1.1699623 0.7776913 0.9750542 1.0920206 0.9481883 0.8978493 1.0286738 
 ##        X8        X9       X10 
-## 1.3926649 0.8594356 0.4615951</code></pre>
+## 1.1216345 1.1734794 0.9510943</code></pre>
 </div>
 </div>
 <div id="ambiente-r" class="section level2">
@@ -1107,10 +1107,11 @@ sapply(simframe,mean)</code></pre>
 ## [19] &quot;juul&quot;                &quot;m&quot;                   &quot;mylist&quot;             
 ## [22] &quot;o&quot;                   &quot;oops&quot;                &quot;pain&quot;               
 ## [25] &quot;pvec&quot;                &quot;sim.matrix&quot;          &quot;simframe&quot;           
-## [28] &quot;test&quot;                &quot;text.pain&quot;           &quot;thuesenBD&quot;          
-## [31] &quot;v&quot;                   &quot;weight&quot;              &quot;x&quot;                  
-## [34] &quot;x.test&quot;              &quot;x1&quot;                  &quot;x2&quot;                 
-## [37] &quot;xbar&quot;                &quot;xfactor&quot;             &quot;y&quot;</code></pre>
+## [28] &quot;tabl&quot;                &quot;test&quot;                &quot;text.pain&quot;          
+## [31] &quot;thuesenBD&quot;           &quot;v&quot;                   &quot;weight&quot;             
+## [34] &quot;x&quot;                   &quot;x.test&quot;              &quot;x1&quot;                 
+## [37] &quot;x2&quot;                  &quot;xbar&quot;                &quot;xfactor&quot;            
+## [40] &quot;y&quot;</code></pre>
 </div>
 <div id="remover-variables" class="section level4">
 <h4>Remover variables</h4>
@@ -1125,11 +1126,11 @@ ls()</code></pre>
 ## [16] &quot;intake.pre&quot;          &quot;iris&quot;                &quot;juul&quot;               
 ## [19] &quot;m&quot;                   &quot;mylist&quot;              &quot;o&quot;                  
 ## [22] &quot;oops&quot;                &quot;pain&quot;                &quot;pvec&quot;               
-## [25] &quot;sim.matrix&quot;          &quot;simframe&quot;            &quot;test&quot;               
-## [28] &quot;text.pain&quot;           &quot;thuesenBD&quot;           &quot;v&quot;                  
-## [31] &quot;x&quot;                   &quot;x.test&quot;              &quot;x1&quot;                 
-## [34] &quot;x2&quot;                  &quot;xbar&quot;                &quot;xfactor&quot;            
-## [37] &quot;y&quot;</code></pre>
+## [25] &quot;sim.matrix&quot;          &quot;simframe&quot;            &quot;tabl&quot;               
+## [28] &quot;test&quot;                &quot;text.pain&quot;           &quot;thuesenBD&quot;          
+## [31] &quot;v&quot;                   &quot;x&quot;                   &quot;x.test&quot;             
+## [34] &quot;x1&quot;                  &quot;x2&quot;                  &quot;xbar&quot;               
+## [37] &quot;xfactor&quot;             &quot;y&quot;</code></pre>
 </div>
 <div id="remover-todas-las-variables" class="section level4">
 <h4>Remover todas las variables</h4>
@@ -1727,29 +1728,29 @@ mydata &lt;- read.xlsx(&quot;c:/miexcel.xlsx&quot;, sheetName = &quot;mihoja&quo
 <p>Para calcular la media, desviación estándar, varianza y mediana:</p>
 <pre class="r"><code>x &lt;- rnorm(50)
 mean(x)</code></pre>
-<pre><code>## [1] -0.1793833</code></pre>
+<pre><code>## [1] -0.02162251</code></pre>
 <pre class="r"><code>sd(x)</code></pre>
-<pre><code>## [1] 0.9610267</code></pre>
+<pre><code>## [1] 0.8200851</code></pre>
 <pre class="r"><code>var(x)</code></pre>
-<pre><code>## [1] 0.9235723</code></pre>
+<pre><code>## [1] 0.6725395</code></pre>
 <pre class="r"><code>median(x)</code></pre>
-<pre><code>## [1] -0.2320681</code></pre>
+<pre><code>## [1] 0.09017034</code></pre>
 </div>
 <div id="más-cuantiles" class="section level4">
 <h4>Más Cuantiles</h4>
 <p>Cuantiles empíricos se pueden calcular también</p>
 <pre class="r"><code>quantile(x)</code></pre>
-<pre><code>##         0%        25%        50%        75%       100% 
-## -2.0569929 -0.8159888 -0.2320681  0.4844171  2.5439199</code></pre>
+<pre><code>##          0%         25%         50%         75%        100% 
+## -2.45639931 -0.47970086  0.09017034  0.54849034  1.30188567</code></pre>
 <p>Cuantiles empíricos se pueden calcular también</p>
 <pre class="r"><code>pvec &lt;- seq(0,1,0.1)
 pvec</code></pre>
 <pre><code>##  [1] 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0</code></pre>
 <pre class="r"><code>quantile(x,pvec)</code></pre>
-<pre><code>##         0%        10%        20%        30%        40%        50% 
-## -2.0569929 -1.4433532 -0.9843183 -0.7881632 -0.5136900 -0.2320681 
-##        60%        70%        80%        90%       100% 
-##  0.1595037  0.4251256  0.6292285  0.8857292  2.5439199</code></pre>
+<pre><code>##          0%         10%         20%         30%         40%         50% 
+## -2.45639931 -0.93226046 -0.64618504 -0.28488838 -0.08088524  0.09017034 
+##         60%         70%         80%         90%        100% 
+##  0.28194088  0.37930518  0.65066511  0.83423520  1.30188567</code></pre>
 <p>Por defecto <code>R</code> usa interpolación. Existen 7 métodos para calcular cuantiles que se pueden acceder mediante el argumento <code>type</code></p>
 </div>
 <div id="datos-faltantes" class="section level4">
@@ -2623,7 +2624,7 @@ print(x.test)</code></pre>
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  x
-## W = 0.99037, p-value = 0.6942</code></pre>
+## W = 0.98689, p-value = 0.43</code></pre>
 <p>Como el valor de <span class="math inline">\(p &gt; 0.05\)</span>, entonces podemos inferir que la distribución de los datos es una distribución normal.</p>
 </div>
 </div>
@@ -2642,13 +2643,13 @@ print(test)</code></pre>
 ##  Welch Two Sample t-test
 ## 
 ## data:  x1 and x2
-## t = -5.0326, df = 192.32, p-value = 1.108e-06
+## t = -3.4284, df = 194.58, p-value = 0.0007411
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.9857374 -0.4306305
+##  -0.7938858 -0.2140509
 ## sample estimates:
 ## mean of x mean of y 
-##   9.84802  10.55620</code></pre>
+##  9.985272 10.489241</code></pre>
 <p>Como el <span class="math inline">\(p\)</span>-value es <span class="math inline">\(&lt;0.05\)</span> podemos afirmar que las muestras difieren en su media, es decir, los dos variables son diferentes.</p>
 </div>
 <div id="anova" class="section level4">
@@ -2701,13 +2702,13 @@ var.test(x, y)</code></pre>
 ##  F test to compare two variances
 ## 
 ## data:  x and y
-## F = 4.4764, num df = 49, denom df = 29, p-value = 4.991e-05
+## F = 2.2849, num df = 49, denom df = 29, p-value = 0.01943
 ## alternative hypothesis: true ratio of variances is not equal to 1
 ## 95 percent confidence interval:
-##  2.249044 8.421961
+##  1.147998 4.298893
 ## sample estimates:
 ## ratio of variances 
-##           4.476394</code></pre>
+##           2.284924</code></pre>
 <p>Como vemos, el <span class="math inline">\(p\)</span>-valor sale prácticamente cero: rechazaremos la hipótesis de que los conjuntos de datos <code>x</code> e <code>y</code> provienen de distribuciones con la misma varianza.</p>
 </div>
 <div id="homogéneidad-de-varianzas" class="section level4">
@@ -2734,19 +2735,19 @@ bartlett.test(list(a,b))</code></pre>
 <p><em>Ejemplo:</em> Para empezar, tiraremos una moneda al aire 100 veces, y nos preguntaremos si la proporción de caras puede ser considerada el 50%:</p>
 <pre class="r"><code>caras &lt;- rbinom(1, size=100, pr = .5)
 caras</code></pre>
-<pre><code>## [1] 53</code></pre>
+<pre><code>## [1] 49</code></pre>
 <pre class="r"><code>prop.test(caras,100)</code></pre>
 <pre><code>## 
 ##  1-sample proportions test with continuity correction
 ## 
 ## data:  caras out of 100, null probability 0.5
-## X-squared = 0.25, df = 1, p-value = 0.6171
+## X-squared = 0.01, df = 1, p-value = 0.9203
 ## alternative hypothesis: true p is not equal to 0.5
 ## 95 percent confidence interval:
-##  0.4280225 0.6296465
+##  0.3894281 0.5913488
 ## sample estimates:
 ##    p 
-## 0.53</code></pre>
+## 0.49</code></pre>
 <p>Como el <span class="math inline">\(p\)</span>-valor es muy alto, 0.92, no rechazaremos la hipótesis nula de que <span class="math inline">\(p=0.5\)</span>.</p>
 <p>Supongamos ahora que queremos saber si dos muestras han salido de la misma población.</p>
 <p><em>Ejemplo:</em> se quiere saber si las mujeres estudian un grupo de carreras diferentes en la misma proporcion. Para ello miramos la lista de matriculados en cuatro carreras y comprobamos si las proporciones de mujeres en las mismas coinciden:</p>
