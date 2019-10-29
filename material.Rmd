@@ -17,12 +17,12 @@ title: "Material"
 | Integrantes |	Becario |
 | :--- | :--- |
 | Sergio Andres | Luis |
-| Brisia Shiomara |Yaneli |
+| Brisia Shiomara | Yaneli |
 | Luis Osvaldo 	| |
 
 ## Proyecto 2
 * Objetivo del proyecto: Control de herramentales (Inventario, vida útil, pronóstico de compras)
-* Responsable: Joel jorado.
+* Responsable: Joel
 * Empresa:  Multipak.
 * Técnicas: Diagnóstico, Control, predicción vida útil y pronóstico de compras.
 
@@ -50,10 +50,12 @@ title: "Material"
 
 ### Equipo
 | Integrantes |	Becario |
-| :--- | :--- |
+|  :--- | :--- |
 | Edgar | Guillermo |
-| Montserrat Albar ||
-| Eduardo Abad || 
+| Montserrat | |
+| Eduardo Abad | | 
+
+
 
 
 
