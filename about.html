@@ -408,14 +408,14 @@ $(document).ready(function () {
 <h3>Ejemplo 2</h3>
 <p>Considera el comando:</p>
 <pre class="r"><code>rnorm(15)</code></pre>
-<pre><code>##  [1] -0.03061906 -0.97111587 -1.15463507 -0.25357359 -0.84178462
-##  [6] -0.87447461 -1.21731351  0.85545904 -0.07474867 -0.07011212
-## [11]  0.52324553 -1.28329335 -0.40078628 -1.36817791  0.43799233</code></pre>
+<pre><code>##  [1]  1.3011004 -1.0676883  0.8755235 -0.1245912  0.7417492  0.5046817
+##  [7] -0.2326356 -1.0957142  0.4376768  0.4644900  1.0882050 -0.4327371
+## [13]  0.3742403  0.6098659 -2.5427772</code></pre>
 <ul>
 <li>El <code>[1]</code> indica la posición del primer resultado en el vector de 15 elementos.</li>
-<li>El <code>[8]</code> indica que el valor <code>0.855459</code> está en la posición 8.</li>
-<li>El <code>[15]</code> indica que el valor <code>0.4379923</code> está en la posición 15.</li>
-<li>Las posiciones de los demás valores se pueden obtener contando a partir del elemento de la izquierda. Por ejemplo, <code>-0.9711159</code> tiene la posición 2, pues <code>-0.0306191</code> que está a su izquierda tiene la posición 1. Así, <code>-1.1546351</code> tiene la posición 3, <code>-0.2535736</code> la 4, etc.</li>
+<li>El <code>[8]</code> indica que el valor <code>-1.0957142</code> está en la posición 8.</li>
+<li>El <code>[15]</code> indica que el valor <code>-2.5427772</code> está en la posición 15.</li>
+<li>Las posiciones de los demás valores se pueden obtener contando a partir del elemento de la izquierda. Por ejemplo, <code>-1.0676883</code> tiene la posición 2, pues <code>1.3011004</code> que está a su izquierda tiene la posición 1. Así, <code>0.8755235</code> tiene la posición 3, <code>-0.1245912</code> la 4, etc.</li>
 </ul>
 </div>
 <div id="asignaciones" class="section level3">
@@ -967,8 +967,8 @@ exp.obese &lt;- energy$expend[energy$stature == &quot;obese&quot;]</code></pre>
 <h4><code>replicate</code></h4>
 <p>Si deseamos realizar una operación un número predeterminado de veces, podemos utilizar la función <code>replicate</code>.</p>
 <pre class="r"><code>replicate(10,mean(rexp(20)))</code></pre>
-<pre><code>##  [1] 0.9325803 1.1663560 1.0258508 0.9915662 0.6328714 1.1348825 1.1214412
-##  [8] 0.8875741 0.7463851 1.5921405</code></pre>
+<pre><code>##  [1] 0.8793889 1.1095998 0.6277996 1.0826092 1.2026059 0.8607725 0.7683865
+##  [8] 1.4116684 1.1164196 0.8369804</code></pre>
 <p>Aquí, el primer argumento indica el número de replicas que deseamos, el segundo argumento es la función que deseamos que se ejecute esa cantidad de veces.</p>
 </div>
 <div id="apply" class="section level4">
@@ -976,15 +976,15 @@ exp.obese &lt;- energy$expend[energy$stature == &quot;obese&quot;]</code></pre>
 <p>Si deseamos trabajar con una matriz, y deseamos realizar una operación por cada columna o reglón, podemos utilizar la función <code>apply</code>.</p>
 <pre class="r"><code>m &lt;- matrix(rnorm(12),4)
 m</code></pre>
-<pre><code>##             [,1]       [,2]       [,3]
-## [1,]  1.81284644  1.7943174 -0.6947396
-## [2,]  0.02472073  1.2471761 -0.1968044
-## [3,] -0.18339430  0.5153474 -1.9137394
-## [4,]  1.21607955 -0.9753477 -1.1828327</code></pre>
+<pre><code>##            [,1]       [,2]       [,3]
+## [1,] -0.3716489 -0.9874455 -1.8644874
+## [2,]  0.4073668  0.6492805  1.0016857
+## [3,]  0.8205320 -1.8132873  0.1309328
+## [4,]  1.0152800  1.5326633 -0.7984668</code></pre>
 <pre class="r"><code>apply(m,2,min)</code></pre>
-<pre><code>## [1] -0.1833943 -0.9753477 -1.9137394</code></pre>
+<pre><code>## [1] -0.3716489 -1.8132873 -1.8644874</code></pre>
 <pre class="r"><code>apply(m,1,min)</code></pre>
-<pre><code>## [1] -0.6947396 -0.1968044 -1.9137394 -1.1828327</code></pre>
+<pre><code>## [1] -1.8644874  0.4073668 -1.8132873 -0.7984668</code></pre>
 <p>Aquí, en el primer caso obtenemos el mínimo por columna. En el segundo caso lo obtenemos por reglón.</p>
 </div>
 <div id="tapply" class="section level4">
@@ -1069,8 +1069,8 @@ xfactor</code></pre>
 </ul>
 <pre class="r"><code>  sim.matrix &lt;- matrix(rexp(10 * 20),20)
   apply(sim.matrix,2,mean)</code></pre>
-<pre><code>##  [1] 0.9768808 1.1782209 0.7563052 0.8585803 0.9320778 0.5123548 1.2811480
-##  [8] 0.9447083 1.4465541 1.2274508</code></pre>
+<pre><code>##  [1] 0.6156128 0.9127325 0.9334024 0.4482861 1.3249086 1.0249329 1.4219485
+##  [8] 1.1778864 0.9505090 1.0949936</code></pre>
 <ul>
 <li>usando <code>sapply</code></li>
 </ul>
@@ -1078,9 +1078,9 @@ xfactor</code></pre>
 simframe &lt;- data.frame(sim.matrix)
 sapply(simframe,mean)</code></pre>
 <pre><code>##        X1        X2        X3        X4        X5        X6        X7 
-## 0.9238871 1.1317798 1.0610366 1.0797580 1.0246934 0.9596869 0.8401125 
+## 1.1026229 1.0636467 1.1903860 0.7709754 0.7959554 0.9733961 0.8030551 
 ##        X8        X9       X10 
-## 0.9617505 0.7573996 1.3679020</code></pre>
+## 1.3926649 0.8594356 0.4615951</code></pre>
 </div>
 </div>
 <div id="ambiente-r" class="section level2">
@@ -1101,16 +1101,16 @@ sapply(simframe,mean)</code></pre>
 <pre><code>##  [1] &quot;a&quot;                   &quot;aa&quot;                  &quot;b&quot;                  
 ##  [4] &quot;bmi&quot;                 &quot;d&quot;                   &quot;DT&quot;                 
 ##  [7] &quot;estudiantes.mujeres&quot; &quot;exp.lean&quot;            &quot;exp.obese&quot;          
-## [10] &quot;fpain&quot;               &quot;ftext.pain&quot;          &quot;height&quot;             
-## [13] &quot;hh&quot;                  &quot;i&quot;                   &quot;intake.post&quot;        
-## [16] &quot;intake.pre&quot;          &quot;iris&quot;                &quot;juul&quot;               
-## [19] &quot;m&quot;                   &quot;mylist&quot;              &quot;o&quot;                  
-## [22] &quot;oops&quot;                &quot;pain&quot;                &quot;pvec&quot;               
-## [25] &quot;sim.matrix&quot;          &quot;simframe&quot;            &quot;test&quot;               
-## [28] &quot;text.pain&quot;           &quot;thuesenBD&quot;           &quot;v&quot;                  
-## [31] &quot;weight&quot;              &quot;x&quot;                   &quot;x.test&quot;             
-## [34] &quot;x1&quot;                  &quot;x2&quot;                  &quot;xbar&quot;               
-## [37] &quot;xfactor&quot;             &quot;y&quot;</code></pre>
+## [10] &quot;f&quot;                   &quot;fpain&quot;               &quot;ftext.pain&quot;         
+## [13] &quot;height&quot;              &quot;hh&quot;                  &quot;i&quot;                  
+## [16] &quot;intake.post&quot;         &quot;intake.pre&quot;          &quot;iris&quot;               
+## [19] &quot;juul&quot;                &quot;m&quot;                   &quot;mylist&quot;             
+## [22] &quot;o&quot;                   &quot;oops&quot;                &quot;pain&quot;               
+## [25] &quot;pvec&quot;                &quot;sim.matrix&quot;          &quot;simframe&quot;           
+## [28] &quot;test&quot;                &quot;text.pain&quot;           &quot;thuesenBD&quot;          
+## [31] &quot;v&quot;                   &quot;weight&quot;              &quot;x&quot;                  
+## [34] &quot;x.test&quot;              &quot;x1&quot;                  &quot;x2&quot;                 
+## [37] &quot;xbar&quot;                &quot;xfactor&quot;             &quot;y&quot;</code></pre>
 </div>
 <div id="remover-variables" class="section level4">
 <h4>Remover variables</h4>
@@ -1120,15 +1120,16 @@ ls()</code></pre>
 <pre><code>##  [1] &quot;a&quot;                   &quot;aa&quot;                  &quot;b&quot;                  
 ##  [4] &quot;bmi&quot;                 &quot;d&quot;                   &quot;DT&quot;                 
 ##  [7] &quot;estudiantes.mujeres&quot; &quot;exp.lean&quot;            &quot;exp.obese&quot;          
-## [10] &quot;fpain&quot;               &quot;ftext.pain&quot;          &quot;hh&quot;                 
-## [13] &quot;i&quot;                   &quot;intake.post&quot;         &quot;intake.pre&quot;         
-## [16] &quot;iris&quot;                &quot;juul&quot;                &quot;m&quot;                  
-## [19] &quot;mylist&quot;              &quot;o&quot;                   &quot;oops&quot;               
-## [22] &quot;pain&quot;                &quot;pvec&quot;                &quot;sim.matrix&quot;         
-## [25] &quot;simframe&quot;            &quot;test&quot;                &quot;text.pain&quot;          
-## [28] &quot;thuesenBD&quot;           &quot;v&quot;                   &quot;x&quot;                  
-## [31] &quot;x.test&quot;              &quot;x1&quot;                  &quot;x2&quot;                 
-## [34] &quot;xbar&quot;                &quot;xfactor&quot;             &quot;y&quot;</code></pre>
+## [10] &quot;f&quot;                   &quot;fpain&quot;               &quot;ftext.pain&quot;         
+## [13] &quot;hh&quot;                  &quot;i&quot;                   &quot;intake.post&quot;        
+## [16] &quot;intake.pre&quot;          &quot;iris&quot;                &quot;juul&quot;               
+## [19] &quot;m&quot;                   &quot;mylist&quot;              &quot;o&quot;                  
+## [22] &quot;oops&quot;                &quot;pain&quot;                &quot;pvec&quot;               
+## [25] &quot;sim.matrix&quot;          &quot;simframe&quot;            &quot;test&quot;               
+## [28] &quot;text.pain&quot;           &quot;thuesenBD&quot;           &quot;v&quot;                  
+## [31] &quot;x&quot;                   &quot;x.test&quot;              &quot;x1&quot;                 
+## [34] &quot;x2&quot;                  &quot;xbar&quot;                &quot;xfactor&quot;            
+## [37] &quot;y&quot;</code></pre>
 </div>
 <div id="remover-todas-las-variables" class="section level4">
 <h4>Remover todas las variables</h4>
@@ -1143,7 +1144,7 @@ ls()</code></pre>
 <p>Puedes guardar todo es espacio de trabajo en un archivo usando la función <code>save.image()</code>.</p>
 <p>Esto hará que un archivo <code>.RData</code> se cree en el directorio por defecto.</p>
 <p>Usa un nombre entre comillas para asignarle algún nombre en particular a tu sesión y escribir la ruta donde deseas guardar como se muestra a continuación.</p>
-<pre class="r"><code>save.image(file file = &quot;trabajo.RData&quot;)
+<pre class="r"><code>save.image(file = &quot;trabajo.RData&quot;)
 load(&quot;trabajo.RData&quot;)
 save.image(file = &quot;/home/victor/Documents/R Works/trabajo.RData&quot;)
 load(&quot;/home/victor/Documents/R Works/trabajo.RData&quot;)</code></pre>
@@ -1584,7 +1585,7 @@ Mifuncion.v1(x = 1, yyy = 2)</code></pre>
 </div>
 <div id="nota-sobre-windows" class="section level4">
 <h4>Nota sobre Windows</h4>
-<p>Si usas <strong>Windows</strong> recuerda usar <code>\\' o</code>/<code>en lugar de</code>` para separar los directorios.</p>
+<p>Si usas <strong>Windows</strong> recuerda usar <code>\\</code> o <code>/</code> en lugar de <code>\</code> para separar los directorios.</p>
 <pre class="r"><code>N:\\documentos\\thuesenBD.txt
 N:/documentos/thuesenBD.txt</code></pre>
 </div>
@@ -1726,29 +1727,29 @@ mydata &lt;- read.xlsx(&quot;c:/miexcel.xlsx&quot;, sheetName = &quot;mihoja&quo
 <p>Para calcular la media, desviación estándar, varianza y mediana:</p>
 <pre class="r"><code>x &lt;- rnorm(50)
 mean(x)</code></pre>
-<pre><code>## [1] 0.06791103</code></pre>
+<pre><code>## [1] -0.1793833</code></pre>
 <pre class="r"><code>sd(x)</code></pre>
-<pre><code>## [1] 1.088141</code></pre>
+<pre><code>## [1] 0.9610267</code></pre>
 <pre class="r"><code>var(x)</code></pre>
-<pre><code>## [1] 1.18405</code></pre>
+<pre><code>## [1] 0.9235723</code></pre>
 <pre class="r"><code>median(x)</code></pre>
-<pre><code>## [1] 0.09864574</code></pre>
+<pre><code>## [1] -0.2320681</code></pre>
 </div>
 <div id="más-cuantiles" class="section level4">
 <h4>Más Cuantiles</h4>
 <p>Cuantiles empíricos se pueden calcular también</p>
 <pre class="r"><code>quantile(x)</code></pre>
-<pre><code>##          0%         25%         50%         75%        100% 
-## -1.54570372 -0.78595574  0.09864574  0.56251413  3.60691941</code></pre>
+<pre><code>##         0%        25%        50%        75%       100% 
+## -2.0569929 -0.8159888 -0.2320681  0.4844171  2.5439199</code></pre>
 <p>Cuantiles empíricos se pueden calcular también</p>
 <pre class="r"><code>pvec &lt;- seq(0,1,0.1)
 pvec</code></pre>
 <pre><code>##  [1] 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0</code></pre>
 <pre class="r"><code>quantile(x,pvec)</code></pre>
-<pre><code>##          0%         10%         20%         30%         40%         50% 
-## -1.54570372 -1.11949893 -0.81115821 -0.75706693 -0.19325376  0.09864574 
-##         60%         70%         80%         90%        100% 
-##  0.24984264  0.43131174  0.68832607  1.41021702  3.60691941</code></pre>
+<pre><code>##         0%        10%        20%        30%        40%        50% 
+## -2.0569929 -1.4433532 -0.9843183 -0.7881632 -0.5136900 -0.2320681 
+##        60%        70%        80%        90%       100% 
+##  0.1595037  0.4251256  0.6292285  0.8857292  2.5439199</code></pre>
 <p>Por defecto <code>R</code> usa interpolación. Existen 7 métodos para calcular cuantiles que se pueden acceder mediante el argumento <code>type</code></p>
 </div>
 <div id="datos-faltantes" class="section level4">
@@ -2622,7 +2623,7 @@ print(x.test)</code></pre>
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  x
-## W = 0.99077, p-value = 0.7269</code></pre>
+## W = 0.99037, p-value = 0.6942</code></pre>
 <p>Como el valor de <span class="math inline">\(p &gt; 0.05\)</span>, entonces podemos inferir que la distribución de los datos es una distribución normal.</p>
 </div>
 </div>
@@ -2641,13 +2642,13 @@ print(test)</code></pre>
 ##  Welch Two Sample t-test
 ## 
 ## data:  x1 and x2
-## t = -4.9459, df = 193.48, p-value = 1.64e-06
+## t = -5.0326, df = 192.32, p-value = 1.108e-06
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.9925127 -0.4266062
+##  -0.9857374 -0.4306305
 ## sample estimates:
 ## mean of x mean of y 
-##  9.803465 10.513024</code></pre>
+##   9.84802  10.55620</code></pre>
 <p>Como el <span class="math inline">\(p\)</span>-value es <span class="math inline">\(&lt;0.05\)</span> podemos afirmar que las muestras difieren en su media, es decir, los dos variables son diferentes.</p>
 </div>
 <div id="anova" class="section level4">
@@ -2700,13 +2701,13 @@ var.test(x, y)</code></pre>
 ##  F test to compare two variances
 ## 
 ## data:  x and y
-## F = 3.1673, num df = 49, denom df = 29, p-value = 0.00139
+## F = 4.4764, num df = 49, denom df = 29, p-value = 4.991e-05
 ## alternative hypothesis: true ratio of variances is not equal to 1
 ## 95 percent confidence interval:
-##  1.591322 5.958999
+##  2.249044 8.421961
 ## sample estimates:
 ## ratio of variances 
-##           3.167294</code></pre>
+##           4.476394</code></pre>
 <p>Como vemos, el <span class="math inline">\(p\)</span>-valor sale prácticamente cero: rechazaremos la hipótesis de que los conjuntos de datos <code>x</code> e <code>y</code> provienen de distribuciones con la misma varianza.</p>
 </div>
 <div id="homogéneidad-de-varianzas" class="section level4">
@@ -2733,19 +2734,19 @@ bartlett.test(list(a,b))</code></pre>
 <p><em>Ejemplo:</em> Para empezar, tiraremos una moneda al aire 100 veces, y nos preguntaremos si la proporción de caras puede ser considerada el 50%:</p>
 <pre class="r"><code>caras &lt;- rbinom(1, size=100, pr = .5)
 caras</code></pre>
-<pre><code>## [1] 46</code></pre>
+<pre><code>## [1] 53</code></pre>
 <pre class="r"><code>prop.test(caras,100)</code></pre>
 <pre><code>## 
 ##  1-sample proportions test with continuity correction
 ## 
 ## data:  caras out of 100, null probability 0.5
-## X-squared = 0.49, df = 1, p-value = 0.4839
+## X-squared = 0.25, df = 1, p-value = 0.6171
 ## alternative hypothesis: true p is not equal to 0.5
 ## 95 percent confidence interval:
-##  0.3608720 0.5622361
+##  0.4280225 0.6296465
 ## sample estimates:
 ##    p 
-## 0.46</code></pre>
+## 0.53</code></pre>
 <p>Como el <span class="math inline">\(p\)</span>-valor es muy alto, 0.92, no rechazaremos la hipótesis nula de que <span class="math inline">\(p=0.5\)</span>.</p>
 <p>Supongamos ahora que queremos saber si dos muestras han salido de la misma población.</p>
 <p><em>Ejemplo:</em> se quiere saber si las mujeres estudian un grupo de carreras diferentes en la misma proporcion. Para ello miramos la lista de matriculados en cuatro carreras y comprobamos si las proporciones de mujeres en las mismas coinciden:</p>

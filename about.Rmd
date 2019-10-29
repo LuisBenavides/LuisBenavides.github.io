@@ -848,7 +848,7 @@ Esto hará que un archivo `.RData` se cree en el directorio por defecto.
 
 Usa un nombre entre comillas para asignarle algún nombre en particular a tu sesión y escribir la ruta donde deseas guardar como se muestra a continuación.
 ```{r eval=FALSE}
-save.image(file file = "trabajo.RData")
+save.image(file = "trabajo.RData")
 load("trabajo.RData")
 save.image(file = "/home/victor/Documents/R Works/trabajo.RData")
 load("/home/victor/Documents/R Works/trabajo.RData")
@@ -1371,7 +1371,7 @@ Recuerda ajustar la ruta del archivo en tu computadora. Descarga el achivo [thue
 
 
 #### Nota sobre Windows
-Si usas **Windows** recuerda usar `\\' o `/` en lugar de `\` para separar los directorios.
+Si usas **Windows** recuerda usar `\\` o `/` en lugar de `\` para separar los directorios.
 ```{r eval=FALSE}
 N:\\documentos\\thuesenBD.txt
 N:/documentos/thuesenBD.txt
