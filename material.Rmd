@@ -2,6 +2,12 @@
 title: "Material"
 ---
 # {.tabset .tabset-fade .tabset-pills}
+## Formato Presentación Final
+
+Seguir este formato para llevar a cabo la presentación final
+
+[Descarga el formato](archivos/Filmina.pptx)
+
 
 ## Proyecto 1
 * Objetivo del proyecto: Análisis de tiempos en Planta # 3 Magnekon
