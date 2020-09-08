@@ -12,3 +12,5 @@ La duración de la actividad será la semana del 28 de octubre al 1 de noviembre
 # Agenda
 
 <img src="Agenda.png"> </img>
+
+<!DOCTYPE html><html><body><iframe src="https://powerva.microsoft.com/webchat/bots/40c012dd-8c26-44a7-b604-6dfee93627e7" frameborder="0" style="width: 100%; height: 100%;"></iframe></body></html>
