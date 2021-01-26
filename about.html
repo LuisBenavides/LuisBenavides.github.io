@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -14,6 +13,7 @@
 
 <title>Curso de R</title>
 
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -25,6 +25,15 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -70,6 +79,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 
 
@@ -234,6 +244,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -275,21 +286,21 @@ $(document).ready(function () {
       <ul class="nav navbar-nav">
         <li>
   <a href="index.html">
-    <span class="fa fa-home"></span>
+    <span class="fas fa-home"></span>
      
     Home
   </a>
 </li>
 <li>
   <a href="about.html">
-    <span class="fa fa-folder"></span>
+    <span class="fas fa-folder"></span>
      
     Curso
   </a>
 </li>
 <li>
   <a href="material.html">
-    <span class="fa fa-archive"></span>
+    <span class="fas fa-archive"></span>
      
     Proyectos
   </a>
@@ -298,7 +309,7 @@ $(document).ready(function () {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="mailto:luisbv@tec.mx">
-    <span class="fa fa-envelope-o"></span>
+    <span class="fas fa-envelope-o"></span>
      
     Contáctame
   </a>
@@ -318,7 +329,7 @@ $(document).ready(function () {
 
 
 <div id="section" class="section level1 tabset tabset-fade tabset-pills">
-<h1></h1>
+<h1 class="tabset tabset-fade tabset-pills"></h1>
 <div id="introducción" class="section level2">
 <h2>Introducción</h2>
 <div id="instalación-de-r" class="section level3">
@@ -408,14 +419,14 @@ $(document).ready(function () {
 <h3>Ejemplo 2</h3>
 <p>Considera el comando:</p>
 <pre class="r"><code>rnorm(15)</code></pre>
-<pre><code>##  [1] -1.105221944  0.823420499  0.206916567  0.001260328 -0.443099543
-##  [6] -0.312864090  0.637907581  0.762829119  0.519018996  1.133210012
-## [11]  0.275898196  0.683290081 -1.026249013  0.980127928 -0.783800005</code></pre>
+<pre><code>##  [1]  1.131322762 -1.110886620 -0.505608019 -0.869268531 -0.000982745
+##  [6] -0.263335715  0.207682464 -1.436852421  0.658340678 -1.962553435
+## [11]  0.144678106 -0.143019585  0.192640865 -0.095227610 -0.259289874</code></pre>
 <ul>
 <li>El <code>[1]</code> indica la posición del primer resultado en el vector de 15 elementos.</li>
-<li>El <code>[8]</code> indica que el valor <code>0.7628291</code> está en la posición 8.</li>
-<li>El <code>[15]</code> indica que el valor <code>-0.7838</code> está en la posición 15.</li>
-<li>Las posiciones de los demás valores se pueden obtener contando a partir del elemento de la izquierda. Por ejemplo, <code>0.8234205</code> tiene la posición 2, pues <code>-1.1052219</code> que está a su izquierda tiene la posición 1. Así, <code>0.2069166</code> tiene la posición 3, <code>0.0012603</code> la 4, etc.</li>
+<li>El <code>[8]</code> indica que el valor <code>-1.4368524</code> está en la posición 8.</li>
+<li>El <code>[15]</code> indica que el valor <code>-0.2592899</code> está en la posición 15.</li>
+<li>Las posiciones de los demás valores se pueden obtener contando a partir del elemento de la izquierda. Por ejemplo, <code>-1.1108866</code> tiene la posición 2, pues <code>1.1313228</code> que está a su izquierda tiene la posición 1. Así, <code>-0.505608</code> tiene la posición 3, <code>-0.8692685</code> la 4, etc.</li>
 </ul>
 </div>
 <div id="asignaciones" class="section level3">
@@ -893,11 +904,7 @@ library(ISwR)</code></pre>
 <h4>Datos agrupados y data frames</h4>
 <p>Observa los siguientes datos:</p>
 <pre class="r"><code>energy</code></pre>
-<pre><code>## 
-## Attaching package: &#39;ISwR&#39;</code></pre>
-<pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
-## 
-##     juul</code></pre>
+<pre><code>## Warning: package &#39;ISwR&#39; was built under R version 4.0.3</code></pre>
 <pre><code>##    expend stature
 ## 1    9.21   obese
 ## 2    7.53    lean
@@ -927,8 +934,8 @@ exp.obese &lt;- energy$expend[energy$stature == &quot;obese&quot;]</code></pre>
 <p>O lo puedes hacer en un solo paso con la función <code>split()</code></p>
 <pre class="r"><code>split(energy$expend, energy$stature)</code></pre>
 <pre><code>## $lean
-##  [1]  7.53  7.48  8.08  8.09 10.15  8.40 10.88  6.13  7.90  7.05  7.48
-## [12]  7.58  8.11
+##  [1]  7.53  7.48  8.08  8.09 10.15  8.40 10.88  6.13  7.90  7.05  7.48  7.58
+## [13]  8.11
 ## 
 ## $obese
 ## [1]  9.21 11.51 12.79 11.85  9.97  8.79  9.69  9.68  9.19</code></pre>
@@ -967,8 +974,8 @@ exp.obese &lt;- energy$expend[energy$stature == &quot;obese&quot;]</code></pre>
 <h4><code>replicate</code></h4>
 <p>Si deseamos realizar una operación un número predeterminado de veces, podemos utilizar la función <code>replicate</code>.</p>
 <pre class="r"><code>replicate(10,mean(rexp(20)))</code></pre>
-<pre><code>##  [1] 0.9283372 0.8147619 1.0908091 0.9639237 0.9115609 0.7955955 1.2212414
-##  [8] 0.6844574 0.5718489 0.8534110</code></pre>
+<pre><code>##  [1] 0.7470735 0.9334040 0.6976815 0.9947015 0.8153569 1.2239784 1.3281071
+##  [8] 1.0542058 0.8575298 0.7148715</code></pre>
 <p>Aquí, el primer argumento indica el número de replicas que deseamos, el segundo argumento es la función que deseamos que se ejecute esa cantidad de veces.</p>
 </div>
 <div id="apply" class="section level4">
@@ -976,15 +983,15 @@ exp.obese &lt;- energy$expend[energy$stature == &quot;obese&quot;]</code></pre>
 <p>Si deseamos trabajar con una matriz, y deseamos realizar una operación por cada columna o reglón, podemos utilizar la función <code>apply</code>.</p>
 <pre class="r"><code>m &lt;- matrix(rnorm(12),4)
 m</code></pre>
-<pre><code>##            [,1]        [,2]        [,3]
-## [1,]  0.7034571 -0.09008334 -0.02315072
-## [2,] -0.3128095  1.07255742 -0.84649235
-## [3,] -0.4218867  0.90121368  1.00209536
-## [4,]  0.9402725 -0.16807975 -0.21942753</code></pre>
+<pre><code>##              [,1]         [,2]       [,3]
+## [1,]  1.155336634  0.693681997 -0.7654683
+## [2,] -2.024475287  1.801774952 -2.7285706
+## [3,]  0.003636907 -0.480212105  0.2260421
+## [4,] -1.403672426  0.001477987 -1.1492312</code></pre>
 <pre class="r"><code>apply(m,2,min)</code></pre>
-<pre><code>## [1] -0.4218867 -0.1680798 -0.8464923</code></pre>
+<pre><code>## [1] -2.0244753 -0.4802121 -2.7285706</code></pre>
 <pre class="r"><code>apply(m,1,min)</code></pre>
-<pre><code>## [1] -0.09008334 -0.84649235 -0.42188667 -0.21942753</code></pre>
+<pre><code>## [1] -0.7654683 -2.7285706 -0.4802121 -1.4036724</code></pre>
 <p>Aquí, en el primer caso obtenemos el mínimo por columna. En el segundo caso lo obtenemos por reglón.</p>
 </div>
 <div id="tapply" class="section level4">
@@ -1069,18 +1076,18 @@ xfactor</code></pre>
 </ul>
 <pre class="r"><code>  sim.matrix &lt;- matrix(rexp(10 * 20),20)
   apply(sim.matrix,2,mean)</code></pre>
-<pre><code>##  [1] 1.1200865 0.6866116 1.0257821 0.9988833 0.8720954 1.1421653 0.8866758
-##  [8] 0.8368170 1.1517605 1.0908197</code></pre>
+<pre><code>##  [1] 0.7578647 1.4477881 1.1220723 0.7588689 0.9051068 0.8586334 1.0810790
+##  [8] 0.9161116 0.8016943 0.8302115</code></pre>
 <ul>
 <li>usando <code>sapply</code></li>
 </ul>
 <pre class="r"><code>sim.matrix &lt;- matrix(rexp(10 * 20),20)
 simframe &lt;- data.frame(sim.matrix)
 sapply(simframe,mean)</code></pre>
-<pre><code>##        X1        X2        X3        X4        X5        X6        X7 
-## 1.1699623 0.7776913 0.9750542 1.0920206 0.9481883 0.8978493 1.0286738 
-##        X8        X9       X10 
-## 1.1216345 1.1734794 0.9510943</code></pre>
+<pre><code>##        X1        X2        X3        X4        X5        X6        X7        X8 
+## 1.1776853 0.9999483 1.1082336 0.5394724 1.0374040 0.7739892 0.7840731 0.7357522 
+##        X9       X10 
+## 0.7798371 0.8373908</code></pre>
 </div>
 </div>
 <div id="ambiente-r" class="section level2">
@@ -1098,39 +1105,21 @@ sapply(simframe,mean)</code></pre>
 <h4>Espacio de trabajo</h4>
 <p>Todas las variables creadas en <code>R</code> se guardan en un espacio de trabajo común.</p>
 <pre class="r"><code>ls()</code></pre>
-<pre><code>##  [1] &quot;a&quot;                   &quot;aa&quot;                  &quot;b&quot;                  
-##  [4] &quot;bmi&quot;                 &quot;d&quot;                   &quot;DT&quot;                 
-##  [7] &quot;estudiantes.mujeres&quot; &quot;exp.lean&quot;            &quot;exp.obese&quot;          
-## [10] &quot;f&quot;                   &quot;fpain&quot;               &quot;ftext.pain&quot;         
-## [13] &quot;height&quot;              &quot;hh&quot;                  &quot;i&quot;                  
-## [16] &quot;intake.post&quot;         &quot;intake.pre&quot;          &quot;iris&quot;               
-## [19] &quot;juul&quot;                &quot;m&quot;                   &quot;mylist&quot;             
-## [22] &quot;o&quot;                   &quot;oops&quot;                &quot;pain&quot;               
-## [25] &quot;pvec&quot;                &quot;sim.matrix&quot;          &quot;simframe&quot;           
-## [28] &quot;tabl&quot;                &quot;test&quot;                &quot;text.pain&quot;          
-## [31] &quot;thuesenBD&quot;           &quot;v&quot;                   &quot;weight&quot;             
-## [34] &quot;x&quot;                   &quot;x.test&quot;              &quot;x1&quot;                 
-## [37] &quot;x2&quot;                  &quot;xbar&quot;                &quot;xfactor&quot;            
-## [40] &quot;y&quot;</code></pre>
+<pre><code>##  [1] &quot;bmi&quot;         &quot;d&quot;           &quot;exp.lean&quot;    &quot;exp.obese&quot;   &quot;fpain&quot;      
+##  [6] &quot;ftext.pain&quot;  &quot;height&quot;      &quot;hh&quot;          &quot;intake.post&quot; &quot;intake.pre&quot; 
+## [11] &quot;m&quot;           &quot;mylist&quot;      &quot;o&quot;           &quot;oops&quot;        &quot;pain&quot;       
+## [16] &quot;sim.matrix&quot;  &quot;simframe&quot;    &quot;text.pain&quot;   &quot;v&quot;           &quot;weight&quot;     
+## [21] &quot;x&quot;           &quot;xbar&quot;</code></pre>
 </div>
 <div id="remover-variables" class="section level4">
 <h4>Remover variables</h4>
 <p>Si el espacio de trabajo se ve desordenado, puedes borrar algunos objetos usando <code>rm</code>.</p>
 <pre class="r"><code>rm(height,weight)
 ls()</code></pre>
-<pre><code>##  [1] &quot;a&quot;                   &quot;aa&quot;                  &quot;b&quot;                  
-##  [4] &quot;bmi&quot;                 &quot;d&quot;                   &quot;DT&quot;                 
-##  [7] &quot;estudiantes.mujeres&quot; &quot;exp.lean&quot;            &quot;exp.obese&quot;          
-## [10] &quot;f&quot;                   &quot;fpain&quot;               &quot;ftext.pain&quot;         
-## [13] &quot;hh&quot;                  &quot;i&quot;                   &quot;intake.post&quot;        
-## [16] &quot;intake.pre&quot;          &quot;iris&quot;                &quot;juul&quot;               
-## [19] &quot;m&quot;                   &quot;mylist&quot;              &quot;o&quot;                  
-## [22] &quot;oops&quot;                &quot;pain&quot;                &quot;pvec&quot;               
-## [25] &quot;sim.matrix&quot;          &quot;simframe&quot;            &quot;tabl&quot;               
-## [28] &quot;test&quot;                &quot;text.pain&quot;           &quot;thuesenBD&quot;          
-## [31] &quot;v&quot;                   &quot;x&quot;                   &quot;x.test&quot;             
-## [34] &quot;x1&quot;                  &quot;x2&quot;                  &quot;xbar&quot;               
-## [37] &quot;xfactor&quot;             &quot;y&quot;</code></pre>
+<pre><code>##  [1] &quot;bmi&quot;         &quot;d&quot;           &quot;exp.lean&quot;    &quot;exp.obese&quot;   &quot;fpain&quot;      
+##  [6] &quot;ftext.pain&quot;  &quot;hh&quot;          &quot;intake.post&quot; &quot;intake.pre&quot;  &quot;m&quot;          
+## [11] &quot;mylist&quot;      &quot;o&quot;           &quot;oops&quot;        &quot;pain&quot;        &quot;sim.matrix&quot; 
+## [16] &quot;simframe&quot;    &quot;text.pain&quot;   &quot;v&quot;           &quot;x&quot;           &quot;xbar&quot;</code></pre>
 </div>
 <div id="remover-todas-las-variables" class="section level4">
 <h4>Remover todas las variables</h4>
@@ -1209,11 +1198,11 @@ loadhistory(file=&quot;myfile&quot;)</code></pre>
 <p>Puedes adjuntar una copia de las variables de un data frame usando la función <code>attach()</code>:</p>
 <pre class="r"><code>attach(thuesen)
 blood.glucose</code></pre>
-<pre><code>##  [1] 15.3 10.8  8.1 19.5  7.2  5.3  9.3 11.1  7.5 12.2  6.7  5.2 19.0 15.1
-## [15]  6.7  8.6  4.2 10.3 12.5 16.1 13.3  4.9  8.8  9.5</code></pre>
+<pre><code>##  [1] 15.3 10.8  8.1 19.5  7.2  5.3  9.3 11.1  7.5 12.2  6.7  5.2 19.0 15.1  6.7
+## [16]  8.6  4.2 10.3 12.5 16.1 13.3  4.9  8.8  9.5</code></pre>
 <pre class="r"><code>short.velocity</code></pre>
-<pre><code>##  [1] 1.76 1.34 1.27 1.47 1.27 1.49 1.31 1.09 1.18 1.22 1.25 1.19 1.95 1.28
-## [15] 1.52   NA 1.12 1.37 1.19 1.05 1.32 1.03 1.12 1.70</code></pre>
+<pre><code>##  [1] 1.76 1.34 1.27 1.47 1.27 1.49 1.31 1.09 1.18 1.22 1.25 1.19 1.95 1.28 1.52
+## [16]   NA 1.12 1.37 1.19 1.05 1.32 1.03 1.12 1.70</code></pre>
 <p>Con esta función <code>R</code> incluye <code>thuesen</code> en la ruta de búsqueda que puede observase con <code>search()</code>. Usa <code>detach()</code> para sacar las variable copiadas a memoria.</p>
 </div>
 </div>
@@ -1607,7 +1596,7 @@ N:/documentos/thuesenBD.txt</code></pre>
 <h4>Textos y números</h4>
 <p>Leer factores de esta manera es conveniente, pero hay un punto en contra. Los niveles se leen alfabéticamente.</p>
 <pre class="r"><code>levels(secretinBD$time)</code></pre>
-<pre><code>## [1] &quot;20&quot;  &quot;30&quot;  &quot;60&quot;  &quot;90&quot;  &quot;pre&quot;</code></pre>
+<pre><code>## NULL</code></pre>
 <p>Si esto no es lo que se desea, tendrás que manipular los niveles de los factores.</p>
 </div>
 <div id="archivos-delimitados" class="section level4">
@@ -1728,29 +1717,29 @@ mydata &lt;- read.xlsx(&quot;c:/miexcel.xlsx&quot;, sheetName = &quot;mihoja&quo
 <p>Para calcular la media, desviación estándar, varianza y mediana:</p>
 <pre class="r"><code>x &lt;- rnorm(50)
 mean(x)</code></pre>
-<pre><code>## [1] -0.02162251</code></pre>
+<pre><code>## [1] 0.00665102</code></pre>
 <pre class="r"><code>sd(x)</code></pre>
-<pre><code>## [1] 0.8200851</code></pre>
+<pre><code>## [1] 1.112652</code></pre>
 <pre class="r"><code>var(x)</code></pre>
-<pre><code>## [1] 0.6725395</code></pre>
+<pre><code>## [1] 1.237994</code></pre>
 <pre class="r"><code>median(x)</code></pre>
-<pre><code>## [1] 0.09017034</code></pre>
+<pre><code>## [1] 0.03025127</code></pre>
 </div>
 <div id="más-cuantiles" class="section level4">
 <h4>Más Cuantiles</h4>
 <p>Cuantiles empíricos se pueden calcular también</p>
 <pre class="r"><code>quantile(x)</code></pre>
 <pre><code>##          0%         25%         50%         75%        100% 
-## -2.45639931 -0.47970086  0.09017034  0.54849034  1.30188567</code></pre>
+## -2.45798891 -0.68522589  0.03025127  0.77841802  1.83515444</code></pre>
 <p>Cuantiles empíricos se pueden calcular también</p>
 <pre class="r"><code>pvec &lt;- seq(0,1,0.1)
 pvec</code></pre>
 <pre><code>##  [1] 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0</code></pre>
 <pre class="r"><code>quantile(x,pvec)</code></pre>
 <pre><code>##          0%         10%         20%         30%         40%         50% 
-## -2.45639931 -0.93226046 -0.64618504 -0.28488838 -0.08088524  0.09017034 
+## -2.45798891 -1.52443743 -1.05284459 -0.54157438 -0.37944706  0.03025127 
 ##         60%         70%         80%         90%        100% 
-##  0.28194088  0.37930518  0.65066511  0.83423520  1.30188567</code></pre>
+##  0.49506829  0.69536203  1.01068608  1.53582229  1.83515444</code></pre>
 <p>Por defecto <code>R</code> usa interpolación. Existen 7 métodos para calcular cuantiles que se pueden acceder mediante el argumento <code>type</code></p>
 </div>
 <div id="datos-faltantes" class="section level4">
@@ -1781,22 +1770,22 @@ mean(igf1,na.rm = T)</code></pre>
 <h4>Resumen de estadísticos</h4>
 <p>También puedes obtener una descripción de todo el data frame.</p>
 <pre class="r"><code>summary(juul)</code></pre>
-<pre><code>##       age         menarche     sex           igf1        tanner   
-##  Min.   : 0.170   No  :369   M   :621   Min.   : 25.0   I   :515  
-##  1st Qu.: 9.053   Yes :335   F   :713   1st Qu.:202.2   II  :103  
-##  Median :12.560   NA&#39;s:635   NA&#39;s:  5   Median :313.5   III : 72  
-##  Mean   :15.095                         Mean   :340.2   IV  : 81  
-##  3rd Qu.:16.855                         3rd Qu.:462.8   V   :328  
-##  Max.   :83.000                         Max.   :915.0   NA&#39;s:240  
-##  NA&#39;s   :5                              NA&#39;s   :321               
-##     testvol      
-##  Min.   : 1.000  
-##  1st Qu.: 1.000  
-##  Median : 3.000  
-##  Mean   : 7.896  
-##  3rd Qu.:15.000  
-##  Max.   :30.000  
-##  NA&#39;s   :859</code></pre>
+<pre><code>##       age            menarche          sex             igf1      
+##  Min.   : 0.170   Min.   :1.000   Min.   :1.000   Min.   : 25.0  
+##  1st Qu.: 9.053   1st Qu.:1.000   1st Qu.:1.000   1st Qu.:202.2  
+##  Median :12.560   Median :1.000   Median :2.000   Median :313.5  
+##  Mean   :15.095   Mean   :1.476   Mean   :1.534   Mean   :340.2  
+##  3rd Qu.:16.855   3rd Qu.:2.000   3rd Qu.:2.000   3rd Qu.:462.8  
+##  Max.   :83.000   Max.   :2.000   Max.   :2.000   Max.   :915.0  
+##  NA&#39;s   :5        NA&#39;s   :635     NA&#39;s   :5       NA&#39;s   :321    
+##      tanner        testvol      
+##  Min.   :1.00   Min.   : 1.000  
+##  1st Qu.:1.00   1st Qu.: 1.000  
+##  Median :2.00   Median : 3.000  
+##  Mean   :2.64   Mean   : 7.896  
+##  3rd Qu.:5.00   3rd Qu.:15.000  
+##  Max.   :5.00   Max.   :30.000  
+##  NA&#39;s   :240    NA&#39;s   :859</code></pre>
 <p>Aquí <code>menarche</code>, <code>sex</code> y <code>tanner</code> están codificadas como numéricas cuando en realidad son categóricas. Podemos corregir esto:</p>
 <pre class="r"><code>detach(juul)
 juul$sex &lt;- factor(juul$sex, labels = c(&quot;M&quot;,&quot;F&quot;))
@@ -1864,7 +1853,7 @@ hist(age.acc,breaks = brk)</code></pre>
 plot(sort(x), (1:n)/n, xlab=&quot;x&quot;,
      ylab=&quot;Proporción&quot;, type = &quot;s&quot;, ylim = c(0,1))</code></pre>
 <p><img src="about_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
-<p>Usar <code>type = &quot;s&quot;</code> crea una función escalonada.</p>
+<p>Usar <code>type = "s"</code> crea una función escalonada.</p>
 </div>
 <div id="graficas-cuantil-cuantil" class="section level4">
 <h4>Graficas Cuantil-Cuantil</h4>
@@ -1949,46 +1938,30 @@ boxplot(log(IgM))</code></pre>
 <pre class="r"><code>by(juul$age, juul[&quot;sex&quot;], mean, na.rm=T)</code></pre>
 <pre><code>## sex: M
 ## [1] 15.38436
-## -------------------------------------------------------- 
+## ------------------------------------------------------------ 
 ## sex: F
 ## [1] 14.84363</code></pre>
 <p>Si quieres un resumen de todas las variables</p>
 <pre class="r"><code>by(juul, juul[&quot;sex&quot;], summary)</code></pre>
 <pre><code>## sex: M
-##       age        menarche   sex          igf1        tanner   
-##  Min.   : 0.17   No  :  0   M:621   Min.   : 29.0   I   :291  
-##  1st Qu.: 8.85   Yes :  0   F:  0   1st Qu.:176.0   II  : 55  
-##  Median :12.38   NA&#39;s:621           Median :280.0   III : 34  
-##  Mean   :15.38                      Mean   :310.9   IV  : 41  
-##  3rd Qu.:16.77                      3rd Qu.:430.2   V   :124  
-##  Max.   :83.00                      Max.   :915.0   NA&#39;s: 76  
-##                                     NA&#39;s   :145               
-##     testvol      
-##  Min.   : 1.000  
-##  1st Qu.: 1.000  
-##  Median : 3.000  
-##  Mean   : 7.896  
-##  3rd Qu.:15.000  
-##  Max.   :30.000  
-##  NA&#39;s   :141     
-## -------------------------------------------------------- 
+##       age        menarche   sex          igf1        tanner       testvol      
+##  Min.   : 0.17   No  :  0   M:621   Min.   : 29.0   I   :291   Min.   : 1.000  
+##  1st Qu.: 8.85   Yes :  0   F:  0   1st Qu.:176.0   II  : 55   1st Qu.: 1.000  
+##  Median :12.38   NA&#39;s:621           Median :280.0   III : 34   Median : 3.000  
+##  Mean   :15.38                      Mean   :310.9   IV  : 41   Mean   : 7.896  
+##  3rd Qu.:16.77                      3rd Qu.:430.2   V   :124   3rd Qu.:15.000  
+##  Max.   :83.00                      Max.   :915.0   NA&#39;s: 76   Max.   :30.000  
+##                                     NA&#39;s   :145                NA&#39;s   :141     
+## ------------------------------------------------------------ 
 ## sex: F
-##       age        menarche   sex          igf1        tanner   
-##  Min.   : 0.25   No  :369   M:  0   Min.   : 25.0   I   :224  
-##  1st Qu.: 9.30   Yes :335   F:713   1st Qu.:233.0   II  : 48  
-##  Median :12.80   NA&#39;s:  9           Median :352.0   III : 38  
-##  Mean   :14.84                      Mean   :368.1   IV  : 40  
-##  3rd Qu.:16.93                      3rd Qu.:483.0   V   :204  
-##  Max.   :75.12                      Max.   :914.0   NA&#39;s:159  
-##                                     NA&#39;s   :176               
-##     testvol   
-##  Min.   : NA  
-##  1st Qu.: NA  
-##  Median : NA  
-##  Mean   :NaN  
-##  3rd Qu.: NA  
-##  Max.   : NA  
-##  NA&#39;s   :713</code></pre>
+##       age        menarche   sex          igf1        tanner       testvol   
+##  Min.   : 0.25   No  :369   M:  0   Min.   : 25.0   I   :224   Min.   : NA  
+##  1st Qu.: 9.30   Yes :335   F:713   1st Qu.:233.0   II  : 48   1st Qu.: NA  
+##  Median :12.80   NA&#39;s:  9           Median :352.0   III : 38   Median : NA  
+##  Mean   :14.84                      Mean   :368.1   IV  : 40   Mean   :NaN  
+##  3rd Qu.:16.93                      3rd Qu.:483.0   V   :204   3rd Qu.: NA  
+##  Max.   :75.12                      Max.   :914.0   NA&#39;s:159   Max.   : NA  
+##                                     NA&#39;s   :176                NA&#39;s   :713</code></pre>
 <p>Cuyo resultado ahora es en forma de lista.</p>
 </div>
 </div>
@@ -2035,7 +2008,7 @@ stripchart(expend ~ stature, method = &quot;jitter&quot;, jitter=0.03)</code></p
 <p>Algunas observaciones sobre la función <code>par</code> * La configuración original de par se guarda en una variable (opar). * La configuración original se reestablece con <code>par(opar)</code> * El argumento <code>mex</code> reduce la distancia entre líneas. * <code>mar</code> reduce el número de líneas que rodean la región de la gráfica.</p>
 </blockquote>
 <blockquote>
-<p>Algunas observaciones sobre los argumentos de <code>stripchart</code> * La versión por defecto gráfica los puntos sobre la línea, que puede ser problemático si hay traslapes. * El argumento <code>method=&quot;stack&quot;</code> apila las observaciones iguales. Lo que puede ser todavía un problema con las casi iguales. * <code>method=&quot;jitter&quot;</code> crea una pequeña perturbación aleatoria que separa los puntos en un eje imaginario. * Por defecto <code>jitter</code> está definido en <code>0.1</code>, lo que puede ser mucha perturbación para algunos. Usar <code>jitter = 0.03</code> permite ajustar esto a valores menores.</p>
+<p>Algunas observaciones sobre los argumentos de <code>stripchart</code> * La versión por defecto gráfica los puntos sobre la línea, que puede ser problemático si hay traslapes. * El argumento <code>method="stack"</code> apila las observaciones iguales. Lo que puede ser todavía un problema con las casi iguales. * <code>method="jitter"</code> crea una pequeña perturbación aleatoria que separa los puntos en un eje imaginario. * Por defecto <code>jitter</code> está definido en <code>0.1</code>, lo que puede ser mucha perturbación para algunos. Usar <code>jitter = 0.03</code> permite ajustar esto a valores menores.</p>
 </blockquote>
 </div>
 </div>
@@ -2333,7 +2306,7 @@ pie(table.caff.marital[&quot;Casados&quot;,], main=&quot;Casados&quot;, col=slic
 <h3>Ejercicios</h3>
 <ul>
 <li><p>Explore distintas formas de gráficas de lineas y puntos. Cambie el tipo de línea, el grosor de la línea y el color.</p></li>
-<li><p>Al graficar <code>plot(rnorm(10), type = &quot;o&quot;)</code> las líneas son visibles dentro de los símbolos dibujados. ¿Cómo puedes evitar esto?</p></li>
+<li><p>Al graficar <code>plot(rnorm(10), type = "o")</code> las líneas son visibles dentro de los símbolos dibujados. ¿Cómo puedes evitar esto?</p></li>
 <li><p>Crea un histograma de los datos <code>react</code>. Debido al alto grado de discretización de los datos, el histograma estará sesgado. ¿Por qué? Puedes utilizar la función <code>truehist()</code> del paquete <code>MASS</code> como reemplazo.</p></li>
 </ul>
 </div>
@@ -2401,8 +2374,9 @@ pie(table.caff.marital[&quot;Casados&quot;,], main=&quot;Casados&quot;, col=slic
 <div id="crea-un-data-table" class="section level4">
 <h4>Crea un data table</h4>
 <p>Puedes crear tu propio data table usando la función <code>data.table</code></p>
-<pre class="r"><code>library(data.table)
-DT = data.table(ID = c(&quot;b&quot;,&quot;b&quot;,&quot;b&quot;,&quot;a&quot;,&quot;a&quot;,&quot;c&quot;),
+<pre class="r"><code>library(data.table)</code></pre>
+<pre><code>## Warning: package &#39;data.table&#39; was built under R version 4.0.2</code></pre>
+<pre class="r"><code>DT = data.table(ID = c(&quot;b&quot;,&quot;b&quot;,&quot;b&quot;,&quot;a&quot;,&quot;a&quot;,&quot;c&quot;),
                  a = 1:6,
                  b = 7:12,
                  c = 13:18)
@@ -2510,10 +2484,11 @@ View(mtcars)  #para ver los datos.</code></pre>
 <div id="correlación" class="section level4">
 <h4>Correlación</h4>
 <p>La función <code>cor</code> nos ayuda a medir la correlación lineal que puede existir entre dos variables.</p>
-<pre class="r"><code>?cor
-cor(x = mtcars$hp, y = mtcars$mpg, method = &quot;pearson&quot;)</code></pre>
+<pre class="r"><code>?cor</code></pre>
+<pre><code>## starting httpd help server ... done</code></pre>
+<pre class="r"><code>cor(x = mtcars$hp, y = mtcars$mpg, method = &quot;pearson&quot;)</code></pre>
 <pre><code>## [1] -0.7761684</code></pre>
-<p>El argumento <code>method = &quot;pearson&quot;</code> indica que estamos utilizando el coeficiente de correlación de Pearson, por mucho el más usado en la práctica.</p>
+<p>El argumento <code>method = "pearson"</code> indica que estamos utilizando el coeficiente de correlación de Pearson, por mucho el más usado en la práctica.</p>
 <p>Algunas reglas a considerar:</p>
 <ul>
 <li>Un valor cercano a 1 indica una correlación positiva fuerte.</li>
@@ -2607,8 +2582,8 @@ x &lt;- rnorm(100)
 y &lt;- rnorm(100)
 qqplot(x,y)
 qqline(x,y)</code></pre>
-<pre><code>## Warning in if (datax) {: the condition has length &gt; 1 and only the first
-## element will be used</code></pre>
+<pre><code>## Warning in if (datax) {: la condición tiene longitud &gt; 1 y sólo el primer
+## elemento será usado</code></pre>
 <p><img src="about_files/figure-html/unnamed-chunk-246-1.png" width="672" /></p>
 </div>
 <div id="prueba-de-shaphiro-wilks" class="section level4">
@@ -2624,7 +2599,7 @@ print(x.test)</code></pre>
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  x
-## W = 0.98689, p-value = 0.43</code></pre>
+## W = 0.99299, p-value = 0.8876</code></pre>
 <p>Como el valor de <span class="math inline">\(p &gt; 0.05\)</span>, entonces podemos inferir que la distribución de los datos es una distribución normal.</p>
 </div>
 </div>
@@ -2643,13 +2618,13 @@ print(test)</code></pre>
 ##  Welch Two Sample t-test
 ## 
 ## data:  x1 and x2
-## t = -3.4284, df = 194.58, p-value = 0.0007411
+## t = -4.4563, df = 195.42, p-value = 1.403e-05
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.7938858 -0.2140509
+##  -0.8331228 -0.3219424
 ## sample estimates:
 ## mean of x mean of y 
-##  9.985272 10.489241</code></pre>
+##  9.993251 10.570784</code></pre>
 <p>Como el <span class="math inline">\(p\)</span>-value es <span class="math inline">\(&lt;0.05\)</span> podemos afirmar que las muestras difieren en su media, es decir, los dos variables son diferentes.</p>
 </div>
 <div id="anova" class="section level4">
@@ -2702,13 +2677,13 @@ var.test(x, y)</code></pre>
 ##  F test to compare two variances
 ## 
 ## data:  x and y
-## F = 2.2849, num df = 49, denom df = 29, p-value = 0.01943
+## F = 3.8728, num df = 49, denom df = 29, p-value = 0.0002132
 ## alternative hypothesis: true ratio of variances is not equal to 1
 ## 95 percent confidence interval:
-##  1.147998 4.298893
+##  1.945802 7.286415
 ## sample estimates:
 ## ratio of variances 
-##           2.284924</code></pre>
+##           3.872835</code></pre>
 <p>Como vemos, el <span class="math inline">\(p\)</span>-valor sale prácticamente cero: rechazaremos la hipótesis de que los conjuntos de datos <code>x</code> e <code>y</code> provienen de distribuciones con la misma varianza.</p>
 </div>
 <div id="homogéneidad-de-varianzas" class="section level4">
@@ -2735,19 +2710,19 @@ bartlett.test(list(a,b))</code></pre>
 <p><em>Ejemplo:</em> Para empezar, tiraremos una moneda al aire 100 veces, y nos preguntaremos si la proporción de caras puede ser considerada el 50%:</p>
 <pre class="r"><code>caras &lt;- rbinom(1, size=100, pr = .5)
 caras</code></pre>
-<pre><code>## [1] 49</code></pre>
+<pre><code>## [1] 60</code></pre>
 <pre class="r"><code>prop.test(caras,100)</code></pre>
 <pre><code>## 
 ##  1-sample proportions test with continuity correction
 ## 
 ## data:  caras out of 100, null probability 0.5
-## X-squared = 0.01, df = 1, p-value = 0.9203
+## X-squared = 3.61, df = 1, p-value = 0.05743
 ## alternative hypothesis: true p is not equal to 0.5
 ## 95 percent confidence interval:
-##  0.3894281 0.5913488
+##  0.4970036 0.6952199
 ## sample estimates:
-##    p 
-## 0.49</code></pre>
+##   p 
+## 0.6</code></pre>
 <p>Como el <span class="math inline">\(p\)</span>-valor es muy alto, 0.92, no rechazaremos la hipótesis nula de que <span class="math inline">\(p=0.5\)</span>.</p>
 <p>Supongamos ahora que queremos saber si dos muestras han salido de la misma población.</p>
 <p><em>Ejemplo:</em> se quiere saber si las mujeres estudian un grupo de carreras diferentes en la misma proporcion. Para ello miramos la lista de matriculados en cuatro carreras y comprobamos si las proporciones de mujeres en las mismas coinciden:</p>
@@ -2784,7 +2759,7 @@ prop.test(estudiantes.mujeres,estudiantes)</code></pre>
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
